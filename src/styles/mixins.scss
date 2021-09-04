@@ -3,7 +3,15 @@
     @apply flex justify-center items-center;
 }
 
+// @mixin absolute {
+//     @apply abosulte;
+// }
+
 // MIXIN CLASSES
 .perfect-center {
     @include perfect-center-mixin();
 }
+
+// .position-absolute {
+//     @include absolute();
+// }

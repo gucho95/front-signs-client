@@ -14,6 +14,7 @@
       "@templates/*": ["./components/templates/*"],
       "@pages": ["./components/pages/index.js"],
       "@pages/*": ["./components/pages/*"],
+      "@icons/*": ["./components/atoms/icons/*"],
       "@styles/*": ["./styles/*"],
       "@assets/*": ["./assets/*"],
       "@constants/*": ["./constants/*"],

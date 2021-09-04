@@ -16,16 +16,15 @@ const getHeadingElement = ({ level, ...props }) => {
   }
 };
 
-export const LEVELS = { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 };
+export const LEVELS = { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, };
 const DEFAULT_CLASSES = 'leading-0';
 
 export const LEVEL_CLASSES = {
-  [LEVELS[1]]: 'text-7xl',
-  [LEVELS[2]]: 'text-6xl',
-  [LEVELS[3]]: 'text-5xl',
-  [LEVELS[4]]: 'text-4xl',
-  [LEVELS[5]]: 'text-3xl',
-  [LEVELS[6]]: 'text-2xl',
+  [LEVELS[1]]: 'text-h1 font-black',
+  [LEVELS[2]]: 'text-h2 font-black',
+  [LEVELS[3]]: 'text-h3/h4 font-bold',
+  [LEVELS[4]]: 'text-h3/h4 font-medium',
+  [LEVELS[5]]: 'text-h5 font-regular',
 };
 
 const Heading = (props) => {
@@ -39,6 +38,6 @@ const Heading = (props) => {
 
 Heading.propTypes = { level: PropTypes.oneOf(Object.values(LEVELS)) };
 
-Heading.defaultProps = { level: LEVELS[4] };
+Heading.defaultProps = { level: LEVELS[4],children:'' };
 
 export default Heading;

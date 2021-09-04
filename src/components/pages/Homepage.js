@@ -5,7 +5,13 @@ import { PageTemplate } from 'components/templates';
 const Homepage = () => {
   return (
     <PageTemplate>
-      <Container className='grid gap-y-4 py-4'></Container>
+      <Container className='grid gap-y-4 py-4'>
+        <p className='text-h4'>
+          Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+          Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+          Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+        </p>
+      </Container>
     </PageTemplate>
   );
 };

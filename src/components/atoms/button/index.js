@@ -2,17 +2,17 @@ import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const TYPES = { CUSTOM: 'custom', PRIMARY: 'primary', SECONDARY: 'secondary', DANGER: 'danger' };
-export const SIZES = { CUSTOM: 'custom', SMALL: 'small', MIDDLE: 'middle', MIDDLE: 'middle' };
+export const TYPES = { PRIMARY: 'primary', SECONDARY: 'secondary', LINK: 'link', CUSTOM: 'custom' };
+export const SIZES = { CUSTOM: 'custom', SMALL: 'small', MIDDLE: 'middle' };
 export const HTML_TYPES = { RESET: 'reset', SUBMIT: 'submit', BUTTON: 'button' };
 
-const DEFAULT_CLASSES =
-  'flex-shrink-0 active:opacity-75 rounded-sm text-sm px-3 py-2 transition-all disabled:ring-0 disabled:opacity-50';
+const DEFAULT_CLASSES = 'flex-shrink-0 active:opacity-75 rounded-3px text-p4-24 px-5 py-4 transition-all';
 
 export const TYPE_CLASSES = {
-  [TYPES.PRIMARY]: 'bg-blue-500 hover:bg-blue-600 focus:ring ring-blue-100 text-white',
-  [TYPES.SECONDARY]: 'text-white bg-green-500 hover:bg-green-700 focus:ring ring-green-100',
-  [TYPES.DANGER]: 'bg-red-500 hover:bg-red-700 focus:ring ring-red-100  text-white',
+  [TYPES.PRIMARY]: 'bg-blue-light text-white hover:bg-yellow-hover disabled:bg-grey-light',
+  [TYPES.SECONDARY]:
+    'bg-white text-blue-light border-1px border-blue-light hover:bg-blue-light hover:text-white  hover:border-0 disabled:bg-white disabled:border-grey-light disabled:text-grey-light',
+  [TYPES.LINK]: 'bg-white text-blue-light hover:underline disabled:text-blue-dark disabled:no-underline',
   [TYPES.CUSTOM]: '',
 };
 
