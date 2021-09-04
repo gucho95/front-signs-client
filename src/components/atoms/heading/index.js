@@ -16,7 +16,7 @@ const getHeadingElement = ({ level, ...props }) => {
   }
 };
 
-export const LEVELS = { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, };
+export const LEVELS = { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5 };
 const DEFAULT_CLASSES = 'leading-0';
 
 export const LEVEL_CLASSES = {
@@ -38,6 +38,6 @@ const Heading = (props) => {
 
 Heading.propTypes = { level: PropTypes.oneOf(Object.values(LEVELS)) };
 
-Heading.defaultProps = { level: LEVELS[4],children:'' };
+Heading.defaultProps = { level: LEVELS[4], children: '' };
 
 export default Heading;

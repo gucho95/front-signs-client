@@ -6,7 +6,7 @@ import SearchIcon from '../icons/Search';
 const classes = {
   root: 'w-full relative',
   input:
-    'border-1px rounded-30px py-3 px-5 outline-none placeholder-grey-dark text-p5 text-blue-dark focus:border-blue-light disabled:border-grey-dark disabled:bg-transparent disabled:opacity-30 w-full',
+    'border-1px rounded-30px py-3 pl-5 pr-10 outline-none placeholder-grey-dark text-p5 text-blue-dark focus:border-blue-light disabled:border-grey-dark disabled:bg-transparent disabled:opacity-30 w-full',
   iconWrapper: 'absolute top-0 right-5 h-full perfect-center',
   icon: 'w-4 h-4 fill-current',
   iconFocused: 'text-blue-light',

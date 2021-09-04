@@ -15,4 +15,5 @@ export { default as Spacing } from './spacing';
 // INPUTS
 export { default as Input } from './input';
 export { default as SearchInput } from './input/Search';
+export { default as SearchBar } from './searchBar';
 export * as Link from './link';
