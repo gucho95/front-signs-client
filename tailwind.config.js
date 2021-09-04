@@ -17,12 +17,16 @@ module.exports = {
         light: '#D9D9D9',
         dark: '#9B9B9B',
       },
+      danger: {
+        DEFAULT: '#9F0000',
+      },
       white: {
         DEFAULT: '#FFFFFF',
       },
       black: {
         DEFAULT: '#000000',
       },
+      transparent: 'transparent',
     },
     fontFamily: {
       sans: ['Roboto'],
@@ -42,9 +46,12 @@ module.exports = {
       'p4-21': ['16px', '21px'],
       'p4-24': ['16px', '24px'],
       p5: ['14px', '21px'],
+      // CUSTOM
+      '9px': ['9px', '24px'],
     },
     borderRadius: {
       '3px': '3px',
+      '30px': '30px',
       full: '50%',
     },
     borderWidth: {
@@ -60,6 +67,7 @@ module.exports = {
     extend: {
       textDecoration: ['disabled'],
       backgroundColor: ['disabled'],
+      opacity: ['disabled'],
       textColor: ['disabled'],
       borderColor: ['disabled'],
       opacity: ['active', 'disabled'],

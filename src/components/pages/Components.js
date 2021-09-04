@@ -12,6 +12,7 @@ import {
   PARAGRAPH_OPTIONS,
   IconButton,
   SideButton,
+  SearchInput,
 } from '@atoms';
 import classNames from '../../../node_modules/classnames/index';
 
@@ -56,6 +57,15 @@ const Components = () => {
             <SideButton icon='icon' text='Button text' />
           </div>
         </div>
+        <div className='grid py-2 px-4 gap-4'>
+          <Heading level={2} children='Inputs' className='border-b-1px border-blue-dark' />
+          <div className='grid grid-cols-3 gap-4 border-gray-800 border-2'>
+            <Input placeholder='Base input...' />
+            <Input placeholder='Error input' error={true} />
+            <Input placeholder='Disabled input...' disabled={true} />
+            <SearchInput placeholder='Search...' />
+          </div>
+        </div>
 
         <div className='grid gap-4 py-2 px-4 border-gray-800 border-2'>
           <Heading level={2} children='Headings' className='border-b-1px border-blue-dark' />
@@ -78,27 +88,6 @@ const Components = () => {
               </div>
             );
           })}
-        </div>
-
-        <div className='py-2 px-4 border-gray-800 border-2'>
-          <Heading level={1} children='Heading level 1' className='leading-tight' />
-          <Heading level={2} children='Heading level 2' className='leading-tight' />
-          <Heading level={3} children='Heading level 3' className='leading-tight' />
-          <Heading level={4} children='Heading level 4' className='leading-tight' />
-          <Heading level={5} children='Heading level 5' className='leading-tight' />
-          <Heading level={6} children='Heading level 6' className='leading-tight' />
-        </div>
-
-        <div className='flex gap-x-4 border-gray-800 border-2 leading-tight'>
-          <Text children='Standart text' />
-          <Text type={TEXT_TYPES.BOLD} children='Bold text' />
-          <Text type={TEXT_TYPES.ITALIC} children='Italic text' />
-          <Text type={TEXT_TYPES.UNDERLINE} children='Underline text' />
-        </div>
-
-        <div className=' flex gap-x-3 py-2 px-4 border-gray-800 border-2 leading-tight'>
-          <Input placeholder='Input here...' />
-          <Input error={true} placeholder='Input with error' />
         </div>
 
         <div className=' flex gap-x-3 py-2 px-4 border-gray-800 border-2 leading-tight'>
