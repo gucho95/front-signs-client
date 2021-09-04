@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "baseUrl": "./src",
+    "jsx": "react",
+    "paths": {
+      "@atoms": ["./components/atoms/index.js"],
+      "@atoms/*": ["./components/atoms/*"],
+      "@molecules": ["./components/molecules/index.js"],
+      "@molecules/*": ["./components/molecules/*"],
+      "@organisms": ["./components/organisms/index.js"],
+      "@organisms/*": ["./components/organisms/*"],
+      "@templates": ["./components/templates/index.js"],
+      "@templates/*": ["./components/templates/*"],
+      "@pages": ["./components/pages/index.js"],
+      "@pages/*": ["./components/pages/*"],
+      "@styles/*": ["./styles/*"],
+      "@assets/*": ["./assets/*"],
+      "@constants/*": ["./constants/*"],
+      "@hooks": ["./hooks/index.js"],
+      "@hocs": ["./hocs/index.js"],
+      "@utils": ["./utils/index.js"]
+    }
+  },
+  "exclude": ["node_modules", "**/node_modules/*", "build"]
+}
