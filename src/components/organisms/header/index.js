@@ -23,9 +23,9 @@ const Header = (props) => (
           <ul className='text-xs flex list-none gap-x-2'>
             {ROUTES.map(({ path, key }) => (
               <li key={key}>
-                <Link.Internal to={path}>
+                <Link to={path}>
                   <Text children={key} />
-                </Link.Internal>
+                </Link>
               </li>
             ))}
           </ul>

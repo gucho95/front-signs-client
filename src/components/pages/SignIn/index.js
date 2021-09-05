@@ -2,6 +2,8 @@ import { BUTTON_HTML_TYPES, BUTTON_TYPES, Heading, Input, Spacing, Button } from
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import schema from './schema';
+import { useRouter } from '@hooks';
+import { PATHS } from '@constants/paths';
 
 const classes = {
   root: 'h-screen perfect-center bg-grey-light',
@@ -10,8 +12,10 @@ const classes = {
 
 const SignIn = () => {
   const { register, handleSubmit } = useForm({ resolver: yupResolver(schema) });
+  const { history } = useRouter();
   const onFormSuccess = (values) => {
     console.log(values);
+    history.push(PATHS.DASHBOARD);
   };
   const onFormError = () => {};
 
@@ -19,7 +23,7 @@ const SignIn = () => {
     <div className={classes.root}>
       <Spacing className='pt-40' />
       <form onSubmit={handleSubmit(onFormSuccess, onFormError)} className={classes.form}>
-        <Heading level={2} children='Sign in' />
+        <Heading level={3} children='Sign in' />
         <Input placeholder='Email' {...register('email')} />
         <Input placeholder='Password' {...register('password')} />
         <div>

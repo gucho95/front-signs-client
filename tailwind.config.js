@@ -16,6 +16,8 @@ module.exports = {
         blue: '#F5F6FA',
         light: '#D9D9D9',
         dark: '#9B9B9B',
+        alpha: '#E6E6E6',
+        body: '#F4F6F8',
       },
       danger: {
         DEFAULT: '#9F0000',
@@ -25,6 +27,10 @@ module.exports = {
       },
       black: {
         DEFAULT: '#000000',
+      },
+      dark: {
+        DEFAULT: '#353A41',
+        alpha: '#525A65',
       },
       transparent: 'transparent',
     },
@@ -48,14 +54,19 @@ module.exports = {
       p5: ['14px', '21px'],
       // CUSTOM
       '9px': ['9px', '24px'],
+      '12px': ['12px', '16px'],
     },
     borderRadius: {
       '3px': '3px',
       '30px': '30px',
+      '100px': '100px',
       full: '50%',
     },
     borderWidth: {
       '1px': '1px',
+    },
+    boxShadow: {
+      inset: 'inset -1px 0px 0px #DFE3E8',
     },
     extend: {
       spacing: {

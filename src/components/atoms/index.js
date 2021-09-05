@@ -16,4 +16,4 @@ export { default as Spacing } from './spacing';
 export { default as Input } from './input';
 export { default as SearchInput } from './input/Search';
 export { default as SearchBar } from './searchBar';
-export * as Link from './link';
+export { Internal as Link, External as ExternalLink } from './link';

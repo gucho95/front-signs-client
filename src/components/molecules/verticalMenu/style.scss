@@ -1,0 +1,21 @@
+.rc-menu {
+    $root: &;
+    $menuItem: #{&}-item;
+    $verticalMenu: #{&}-vertical;
+
+    // VERTICAL MENU STYLES
+    &,
+    #{$verticalMenu} {
+        #{$menuItem} {
+            @apply py-2 px-4 transition-all;
+
+            &-active {
+                @apply bg-white bg-opacity-20;
+            }
+
+            &-selected {
+                @apply bg-white bg-opacity-50;
+            }
+        }
+    }
+}
