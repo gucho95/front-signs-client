@@ -14,7 +14,6 @@ const SignIn = () => {
   const { register, handleSubmit } = useForm({ resolver: yupResolver(schema) });
   const { history } = useRouter();
   const onFormSuccess = (values) => {
-    console.log(values);
     history.push(PATHS.DASHBOARD);
   };
   const onFormError = () => {};

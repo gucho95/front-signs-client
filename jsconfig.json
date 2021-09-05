@@ -1,26 +1,27 @@
 {
   "compilerOptions": {
+    "module": "commonjs",
     "target": "esnext",
     "baseUrl": "./src",
     "jsx": "react",
     "paths": {
       "@atoms": ["./components/atoms/index.js"],
-      "@atoms/*": ["./components/atoms/*"],
       "@molecules": ["./components/molecules/index.js"],
-      "@molecules/*": ["./components/molecules/*"],
       "@organisms": ["./components/organisms/index.js"],
-      "@organisms/*": ["./components/organisms/*"],
       "@templates": ["./components/templates/index.js"],
-      "@templates/*": ["./components/templates/*"],
       "@pages": ["./components/pages/index.js"],
+      "@atoms/*": ["./components/atoms/*"],
+      "@molecules/*": ["./components/molecules/*"],
+      "@organisms/*": ["./components/organisms/*"],
+      "@templates/*": ["./components/templates/*"],
       "@pages/*": ["./components/pages/*"],
-      "@icons/*": ["./components/atoms/icons/*"],
-      "@styles/*": ["./styles/*"],
-      "@assets/*": ["./assets/*"],
-      "@constants/*": ["./constants/*"],
+      "@icons/*": ["./components/atoms/icons/index.js"],
       "@hooks": ["./hooks/index.js"],
       "@hocs": ["./hocs/index.js"],
-      "@utils": ["./utils/index.js"]
+      "@utils": ["./utils/index.js"],
+      "@styles/*": ["./styles/*"],
+      "@assets/*": ["./assets/*"],
+      "@constants/*": ["./constants/*"]
     }
   },
   "exclude": ["node_modules", "**/node_modules/*", "build"]

@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import classNames from 'classnames';
 import { Spacing } from '@atoms';
-import SearchIcon from '../icons/Search';
+import { SearchIcon } from '@icons';
+import { useForm } from 'react-hook-form';
 
 const classes = {
   root: 'w-full h-full flex items-center text-white',
@@ -23,11 +24,11 @@ const SearchBar = (props) => {
       <div className={classes.inputWrapper}>
         <input
           id='search'
-          onFocus={onFocus}
-          onBlur={onBlur}
-          placeholder={focused ? null : 'Search'}
+          placeholder={focused ? null : 'Search...'}
           className={classNames(classes.input, className)}
           {...inputProps}
+          onFocus={onFocus}
+          onBlur={onBlur}
         />
       </div>
     </label>

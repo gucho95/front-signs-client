@@ -30,7 +30,7 @@ const Header = () => {
         <Heading level={3} children='FS Panel' className={classes.heading} />
       </Link>
       <Spacing className='pl-28 ' />
-      <form className={classes.form} onSubmit={handleSubmit(onFormSuccess, onFormError)}>
+      <form className={classes.form} onSubmit={handleSubmit(onFormSuccess, onFormError)} autoComplete='off'>
         <SearchBar {...register('search')} />
       </form>
       <Spacing className='pl-12 ' />

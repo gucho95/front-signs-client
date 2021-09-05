@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import SearchIcon from '../icons/Search';
+import { SearchIcon } from '@icons';
 
 const classes = {
   root: 'w-full relative',
