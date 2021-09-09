@@ -6,13 +6,13 @@ export const TYPES = { PRIMARY: 'primary', SECONDARY: 'secondary', LINK: 'link',
 export const SIZES = { CUSTOM: 'custom', SMALL: 'small', MIDDLE: 'middle' };
 export const HTML_TYPES = { RESET: 'reset', SUBMIT: 'submit', BUTTON: 'button' };
 
-const DEFAULT_CLASSES = 'flex-shrink-0 active:opacity-75 rounded-3px text-p4-24 px-5 py-4 transition-all';
+const DEFAULT_CLASSES = 'flex-shrink-0 active:opacity-75 rounded-3px text-p4-24 transition-all';
 
 export const TYPE_CLASSES = {
-  [TYPES.PRIMARY]: 'bg-blue-light text-white hover:bg-yellow-hover disabled:bg-grey-light',
+  [TYPES.PRIMARY]: 'bg-blue-light text-white hover:bg-yellow-hover disabled:bg-grey-light px-5 py-4',
   [TYPES.SECONDARY]:
-    'bg-white text-blue-light border-1px border-blue-light hover:bg-blue-light hover:text-white  hover:border-0 disabled:bg-white disabled:border-grey-light disabled:text-grey-light',
-  [TYPES.LINK]: 'bg-white text-blue-light hover:underline disabled:text-blue-dark disabled:no-underline',
+    'bg-white text-blue-light border-1px border-blue-light hover:bg-blue-light hover:text-white  hover:border-0 disabled:bg-white disabled:border-grey-light disabled:text-grey-light px-5 py-4',
+  [TYPES.LINK]: 'bg-white text-blue-light hover:underline disabled:text-blue-dark disabled:no-underline px-5 py-4',
   [TYPES.CUSTOM]: '',
 };
 

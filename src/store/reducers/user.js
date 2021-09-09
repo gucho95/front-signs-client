@@ -1,4 +1,4 @@
-import { AUTH } from 'store/actionTypes';
+import { AUTH } from '@store/actionTypes';
 const { SIGN_IN, SIGN_OUT } = AUTH;
 
 export const initialState = { data: null, loaded: false, failed: false };

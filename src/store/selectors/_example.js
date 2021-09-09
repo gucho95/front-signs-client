@@ -1,10 +1,11 @@
 const key = 'users';
+const ref = state[key];
 
 const example = (state) => ({
-  loaded: state[key].loaded,
-  failed: state[key].failed,
-  rows: state[key]?.data?.rows,
-  count: state[key]?.data?.count,
+  loaded: ref(state).loaded,
+  failed: ref(state).failed,
+  rows: ref(state).data?.rows,
+  count: ref(state)?.data?.count,
 });
 
 export default example;

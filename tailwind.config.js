@@ -31,6 +31,7 @@ module.exports = {
       dark: {
         DEFAULT: '#353A41',
         alpha: '#525A65',
+        beta: '#637381',
       },
       transparent: 'transparent',
     },
@@ -55,6 +56,7 @@ module.exports = {
       // CUSTOM
       '9px': ['9px', '24px'],
       '12px': ['12px', '16px'],
+      '28px': ['28px', '32px'],
     },
     borderRadius: {
       '3px': '3px',

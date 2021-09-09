@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import RootRouter from 'components/routers/Root';
 import '@styles/index.scss';
+import StoreProvider from '@store/config';
 
 ReactDOM.render(
   <React.StrictMode>
-    <RootRouter />
+    <StoreProvider>
+      <RootRouter />
+    </StoreProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,6 +1,6 @@
 import { AUTH } from '../actionTypes';
 import { generateWatcher } from './_generate';
-import services from 'store/services';
+import services from '@services';
 
 export const signIn = generateWatcher({
   actionType: AUTH.SIGN_IN,

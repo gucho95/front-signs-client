@@ -1,7 +1,6 @@
 import axios from 'axios';
-import { store } from 'store/config';
-import selectors from 'store/selectors';
-import { Toast } from 'style-guide';
+import { store } from '@store/config';
+import selectors from '@selectors';
 import actions from './actions';
 const { REACT_APP_LOCAL_API } = process.env;
 
@@ -16,15 +15,7 @@ const client = () => {
   });
   service.interceptors.response.use(
     (response) => response.data,
-    (error) => {
-      const response = error.response.data;
-      if (error.response.status === 401 && token) {
-        // todo fix toast visibility issue on force logout
-        Toast.notify.warn('Session expired', { autoClose: 6000 });
-        store.dispatch(signOut());
-      }
-      return Promise.reject(response);
-    }
+    (error) => {}
   );
   return service;
 };

@@ -21,7 +21,7 @@ const Header = (props) => (
 
         <div className='flex items-center justify-between '>
           <ul className='text-xs flex list-none gap-x-2'>
-            {ROUTES.map(({ path, key }) => (
+            {ROUTES.filter((i) => i.isMenuItem).map(({ path, key }) => (
               <li key={key}>
                 <Link to={path}>
                   <Text children={key} />

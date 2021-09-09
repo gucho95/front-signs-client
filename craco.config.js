@@ -21,6 +21,11 @@ module.exports = {
       '@hooks$': path.resolve(__dirname, 'src/hooks/index.js'),
       '@hocs$': path.resolve(__dirname, 'src/hocs/index.js'),
       '@utils$': path.resolve(__dirname, 'src/utils/index.js'),
+      '@selectors': path.resolve(__dirname, 'src/store/selectors'),
+      '@actions': path.resolve(__dirname, 'src/store/actions'),
+      '@sagas': path.resolve(__dirname, 'src/store/sagas'),
+      '@services': path.resolve(__dirname, 'src/store/services'),
+      '@store': path.resolve(__dirname, 'src/store'),
     },
   },
 };

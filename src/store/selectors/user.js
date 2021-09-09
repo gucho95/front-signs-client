@@ -1,10 +1,11 @@
 const key = 'user';
+const ref = (state) => state[key];
 
 const user = (state) => ({
-  loaded: state[key].loaded,
-  failed: state[key].failed,
-  data: state[key].data?.user,
-  token: state[key].data?.token,
+  loaded: ref(state).loaded,
+  failed: ref(state).failed,
+  data: ref(state).data?.user,
+  token: ref(state).data?.token,
 });
 
 export default user;

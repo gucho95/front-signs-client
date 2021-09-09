@@ -1,12 +1,16 @@
+const DASHBOARD_BASE = '/dashboard';
+
 const DASHBOARD_PATHS = {
-  SINGLE_PAGE: '/dashboard/pages/:page',
-  SETTINGS: '/dashboard/settings',
+  SINGLE_PAGE_MANAGE: `${DASHBOARD_BASE}/pages/:page`,
+  ADD_PAGE: `${DASHBOARD_BASE}/add-page`,
+  SETTINGS: `${DASHBOARD_BASE}/settings`,
 };
 
 export const PATHS = {
   HOMEPAGE: '/',
   SIGN_IN: '/sign-in',
   DASHBOARD: '/dashboard',
+  SINGLE_PAGE_VIEW: '/:page',
   // MOCK
   COMPONENTS: '/components',
   FORM: '/form',

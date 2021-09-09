@@ -1,7 +1,5 @@
-// import users from './_example';
 import auth from './auth';
-import email from './email';
 
-const services = { auth, email };
+const services = { auth };
 
 export default services;
