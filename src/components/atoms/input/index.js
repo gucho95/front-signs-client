@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { forwardRef } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import Text from '../text';
@@ -13,17 +13,17 @@ const STATE_CLASSES = {
   [STATES.BASE]: 'border-grey-dark',
 };
 
-const Input = (props) => {
+const Input = forwardRef((props, ref) => {
   const { error, className, ...inputProps } = props;
   const stateClasses = error ? STATE_CLASSES[STATES.ERROR] : STATE_CLASSES[STATES.BASE];
 
   return (
     <div className='flex flex-col'>
-      <input className={classNames(DEFAULT_CLASSES, stateClasses, className)} {...inputProps} />
-      {error ? <Text children={'error message'} className='text-danger text-9px px-5' /> : null}
+      <input className={classNames(DEFAULT_CLASSES, stateClasses, className)} {...inputProps} ref={ref} />
+      {error ? <Text children={error?.message} className='text-danger text-9px px-5' /> : null}
     </div>
   );
-};
+});
 
 Input.propTypes = { error: PropTypes.bool };
 export default Input;

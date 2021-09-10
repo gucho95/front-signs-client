@@ -1,6 +1,3 @@
-import { Heading } from '@atoms';
-import { Fragment } from 'react';
-
 const classes = {
   root: 'h-screen w-full border-2 border-blue-dark flex flex-col overflow-hidden',
   main: 'flex-1 flex overflow-hidden',

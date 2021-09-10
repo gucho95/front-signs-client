@@ -1,4 +1,3 @@
-import { check } from 'prettier';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({

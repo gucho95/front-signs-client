@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 import classNames from 'classnames';
 import { Spacing } from '@atoms';
 import { SearchIcon } from '@icons';
-import { useForm } from 'react-hook-form';
 
 const classes = {
   root: 'w-full h-full flex items-center text-white',
@@ -11,7 +10,7 @@ const classes = {
   icon: 'w-5 h-5 fill-current',
 };
 
-const SearchBar = (props) => {
+const SearchBar = forwardRef((props, ref) => {
   const { error, className, ...inputProps } = props;
   const [focused, setFocused] = useState(false);
   const onFocus = () => setFocused(true);
@@ -23,6 +22,7 @@ const SearchBar = (props) => {
       <Spacing className='pl-3' />
       <div className={classes.inputWrapper}>
         <input
+          ref={ref}
           id='search'
           placeholder={focused ? null : 'Search...'}
           className={classNames(classes.input, className)}
@@ -33,6 +33,6 @@ const SearchBar = (props) => {
       </div>
     </label>
   );
-};
+});
 
 export default SearchBar;

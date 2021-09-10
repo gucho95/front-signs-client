@@ -12,7 +12,7 @@ const SinglePage = () => {
   return (
     <SinglePageTemplate>
       <Spacing className='pt-4' />
-      <Heading level={2} children={pageData.label} />
+      <Heading level={2} children={pageData?.label} />
       <Spacing className='pt-4' />
       <div>
         <Link to={`/${page}`} children={'See'} className='underline' />

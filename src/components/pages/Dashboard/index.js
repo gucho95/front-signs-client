@@ -3,7 +3,7 @@ import { DashboardHeader as Header, Sidebar } from '@organisms';
 import { DashboardTemplate as Template } from '@templates';
 import { useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router';
-import { selectPages, selectPagesMenu } from '@selectors/page';
+import { selectPagesMenu } from '@selectors/page';
 
 const bottomMenuData = DASHBOARD_ROUTES.filter((i) => i.isMenuItem);
 

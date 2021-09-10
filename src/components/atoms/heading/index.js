@@ -1,22 +1,25 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const getHeadingElement = ({ level, ...props }) => {
+const getHeadingElement = ({ level, children = '', ...props }) => {
   switch (level) {
     case LEVELS[1]:
-      return () => <h1 {...props} />;
+      return () => <h1 children={children} {...props} />;
     case LEVELS[2]:
-      return () => <h2 {...props} />;
+      return () => <h2 children={children} {...props} />;
     case LEVELS[3]:
-      return () => <h3 {...props} />;
+      return () => <h3 children={children} {...props} />;
     case LEVELS[4]:
-      return () => <h4 {...props} />;
+      return () => <h4 children={children} {...props} />;
+    case LEVELS[5]:
+      return () => <h5 children={children} {...props} />;
     default:
-      return () => <h4 {...props} />;
+      return () => <h4 children={children} {...props} />;
   }
 };
 
 export const LEVELS = { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5 };
+
 const DEFAULT_CLASSES = 'leading-0';
 
 export const LEVEL_CLASSES = {

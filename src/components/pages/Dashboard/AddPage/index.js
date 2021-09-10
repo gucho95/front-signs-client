@@ -55,8 +55,8 @@ const AddPage = () => {
   return (
     <div className={classes.wrapper}>
       <form onSubmit={handleSubmit(onFormSuccess, onFormError)} className={classes.form}>
-        <Input placeholder='Title' error={errors.label} {...register('label')} />
-        <Input placeholder='Pathname' error={errors.pathname} {...register('path')} />
+        <Input placeholder='Label' error={errors.label} {...register('label')} />
+        <Input placeholder='Path' error={errors.path} {...register('path')} />
         <div className={classes.buttonWrapper}>
           <Button type={BUTTON_TYPES.PRIMARY} htmlType={BUTTON_HTML_TYPES.SUBMIT} children='Submit' />
         </div>

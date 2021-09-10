@@ -1,5 +1,4 @@
-import { Button, BUTTON_TYPES, Heading, Text } from '@atoms';
-import { Header } from '@organisms';
+import { Button, BUTTON_TYPES, Text } from '@atoms';
 
 const BackButton = () => (
   <Button type={BUTTON_TYPES.CUSTOM}>

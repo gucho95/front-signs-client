@@ -15,6 +15,7 @@ export function useRouter() {
       match,
       location,
       history,
+      params,
     };
   }, [params, match, location, history]);
 }
