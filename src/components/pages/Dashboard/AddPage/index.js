@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import schema from './schema';
 import { v4 as uuidv4 } from 'uuid';
-import { add } from '@actions/page';
+import pageActions from '@actions/page';
 import { selectPages } from '@selectors/page';
 import { useRouter } from '@hooks';
 import { generateSinglePagePath } from '@constants/paths';
@@ -33,7 +33,7 @@ const AddPage = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema), context: { pages } });
 
-  const addPage = (payload) => dispatch(add(payload));
+  const addPage = (payload) => dispatch(pageActions.add(payload));
 
   const onFormSuccess = (values) => {
     const isDuplicate = checkDuplicate(pages, values);

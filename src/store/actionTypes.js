@@ -14,14 +14,7 @@ export const generateCrud = ({ actionName }) => ({
   REMOVE: generate(`REMOVE__${actionName}`),
 });
 
-export const AUTH = {
-  SIGN_IN: generate('SIGN_IN'),
-  SIGN_OUT: generate('SIGN_OUT'),
-  SIGN_UP: generate('SIGN_UP'),
-  FORGOT_PASSWORD: generate('FORGOT_PASSWORD'),
-  RESET_PASSWORD: generate('RESET_PASSWORD'),
-  VERIFY_EMAIL: generate('VERIFY_EMAIL'),
-};
+export const AUTH = { SIGN_IN: generate('SIGN_IN'), SIGN_OUT: generate('SIGN_OUT') };
 
 export const PAGES = {
   ADD: 'ADD_PAGE',

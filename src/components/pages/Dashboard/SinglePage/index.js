@@ -15,7 +15,7 @@ const SinglePage = () => {
       <Heading level={2} children={pageData?.label} />
       <Spacing className='pt-4' />
       <div>
-        <Link to={`/${page}`} children={'See'} className='underline' />
+        <Link to={`/pages/${page}`} children={'See page'} className='underline' />
       </div>
     </SinglePageTemplate>
   );

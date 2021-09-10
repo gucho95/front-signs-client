@@ -9,8 +9,9 @@ const DASHBOARD_PATHS = {
 export const PATHS = {
   HOMEPAGE: '/',
   SIGN_IN: '/sign-in',
+  SIGN_OUT: '/sign-out',
   DASHBOARD: '/dashboard',
-  SINGLE_PAGE_VIEW: '/:page',
+  SINGLE_PAGE_VIEW: '/pages/:page',
   // MOCK
   COMPONENTS: '/components',
   FORM: '/form',

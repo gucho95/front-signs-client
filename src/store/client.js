@@ -1,18 +1,19 @@
 import axios from 'axios';
 import { store } from '@store/config';
-import selectors from '@selectors';
+import { selectUser } from '@selectors/user';
 const { REACT_APP_LOCAL_API } = process.env;
 
 const client = () => {
   const state = store.getState();
-  const { token } = selectors.user(state);
+  const { token } = selectUser(state);
 
   const service = axios.create({
     baseURL: REACT_APP_LOCAL_API,
     headers: { 'X-Access-Token': token ? token : null },
   });
+
   service.interceptors.response.use(
-    (response) => response.data,
+    (data) => data,
     (error) => {}
   );
   return service;

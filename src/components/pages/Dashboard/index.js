@@ -1,11 +1,18 @@
+import { useSelector } from 'react-redux';
+import { Route, Switch } from 'react-router';
 import { DASHBOARD_ROUTES } from '@constants/routes';
 import { DashboardHeader as Header, Sidebar } from '@organisms';
 import { DashboardTemplate as Template } from '@templates';
-import { useSelector } from 'react-redux';
-import { Route, Switch } from 'react-router';
 import { selectPagesMenu } from '@selectors/page';
+import { PATHS } from '@constants/paths';
 
-const bottomMenuData = DASHBOARD_ROUTES.filter((i) => i.isMenuItem);
+const signOutItem = {
+  icon: null,
+  label: 'Sign out',
+  path: PATHS.SIGN_OUT,
+};
+
+const bottomMenuData = [...DASHBOARD_ROUTES.filter((i) => i.isMenuItem), signOutItem];
 
 const Content = () => (
   <div className='min-h-full bg-grey-body'>

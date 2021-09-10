@@ -80,7 +80,7 @@ const Components = () => {
         <Heading level={2} children='Paragraphs' className='border-b-1px border-blue-dark' />
         {Object.values(PARAGRAPH_OPTIONS).map((option, index) => {
           return (
-            <div className={index}>
+            <div key={index}>
               <Heading level={4} children={`Option ${option}`} />
               <Paragraph option={option} children={LOREM_IPSUM} />
             </div>

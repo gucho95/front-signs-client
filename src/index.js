@@ -4,11 +4,19 @@ import reportWebVitals from './reportWebVitals';
 import RootRouter from 'components/routers/Root';
 import '@styles/index.scss';
 import StoreProvider from '@store/config';
+import { ToastContainer } from 'react-toastify';
 
 ReactDOM.render(
   <React.StrictMode>
     <StoreProvider>
       <RootRouter />
+      <ToastContainer
+        autoClose={3000}
+        closeOnClick={true}
+        position='top-right'
+        hideProgressBar={true}
+        theme='colored'
+      />
     </StoreProvider>
   </React.StrictMode>,
   document.getElementById('root')

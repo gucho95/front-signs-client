@@ -1,9 +1,9 @@
-import { BUTTON_HTML_TYPES, BUTTON_TYPES, Heading, Input, Spacing, Button } from '@atoms';
+import { BUTTON_HTML_TYPES, BUTTON_TYPES, Heading, Input, Spacing, Button, toast } from '@atoms';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import schema from './schema';
-import { useRouter } from '@hooks';
-import { PATHS } from '@constants/paths';
+import { useDispatch } from 'react-redux';
+import authActions from '@actions/auth';
 
 const classes = {
   root: 'h-screen perfect-center bg-grey-light',
@@ -11,10 +11,14 @@ const classes = {
 };
 
 const SignIn = () => {
-  const { register, handleSubmit } = useForm({ resolver: yupResolver(schema) });
-  const { history } = useRouter();
+  const { register, handleSubmit, formState } = useForm({ resolver: yupResolver(schema) });
+  const { errors } = formState;
+  const dispatch = useDispatch();
+  const signIn = (payload) => dispatch(authActions.signIn(payload));
+
   const onFormSuccess = (values) => {
-    history.push(PATHS.DASHBOARD);
+    const afterFail = () => toast.error('Invalid credentials !');
+    signIn({ ...values, afterFail });
   };
   const onFormError = () => {};
 
@@ -23,8 +27,8 @@ const SignIn = () => {
       <Spacing className='pt-40' />
       <form onSubmit={handleSubmit(onFormSuccess, onFormError)} className={classes.form}>
         <Heading level={3} children='Sign in' />
-        <Input placeholder='Email' {...register('email')} />
-        <Input placeholder='Password' {...register('password')} />
+        <Input placeholder='Email' error={errors.email} showError={false} {...register('email')} />
+        <Input placeholder='Password' error={errors.password} showError={false} {...register('password')} />
         <div>
           <Button
             type={BUTTON_TYPES.PRIMARY}
