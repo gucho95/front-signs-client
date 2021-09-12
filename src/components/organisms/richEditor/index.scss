@@ -1,0 +1,16 @@
+.ql {
+    &-container {
+        @apply box-border relative font-sans h-full w-full bg-white;
+    }
+
+    &-editor {
+        @apply box-border h-full outline-none overflow-y-hidden text-left whitespace-pre-wrap break-all flex-shrink-0;
+        & > * {
+            @apply cursor-text;
+        }
+    }
+
+    &-clipboard {
+        @apply overflow-hidden hidden;
+    }
+}

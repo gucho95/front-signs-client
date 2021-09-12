@@ -1,12 +1,4 @@
-import { Button, BUTTON_TYPES, Text } from '@atoms';
-
-// TODO check to use
-const BackButton = () => (
-  <Button type={BUTTON_TYPES.CUSTOM}>
-    <Text className='text-p1 text-dark-beta'>&#60; Back</Text>
-  </Button>
-);
-<BackButton />;
+import { Text } from '@atoms';
 
 const SinglePage = ({ children }) => {
   return (

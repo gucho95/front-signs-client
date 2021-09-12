@@ -5,11 +5,13 @@ import RootRouter from 'components/routers/Root';
 import '@styles/index.scss';
 import StoreProvider from '@store/config';
 import { ToastContainer } from 'react-toastify';
+import ModalRenderer from '@organisms/modal/ModalRenderer';
 
 ReactDOM.render(
   <React.StrictMode>
     <StoreProvider>
       <RootRouter />
+      <ModalRenderer />
       <ToastContainer
         autoClose={3000}
         closeOnClick={true}

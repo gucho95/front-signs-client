@@ -26,6 +26,7 @@ module.exports = {
       '@sagas': path.resolve(__dirname, 'src/store/sagas'),
       '@services': path.resolve(__dirname, 'src/store/services'),
       '@store': path.resolve(__dirname, 'src/store'),
+      '@widgets': path.resolve(__dirname, 'src/components/widgets'),
     },
   },
 };

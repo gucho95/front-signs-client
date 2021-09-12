@@ -21,3 +21,9 @@ export const PAGES = {
   UPDATE: 'UPDATE_PAGE',
   REMOVE: 'REMOVE_PAGE',
 };
+
+// UI ACTIONS
+export const MODALS = {
+  OPEN: 'OPEN_MODAL',
+  CLOSE: 'CLOSE_MODAL',
+};

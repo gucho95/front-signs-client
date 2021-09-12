@@ -13,6 +13,7 @@ const SinglePage = withLazyLoad(() => import('@pages/SinglePage'));
 const ManageSinglePage = withLazyLoad(() => import('@pages/Dashboard/SinglePage'));
 const AddPage = withLazyLoad(() => import('@pages/Dashboard/AddPage'));
 const Settings = withLazyLoad(() => import('@pages/Dashboard/Settings'));
+const AddWidget = withLazyLoad(() => import('@pages/Dashboard/AddWidget'));
 
 export const ROUTES = [
   { id: 1, key: 'Homepage', path: PATHS.HOMEPAGE, component: Components, exact: true, isMenuItem: true },
@@ -24,6 +25,7 @@ export const ROUTES = [
 
 export const DASHBOARD_ROUTES = [
   { label: 'Single page', path: PATHS.SINGLE_PAGE_MANAGE, component: ManageSinglePage, exact: true, isMenuItem: false },
+  { label: 'Add widget', path: PATHS.ADD_WIDGET, component: AddWidget, isMenuItem: false },
   { icon: 'icon', label: 'Add page', path: PATHS.ADD_PAGE, component: AddPage, isMenuItem: true },
   { icon: 'icon', label: 'Settings', path: PATHS.SETTINGS, component: Settings, isMenuItem: true },
 ];

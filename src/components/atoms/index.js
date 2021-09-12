@@ -18,3 +18,6 @@ export { default as SearchInput } from './input/Search';
 export { default as SearchBar } from './searchBar';
 export { Internal as Link, External as ExternalLink } from './link';
 export { default as toast } from './toast';
+export { default as Select } from './select';
+export { default as Block } from './block';
+export { default as Textarea } from './textarea';

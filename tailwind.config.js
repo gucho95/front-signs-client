@@ -60,25 +60,32 @@ module.exports = {
     },
     borderRadius: {
       '3px': '3px',
+      '10px': '10px',
+      '20px': '20px',
       '30px': '30px',
       '100px': '100px',
       full: '50%',
     },
     borderWidth: {
       '1px': '1px',
+      '2px': '2px',
+      '3px': '3px',
+      '4px': '4px',
     },
     boxShadow: {
       inset: 'inset -1px 0px 0px #DFE3E8',
     },
     extend: {
-      spacing: {
-        '1px': '1px',
-        '694px': '694px',
-      },
+      minHeight: { '200px': '200px' },
+      margin: { '-50%': '-50%' },
+      inset: { '50%': '50%' },
+      spacing: { '1px': '1px', '694px': '694px' },
+      maxHeight: { '80vh': '80vh' },
     },
   },
   variants: {
     extend: {
+      visibility: ['group-hover'],
       textDecoration: ['disabled'],
       backgroundColor: ['disabled'],
       opacity: ['disabled'],
