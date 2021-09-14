@@ -7,7 +7,7 @@ export const selectPages = (state) => ref(state)?.data;
 
 export const selectPagesMenu = (state) => {
   const data = selectPages(state);
-  const menu = data.map((item) => ({ ...item, path: generateSinglePagePath(item.path) }));
+  const menu = data?.map((item) => ({ ...item, label: item.title, path: generateSinglePagePath(item.path) }));
   return menu;
 };
 

@@ -1,1 +1,1 @@
-export const ADD_WIDGET = 'ADD_WIDGET';
+export const EXAMPLE = 'EXAMPLE';

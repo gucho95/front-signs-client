@@ -1,4 +1,5 @@
 import { TextForm, TextWidget } from '@widgets';
+
 const WIDGET_TYPES = {
   TEXT: 'text',
   //   TITLE: 'title',

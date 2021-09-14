@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import RcMenu, { MenuItem as RcMenuItem } from 'rc-menu';
 import { Link, Spacing } from '@atoms';
 import { useRouter } from '@hooks';
@@ -7,17 +8,15 @@ const classes = {
   link: 'flex items-center py-2 px-4',
   icon: '',
   label: 'flex-1 truncate',
-  badge: 'w-7 h-4 text- bg-white rounded-100px text-dark-alpha perfect-center text-12px',
 };
-
-const Badge = (props) => <span {...props} className={classes.badge} />;
 
 const Menu = (props) => {
   const { pathname } = useRouter();
   const { menuProps, menuItemProps, data = [] } = props;
+
   return (
     <RcMenu mode='vertical' activeKey={pathname} {...menuProps}>
-      {data.map(({ icon, label, count, path }) => {
+      {data.map(({ label, path }) => {
         return (
           <RcMenuItem key={path} {...menuItemProps}>
             <Link to={path} className={classes.link}>
@@ -25,7 +24,7 @@ const Menu = (props) => {
               <Spacing className='pl-4' />
               <span children={label} className={classes.label} />
               <Spacing className='pl-1' />
-              {count ? <Badge children={count} /> : null}
+              {/* {count ? <Badge children={count} /> : null} */}
             </Link>
           </RcMenuItem>
         );

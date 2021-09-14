@@ -1,4 +1,4 @@
-const { Heading } = require('@atoms');
+const { Heading, Button, Text, BUTTON_TYPES, TEXT_TYPES } = require('@atoms');
 
 const classes = {
   root: 'flex items-center border-1px border-grey-dark border-dashed p-2 group transition-all hover:bg-grey-light',
@@ -6,11 +6,16 @@ const classes = {
   actions: 'text-p5 invisible group-hover:visible',
 };
 
-const Block = ({ name }) => {
+const Block = ({ type, option }) => {
   return (
     <div className={classes.root}>
-      <Heading level={5} children={name} className={classes.heading} />
-      <div className={classes.actions}>Action</div>
+      <Heading level={5} className={classes.heading}>
+        <Text type={TEXT_TYPES.BOLD} children={type.toUpperCase()} />
+        <Text children={`- type ${option}`} />
+      </Heading>
+      <div className={classes.actions}>
+        <Button type={BUTTON_TYPES.CUSTOM} className='text-danger' children='Remove' />
+      </div>
     </div>
   );
 };

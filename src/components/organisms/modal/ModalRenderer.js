@@ -1,13 +1,13 @@
 import Dialog from 'rc-dialog';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectModalData } from '@selectors/ui';
-import { ADD_WIDGET } from '@constants/modals';
+import { EXAMPLE } from '@constants/modals';
 import ui from '@actions/ui';
 import { data } from 'autoprefixer';
-import AddWidget from './types/AddWidget';
+import Example from './types/Example';
 import './index.scss';
 
-const BodyRenderer = { [ADD_WIDGET]: AddWidget };
+const BodyRenderer = { [EXAMPLE]: Example };
 
 const ModalRenderer = () => {
   const dispatch = useDispatch();
@@ -17,7 +17,6 @@ const ModalRenderer = () => {
   const params = modal?.data;
   const closeModal = () => dispatch(ui.closeModal());
   const Body = BodyRenderer[type];
-  console.log(`params`, params);
 
   return visible ? (
     <Dialog

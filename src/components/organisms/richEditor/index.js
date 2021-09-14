@@ -37,7 +37,6 @@ const Editor = (props) => {
         editorRef.current = e;
         field.ref(e);
       }}
-      onChange={(e) => console.log(e)}
       className={classNames(DEFAULT_CLASSES, stateClasses, className)}
       {...editorProps}
     />

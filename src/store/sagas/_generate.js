@@ -13,7 +13,6 @@ const generateWorker = ({ payload, actionType, service }) =>
       yield put({ type: LOAD });
       const response = service ? yield call(service, payload) : payload;
       yield put({ type: SUCCESS, response });
-      console.log(`response`, response);
       if (payload?.afterSuccess) {
         yield call(payload.afterSuccess, { response });
       }

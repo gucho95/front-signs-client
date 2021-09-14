@@ -8,6 +8,7 @@ const SignIn = withLazyLoad(() => import('@pages/Authorization/SignIn'));
 const SignOut = withLazyLoad(() => import('@pages/Authorization/SignOut'));
 const Dashboard = withLazyLoad(() => import('@pages/Dashboard'));
 const SinglePage = withLazyLoad(() => import('@pages/SinglePage'));
+const Page404 = withLazyLoad(() => import('@pages/Page404'));
 
 // DASHBOARD COMPONENTS
 const ManageSinglePage = withLazyLoad(() => import('@pages/Dashboard/SinglePage'));
@@ -21,6 +22,7 @@ export const ROUTES = [
   { id: 3, key: 'Dashboard', path: PATHS.DASHBOARD, component: Dashboard, isMenuItem: true, scope: AUTHED },
   { id: 4, key: 'Sign out', path: PATHS.SIGN_OUT, component: SignOut, scope: AUTHED },
   { id: 5, key: 'Single Page', path: PATHS.SINGLE_PAGE_VIEW, component: SinglePage },
+  { id: 6, key: 'Page 404 ', path: PATHS.PAGE_404, component: Page404 },
 ];
 
 export const DASHBOARD_ROUTES = [

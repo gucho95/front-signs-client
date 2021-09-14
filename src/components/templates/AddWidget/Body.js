@@ -1,7 +1,11 @@
-import { Select, Button, BUTTON_TYPES, Text, Spacing, BUTTON_HTML_TYPES } from '@atoms';
-import WIDGET_TYPES, { WIDGET_FORM_COMPONENTS } from '@constants/widgets';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { Select, Button, BUTTON_TYPES, Spacing, BUTTON_HTML_TYPES } from '@atoms';
+import WIDGET_TYPES, { WIDGET_FORM_COMPONENTS } from '@constants/widgets';
+import { useRouter } from '@hooks';
+import pageWidgets from '@actions/pageWidgets';
+import { PATHS } from '@constants/paths';
 
 const classes = {
   divider: 'w-full h-1px bg-grey-light',
@@ -12,22 +16,25 @@ const classes = {
 const OPTIONS = Object.values(WIDGET_TYPES).map((opt) => ({ value: opt, label: opt }));
 
 const Body = () => {
+  const dispatch = useDispatch();
+  const { params, history } = useRouter();
   const methods = useForm({ mode: 'onChange', shouldUnregister: true });
-  const { register, watch, handleSubmit, formState, getValues } = methods;
+  const { register, watch, handleSubmit } = methods;
   const activeType = watch('type');
-  const WidgetForm = useMemo(() => (activeType ? WIDGET_FORM_COMPONENTS[activeType] : null), [activeType]);
 
-  const onFormSuccess = (values) => {
-    console.log('values', values);
+  const addWidget = (data) => dispatch(pageWidgets.add(data));
+
+  const onFormSuccess = (widgetData) => {
+    const data = { page: params.page, widgetData };
+    addWidget(data);
+    history.push(`${PATHS.DASHBOARD}/pages/${params.page}`);
   };
 
   const onFormError = (errors) => {
     console.log('errors', errors);
   };
 
-  useEffect(() => {
-    console.log('render', getValues());
-  }, [formState]);
+  const WidgetForm = useMemo(() => (activeType ? WIDGET_FORM_COMPONENTS[activeType] : null), [activeType]);
 
   return (
     <FormProvider {...methods}>

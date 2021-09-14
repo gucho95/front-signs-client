@@ -2,8 +2,7 @@ import { forwardRef } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-const DEFAULT_CLASSES =
-  'border-1px rounded-30px py-3 px-4 disabled:border-grey-dark disabled:bg-transparent disabled:opacity-30';
+const DEFAULT_CLASSES = 'border-1px  py-3 px-4 disabled:border-grey-dark disabled:bg-transparent disabled:opacity-30';
 
 const Select = forwardRef((props, ref) => {
   const { className, placeholder, options = [], defaultValue = '0', ...selectProps } = props;

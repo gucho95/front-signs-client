@@ -22,6 +22,12 @@ export const PAGES = {
   REMOVE: 'REMOVE_PAGE',
 };
 
+export const PAGE_WIDGETS = {
+  ADD: 'ADD_PAGE_WIDGET',
+  UPDATE: 'UPDATE_PAGE_WIDGET',
+  REMOVE: 'REMOVE_PAGE_WIDGET',
+};
+
 // UI ACTIONS
 export const MODALS = {
   OPEN: 'OPEN_MODAL',

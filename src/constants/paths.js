@@ -13,10 +13,9 @@ export const PATHS = {
   SIGN_OUT: '/sign-out',
   DASHBOARD: '/dashboard',
   SINGLE_PAGE_VIEW: '/pages/:page',
+  PAGE_404: '/404',
   // MOCK
   COMPONENTS: '/components',
-  FORM: '/form',
-  PAGE_B: '/page-b',
   ...DASHBOARD_PATHS,
 };
 

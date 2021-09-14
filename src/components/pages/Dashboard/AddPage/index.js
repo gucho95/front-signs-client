@@ -11,7 +11,7 @@ import { Button, BUTTON_HTML_TYPES, BUTTON_TYPES, Input } from '@atoms';
 
 const checkDuplicate = (data, current) => {
   const isDuplicate = data.find(
-    (i) => i.label.toLowerCase() === current.label.toLowerCase() || i.path.toLowerCase() === current.path.toLowerCase()
+    (i) => i.title.toLowerCase() === current.title.toLowerCase() || i.path.toLowerCase() === current.path.toLowerCase()
   );
   return !!isDuplicate;
 };
@@ -42,7 +42,7 @@ const AddPage = () => {
       return;
     }
 
-    const data = { ...values, data: '', count: 5, icon: 'Icon', id: uuidv4() };
+    const data = { ...values, data: '', id: uuidv4() };
     const path = generateSinglePagePath(values.path);
     addPage(data);
     history.push(path);
@@ -55,7 +55,7 @@ const AddPage = () => {
   return (
     <div className={classes.wrapper}>
       <form onSubmit={handleSubmit(onFormSuccess, onFormError)} className={classes.form}>
-        <Input placeholder='Label' error={errors.label} {...register('label')} />
+        <Input placeholder='Title' error={errors.title} {...register('title')} />
         <Input placeholder='Path' error={errors.path} {...register('path')} />
         <div className={classes.buttonWrapper}>
           <Button type={BUTTON_TYPES.PRIMARY} htmlType={BUTTON_HTML_TYPES.SUBMIT} children='Submit' />

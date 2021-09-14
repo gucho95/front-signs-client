@@ -61,6 +61,7 @@ module.exports = {
     borderRadius: {
       '3px': '3px',
       '10px': '10px',
+      '12px': '12px',
       '20px': '20px',
       '30px': '30px',
       '100px': '100px',
@@ -74,12 +75,27 @@ module.exports = {
     },
     boxShadow: {
       inset: 'inset -1px 0px 0px #DFE3E8',
+      1: '0px 10px 20px #335E6533',
+      2: '0px 3px 6px #335E6533',
+      3: '0px 10px 30px #335E6533',
+    },
+    backgroundImage: {
+      1: '#FFFFFF 0% 0% no-repeat padding-box',
+      2: 'transparent linear-gradient(123deg, #005067 0%, #33475B 100%) 0% 0% no-repeat padding-box',
+      'text-11-overlay': "url('../assets/text_11_overlay.png')",
     },
     extend: {
       minHeight: { '200px': '200px' },
       margin: { '-50%': '-50%' },
       inset: { '50%': '50%' },
-      spacing: { '1px': '1px', '694px': '694px' },
+      spacing: {
+        '1px': '1px',
+        '345px': '345px',
+        '694px': '694px',
+        '718px': '718px',
+        '970px': '970px',
+        '1470px': '1470px',
+      },
       maxHeight: { '80vh': '80vh' },
     },
   },

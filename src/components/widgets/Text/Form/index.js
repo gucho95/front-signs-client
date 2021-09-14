@@ -1,36 +1,36 @@
-import { Input, Select, Spacing, Textarea } from '@atoms';
-import { useFormContext } from 'react-hook-form';
 import { useMemo, useEffect } from 'react';
-import { OPTIONS } from './options';
-import { OPTION_FIELDS } from './optionFields';
+import { useFormContext } from 'react-hook-form';
+import { TYPES } from '../types';
+import { TYPE_FIELDS } from './optionFields';
+import { Select, Spacing } from '@atoms';
 import { useMount } from '@hooks';
 
 const TextForm = () => {
   const { register, watch, control, setValue, formState } = useFormContext();
   const { errors } = formState;
   const activeOption = watch('option');
-  const optionFields = useMemo(() => (activeOption ? OPTION_FIELDS[activeOption] : null), [activeOption]);
-  console.log('optionFields', optionFields);
-  console.log(`activeOption`, activeOption);
+  const optionFields = useMemo(() => (activeOption ? TYPE_FIELDS[activeOption] : null), [activeOption]);
 
-  useMount(() => setValue('option', OPTIONS[0].value));
+  // RESET FORM DATA ON COMPONENT OPTION CHANGE //:TODO
+  useEffect(() => {}, [activeOption]);
+
+  // SET DEFAULT OPTION VALUE FOR COMPONENT
+  useMount(() => setValue('option', TYPES[0].value.toString()));
 
   return (
     <div>
       <div className='w-6/12'>
-        <Select options={OPTIONS} placeholder='Select text option' {...register('option')} />
+        <Select options={TYPES} placeholder='Select text option' {...register('option')} />
       </div>
       <Spacing className='pt-4' />
       <div className='grid gap-y-2'>
         {optionFields
-          ? optionFields.map(({ component: Component, name, rules, ...rest }) => {
+          ? optionFields.map(({ component: Component, name, rules, ...rest }, key) => {
               const fieldProps = name ? register(name, { ...rules }) : rules;
-              return <Component {...fieldProps} {...rest} error={errors?.[name]} control={control} />;
-              //   <Input placeholder={option} {...register(option)} />
+              return <Component key={name} {...fieldProps} {...rest} error={errors?.[name]} control={control} />;
             })
           : null}
       </div>
-      {/* <div className='w-6/12'>{activeOption && OptionComponent ? <OptionComponent children='AA' /> : null}</div> */}
     </div>
   );
 };

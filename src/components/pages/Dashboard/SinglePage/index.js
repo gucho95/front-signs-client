@@ -1,8 +1,9 @@
 import { Button, BUTTON_TYPES, Heading, Link, Spacing, Block } from '@atoms';
-import { SinglePageTemplate } from '@templates';
 import { useSelector } from 'react-redux';
 import { selectPage } from '@selectors/page';
+import { selectPageWidgets } from '@selectors/pageWidgets';
 import { useRouter } from '@hooks';
+import { Fragment } from 'react';
 
 const classes = {
   titleWrapper: 'flex justify-between',
@@ -12,17 +13,17 @@ const classes = {
 
 const SinglePage = () => {
   const { match, pathname } = useRouter();
-  const page = match.params.page;
+  const { page } = match.params;
 
   // SELECTORS
   const pageData = useSelector((state) => selectPage(state, page));
-  console.log(`pageData`, pageData);
+  const pageWidgets = useSelector((state) => selectPageWidgets(state, page));
 
   return (
-    <SinglePageTemplate>
+    <Fragment>
       <Spacing className='pt-4' />
       <div className={classes.titleWrapper}>
-        <Heading level={2} children={pageData?.label} />
+        <Heading level={2} children={pageData?.title} />
         <Link to={`/pages/${page}`} children={'See page'} className={classes.pageLink} />
       </div>
       <Spacing className='pt-4' />
@@ -30,15 +31,13 @@ const SinglePage = () => {
       <Spacing className='pt-4' />
 
       <div className={classes.content}>
-        <Block name='Block 1' />
-        <Block name='Block 2' />
-        <Block name='Block 3' />
+        {pageWidgets?.length ? pageWidgets.map((widget) => <Block {...widget} />) : 'No widgets'}
       </div>
 
       <Link to={`${pathname}/add-widget`}>
         <Button type={BUTTON_TYPES.PRIMARY} children='Add widget' />
       </Link>
-    </SinglePageTemplate>
+    </Fragment>
   );
 };
 
