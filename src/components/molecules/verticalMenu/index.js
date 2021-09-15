@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import RcMenu, { MenuItem as RcMenuItem } from 'rc-menu';
 import { Link, Spacing } from '@atoms';
 import { useRouter } from '@hooks';
