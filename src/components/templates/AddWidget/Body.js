@@ -33,6 +33,7 @@ const Body = () => {
   const onFormError = (errors) => {
     console.log('errors', errors);
   };
+  console.log(`activeType`, activeType);
 
   const WidgetForm = useMemo(() => (activeType ? WIDGET_FORM_COMPONENTS[activeType] : null), [activeType]);
 

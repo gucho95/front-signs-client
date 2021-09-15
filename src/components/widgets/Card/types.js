@@ -7,7 +7,4 @@ export const TYPES = [
   { value: 6, label: 'Option 6' },
   { value: 7, label: 'Option 7' },
   { value: 8, label: 'Option 8' },
-  { value: 9, label: 'Option 9' },
-  { value: 10, label: 'Option 10' },
-  { value: 11, label: 'Option 11' },
 ];

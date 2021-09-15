@@ -61,7 +61,7 @@ const AddPage = () => {
   //GENERATE PATH ON TITLE CHANGE
   useEffect(() => {
     if (!title) {
-      setValue('path', '', { shouldValidate: true });
+      setValue('path', '', { shouldValidate: false });
       return;
     }
 

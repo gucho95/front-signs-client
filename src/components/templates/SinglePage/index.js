@@ -7,7 +7,12 @@ const SinglePage = ({ widgets }) => {
     <div>
       <Spacing className='pt-20' />
       {widgets?.length ? (
-        widgets.map((widget, key) => <WidgetRenderer key={key} {...widget} />)
+        widgets.map((widget, key) => (
+          <Fragment key={key}>
+            <WidgetRenderer {...widget} />
+            <Spacing className='pt-10' />
+          </Fragment>
+        ))
       ) : (
         <Heading level={2} children='No Data' className='text-center' />
       )}

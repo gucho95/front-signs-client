@@ -37,6 +37,10 @@ module.exports = {
     },
     fontFamily: {
       sans: ['Roboto'],
+      serif: ['Roboto'],
+      mono: ['Roboto'],
+      display: ['Roboto'],
+      body: ['Roboto'],
     },
     fontSize: {
       // HEADINGS
@@ -60,6 +64,7 @@ module.exports = {
     },
     borderRadius: {
       '3px': '3px',
+      '5px': '5px',
       '10px': '10px',
       '12px': '12px',
       '20px': '20px',
@@ -78,6 +83,8 @@ module.exports = {
       1: '0px 10px 20px #335E6533',
       2: '0px 3px 6px #335E6533',
       3: '0px 10px 30px #335E6533',
+      4: '0px 4px 8px #335E6533',
+      5: '0px 2px 4px #335E654D',
     },
     backgroundImage: {
       1: '#FFFFFF 0% 0% no-repeat padding-box',
@@ -90,13 +97,18 @@ module.exports = {
       inset: { '50%': '50%' },
       spacing: {
         '1px': '1px',
+        '215px': '215px',
+        '294px': '294px',
         '345px': '345px',
+        '360px': '360px',
+        '470px': '470px',
         '694px': '694px',
         '718px': '718px',
         '970px': '970px',
+        '1000px': '1000px',
         '1470px': '1470px',
       },
-      maxHeight: { '80vh': '80vh' },
+      maxHeight: { '80vh': '80vh', '294px': '294px' },
     },
   },
   variants: {
@@ -108,7 +120,9 @@ module.exports = {
       textColor: ['disabled'],
       borderColor: ['disabled'],
       opacity: ['active', 'disabled'],
+      padding: ['group-hover'],
+      scale: ['group-hover'],
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/line-clamp')],
 };

@@ -1,30 +1,5 @@
-import { Input, Textarea } from '@atoms';
-import { RichEditor } from '@organisms';
+import { BUTTON_TEXT_FIELD, DESCRIPTION_FIELD, RICH_CONTENT_FIELD, TEXT_FIELD, TITLE_FIELD } from '@constants/fields';
 import { TYPES } from '../types';
-
-// FIELD TYPES
-const TEXT_FIELD = { component: Input, name: 'text', rules: { required: true }, placeholder: 'Text' };
-const TITLE_FIELD = { component: Input, name: 'title', rules: { required: true }, placeholder: 'Title' };
-const DESCRIPTION_FIELD = {
-  component: Textarea,
-  name: 'description',
-  rules: { required: true },
-  placeholder: 'Description',
-};
-
-const RICH_CONTENT_FIELD = {
-  component: RichEditor,
-  name: 'content',
-  rules: { required: true },
-  placeholder: 'Content',
-};
-
-const BUTTON_TEXT_FIELD = {
-  component: Input,
-  name: 'buttonText',
-  rules: { required: true },
-  placeholder: 'Button text',
-};
 
 export const TYPE_FIELDS = {
   [TYPES[0].value]: [TEXT_FIELD],

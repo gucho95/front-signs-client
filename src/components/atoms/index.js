@@ -21,3 +21,4 @@ export { default as toast } from './toast';
 export { default as Select } from './select';
 export { default as Block } from './block';
 export { default as Textarea } from './textarea';
+export { default as Rate } from './rate';

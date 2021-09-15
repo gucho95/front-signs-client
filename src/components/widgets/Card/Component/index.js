@@ -9,9 +9,6 @@ const Type5 = withLazyLoad(() => import('./Types/Type5'));
 const Type6 = withLazyLoad(() => import('./Types/Type6'));
 const Type7 = withLazyLoad(() => import('./Types/Type7'));
 const Type8 = withLazyLoad(() => import('./Types/Type8'));
-const Type9 = withLazyLoad(() => import('./Types/Type9'));
-const Type10 = withLazyLoad(() => import('./Types/Type10'));
-const Type11 = withLazyLoad(() => import('./Types/Type11'));
 
 export const COMPONENT_OPTIONS = {
   [TYPES[0].value]: Type1,
@@ -22,14 +19,11 @@ export const COMPONENT_OPTIONS = {
   [TYPES[5].value]: Type6,
   [TYPES[6].value]: Type7,
   [TYPES[7].value]: Type8,
-  [TYPES[8].value]: Type9,
-  [TYPES[9].value]: Type10,
-  [TYPES[10].value]: Type11,
 };
 
-const TextWrapper = (props) => {
-  const TextWidget = COMPONENT_OPTIONS[props.option];
-  return <TextWidget {...props} />;
+const CardWrapper = (props) => {
+  const CardWidget = COMPONENT_OPTIONS[props.option];
+  return <CardWidget {...props} />;
 };
 
-export default TextWrapper;
+export default CardWrapper;
