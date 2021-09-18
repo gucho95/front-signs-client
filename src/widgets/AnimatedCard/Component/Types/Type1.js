@@ -16,14 +16,20 @@ const Type1 = ({ items }) => {
   return items ? (
     <div className={classes.root}>
       <div className={classes.firstRow}>
-        {firstRowData.map((i) => (
-          <Card className={classes.bigColumn} contentClassName='perfect-center px-32' {...i} />
+        {firstRowData.map((i, key) => (
+          <Card
+            key={key}
+            className={classes.bigColumn}
+            contentClassName='px-32 pt-16'
+            paragraphClassName='text-p4-24'
+            {...i}
+          />
         ))}
       </div>
       <Spacing className='pt-2' />
       <div className={classes.secondRow}>
-        {secondRowData.map((i) => (
-          <Card className={classes.smallColumn} contentClassName='p-5' {...i} />
+        {secondRowData.map((i, key) => (
+          <Card key={key} className={classes.smallColumn} contentClassName='p-5' paragraphClassName='text-p5' {...i} />
         ))}
       </div>
     </div>

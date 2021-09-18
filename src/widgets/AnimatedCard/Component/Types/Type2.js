@@ -10,8 +10,14 @@ const Type2 = ({ items }) => {
   return items ? (
     <div className={classes.root}>
       <div className={classes.row}>
-        {items.map((i) => (
-          <Card className={classes.column} contentClassName='px-5 pt-14' {...i} />
+        {items.map((i, key) => (
+          <Card
+            key={key}
+            className={classes.column}
+            contentClassName='px-5 pt-14'
+            paragraphClassName='text-p5'
+            {...i}
+          />
         ))}
       </div>
     </div>

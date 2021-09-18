@@ -7,20 +7,20 @@ const classes = {
   image: 'w-full h-full object-cover object-center',
   paragraphWrapper:
     'w-full h-full absolute inset-0 backdrop-filter backdrop-blur-sm  overflow-hidden opacity-0 group-hover:opacity-100 transition-all bg-dark bg-opacity-50',
-  paragraph: 'text-p4-24 line-clamp-5 text-white font-light',
+  paragraph: 'line-clamp-6 text-white font-light',
   titleWrapper:
     'absolute bottom-5 left-5 p-4 bg-black text-white shadow-2 bg-opacity-70 backdrop-filter backdrop-blur-md',
   title: 'uppercase truncate',
 };
 
-const Card = ({ className, contentClassName, image, title, description }) => (
+const Card = ({ className, contentClassName, paragraphClassName, image, title, description }) => (
   <div className={classNames(classes.column, className)}>
     <div className={classes.imageWrapper}>
       <Image src={image} className={classes.image} />
     </div>
 
     <div className={classNames(classes.paragraphWrapper, contentClassName)}>
-      <Paragraph children={description} className={classes.paragraph} />
+      <Paragraph children={description} className={classNames(classes.paragraph, paragraphClassName)} />
     </div>
     <div className={classes.titleWrapper}>
       <Heading level={5} children={title} className={classes.title} />

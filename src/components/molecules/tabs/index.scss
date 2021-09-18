@@ -1,14 +1,19 @@
 .rc-tabs {
     @apply border-none;
+
+    &-nav-wrap {
+        @apply py-2;
+    }
     &-tab {
-        @apply bg-transparent px-2;
+        @apply bg-transparent mx-3 font-light pb-2;
     }
 
     &-ink-bar {
-        @apply bg-blue-dark;
+        @apply bg-blue-light h-12 rounded-12px;
     }
 
     &-tab-active {
+        @apply text-blue-light font-black;
     }
 
     &-content {

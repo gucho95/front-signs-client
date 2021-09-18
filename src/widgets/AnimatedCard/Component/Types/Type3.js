@@ -17,19 +17,31 @@ const Type3 = ({ items }) => {
   return items ? (
     <div className={classes.root}>
       <div className={classes.row2col}>
-        {firstRowData.map((i) => (
-          <Card className={classes.bigColumn} contentClassName='perfect-center px-32' {...i} />
+        {firstRowData.map((i, key) => (
+          <Card
+            key={key}
+            className={classes.bigColumn}
+            contentClassName='pt-16 px-32'
+            paragraphClassName='text-p4-24'
+            {...i}
+          />
         ))}
       </div>
       <Spacing className='pt-2' />
       <div className={classes.row3col}>
-        {secondRowData.map((i) => (
-          <Card className={classes.smallColumn} contentClassName='p-5' {...i} />
+        {secondRowData.map((i, key) => (
+          <Card key={key} className={classes.smallColumn} contentClassName='p-5' paragraphClassName='text-p5' {...i} />
         ))}
       </div>
       <div className={classes.row2col}>
-        {thirdRowData.map((i) => (
-          <Card className={classes.bigColumn} contentClassName='perfect-center px-32' {...i} />
+        {thirdRowData.map((i, key) => (
+          <Card
+            key={key}
+            className={classes.bigColumn}
+            contentClassName='pt-16 px-32'
+            paragraphClassName='text-p5'
+            {...i}
+          />
         ))}
       </div>
     </div>

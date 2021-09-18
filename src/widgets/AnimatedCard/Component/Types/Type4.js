@@ -10,8 +10,14 @@ const Type4 = ({ items }) => {
   return items ? (
     <div className={classes.root}>
       <div className={classes.row2col}>
-        {items.map((i) => (
-          <Card className={classes.column} contentClassName='perfect-center px-32' {...i} />
+        {items.map((i, key) => (
+          <Card
+            key={key}
+            className={classes.column}
+            contentClassName='pt-16 px-32'
+            paragraphClassName='text-p4-24'
+            {...i}
+          />
         ))}
       </div>
     </div>
