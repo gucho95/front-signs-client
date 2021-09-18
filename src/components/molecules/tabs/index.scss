@@ -1,0 +1,17 @@
+.rc-tabs {
+    @apply border-none;
+    &-tab {
+        @apply bg-transparent px-2;
+    }
+
+    &-ink-bar {
+        @apply bg-blue-dark;
+    }
+
+    &-tab-active {
+    }
+
+    &-content {
+        @apply pt-2;
+    }
+}

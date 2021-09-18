@@ -11,7 +11,7 @@ const SignOut = () => {
   const signOut = useCallback(() => dispatch(authActions.signOut()), [dispatch]);
 
   useEffect(() => {
-    isAuthed && window.setTimeout(signOut, 100);
+    isAuthed && signOut();
   }, [signOut, isAuthed]);
 
   if (!isAuthed) {

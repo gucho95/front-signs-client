@@ -31,7 +31,7 @@ const SinglePage = () => {
       <Spacing className='pt-4' />
 
       <div className={classes.content}>
-        {pageWidgets?.length ? pageWidgets.map((widget) => <Block {...widget} />) : 'No widgets'}
+        {pageWidgets?.length ? pageWidgets.map((widget, key) => <Block key={key} {...widget} />) : 'No widgets'}
       </div>
 
       <Link to={`${pathname}/add-widget`}>

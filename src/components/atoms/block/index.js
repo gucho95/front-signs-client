@@ -11,7 +11,7 @@ const Block = ({ type, option }) => {
     <div className={classes.root}>
       <Heading level={5} className={classes.heading}>
         <Text type={TEXT_TYPES.BOLD} children={type.toUpperCase()} />
-        <Text children={`- type ${option}`} />
+        <Text children={` - type ${option}`} />
       </Heading>
       <div className={classes.actions}>
         <Button type={BUTTON_TYPES.CUSTOM} className='text-danger' children='Remove' />
