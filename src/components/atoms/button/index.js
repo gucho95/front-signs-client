@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const TYPES = { PRIMARY: 'primary', SECONDARY: 'secondary', LINK: 'link', CUSTOM: 'custom' };
+export const TYPES = { PRIMARY: 'primary', SECONDARY: 'secondary', LINK: 'link', DANGER: 'danger', CUSTOM: 'custom' };
 export const SIZES = { CUSTOM: 'custom', SMALL: 'small', MIDDLE: 'middle' };
 export const HTML_TYPES = { RESET: 'reset', SUBMIT: 'submit', BUTTON: 'button' };
 
@@ -13,6 +13,7 @@ export const TYPE_CLASSES = {
   [TYPES.SECONDARY]:
     'bg-white text-blue-light border-1px border-blue-light hover:bg-blue-light hover:text-white  hover:border-0 disabled:bg-white disabled:border-grey-light disabled:text-grey-light px-5 py-4',
   [TYPES.LINK]: 'bg-white text-blue-light hover:underline disabled:text-blue-dark disabled:no-underline px-5 py-4',
+  [TYPES.DANGER]: 'bg-danger text-white hover:bg-opacity-50 disabled:bg-grey-light px-5 py-4',
   [TYPES.CUSTOM]: '',
 };
 

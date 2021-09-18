@@ -6,7 +6,8 @@ import { useRouter } from '@hooks';
 import { Fragment } from 'react';
 
 const classes = {
-  titleWrapper: 'flex justify-between',
+  titleWrapper: 'sticky top-0 bg-grey-body',
+  buttonWrapper: 'sticky bottom-0 py-4 bg-grey-body',
   pageLink: 'underline',
   content: 'grid pb-3 gap-y-1',
 };
@@ -21,22 +22,26 @@ const SinglePage = () => {
 
   return (
     <Fragment>
-      <Spacing className='pt-4' />
+      <Spacing className='py-2' />
       <div className={classes.titleWrapper}>
-        <Heading level={2} children={pageData?.title} />
-        <Link to={`/pages/${page}`} children={'See page'} className={classes.pageLink} />
+        <div className='flex justify-between items-center w-full'>
+          <Heading level={3} children={pageData?.title} />
+          <Link to={`/pages/${page}`} className={classes.pageLink} children='See page' />
+        </div>
+        <div className='w-full h-1px bg-grey-light' />
+        <Spacing className='pt-4' />
       </div>
-      <Spacing className='pt-4' />
-      <div className='w-full h-1px bg-grey-light' />
-      <Spacing className='pt-4' />
 
       <div className={classes.content}>
         {pageWidgets?.length ? pageWidgets.map((widget, key) => <Block key={key} {...widget} />) : 'No widgets'}
       </div>
-
-      <Link to={`${pathname}/add-widget`}>
-        <Button type={BUTTON_TYPES.PRIMARY} children='Add widget' />
-      </Link>
+      <div className={classes.buttonWrapper}>
+        <div className='w-full h-1px bg-grey-light' />
+        <Spacing className='pt-2' />
+        <Link to={`${pathname}/add-widget`}>
+          <Button type={BUTTON_TYPES.PRIMARY} children='Add widget' />
+        </Link>
+      </div>
     </Fragment>
   );
 };

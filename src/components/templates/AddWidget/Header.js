@@ -7,7 +7,7 @@ const Header = () => {
   const onBack = () => history.push(`${PATHS.DASHBOARD}/pages/${params.page}`);
   return (
     <Button type={BUTTON_TYPES.CUSTOM} onClick={onBack}>
-      <Text className='text-p1 text-dark-beta'>&#60; Back</Text>
+      <Text className='text-p2 text-dark-beta'>&#60; Back</Text>
     </Button>
   );
 };

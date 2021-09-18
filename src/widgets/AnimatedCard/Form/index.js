@@ -8,7 +8,6 @@ import { useMount } from '@hooks';
 
 const generateTabData = (data, register, errors, control) => {
   return data?.map((i, parentKey) => ({
-    title: `Item ${parentKey + 1}`,
     body: (
       <div className='grid gap-y-2'>
         {i.map(({ component: Component, name, rules, ...rest }) => {
@@ -64,7 +63,13 @@ const AnimatedCardForm = () => {
       </div>
       <Spacing className='pt-7' />
 
-      <Tabs key={activeOption} activeKey={activeKey.toString()} setActiveKey={setActiveKey} data={tabData} />
+      <Tabs
+        titlePrefix='Item'
+        key={activeOption}
+        activeKey={activeKey.toString()}
+        setActiveKey={setActiveKey}
+        data={tabData}
+      />
     </div>
   );
 };

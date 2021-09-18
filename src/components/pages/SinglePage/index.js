@@ -16,6 +16,8 @@ const SinglePage = () => {
     document.title = title;
   }, [title]);
 
+  console.log(pageWidgets);
+
   return <SinglePageTemplate widgets={pageWidgets}>{JSON.stringify(pageWidgets)}</SinglePageTemplate>;
 };
 

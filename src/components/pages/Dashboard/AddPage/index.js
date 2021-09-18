@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import schema from './schema';
 import { v4 as uuidv4 } from 'uuid';
-import { Button, BUTTON_HTML_TYPES, BUTTON_TYPES, Input } from '@atoms';
+import { Button, BUTTON_HTML_TYPES, BUTTON_TYPES, Input, Spacing } from '@atoms';
 import pageActions from '@actions/page';
 import { selectPages } from '@selectors/page';
 import { useRouter } from '@hooks';

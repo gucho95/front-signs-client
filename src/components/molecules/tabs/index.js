@@ -2,12 +2,12 @@ import RcTabs, { TabPane as RcTabPane } from 'rc-tabs';
 import 'rc-tabs/assets/index.css';
 import './index.scss';
 
-const Tabs = ({ data, activeKey, setActiveKey, tabProps }) => {
+const Tabs = ({ data, activeKey, setActiveKey, titlePrefix, tabProps }) => {
   return (
-    <RcTabs {...tabProps} activeKey={activeKey} onChange={(key) => setActiveKey(key)}>
+    <RcTabs {...tabProps} activeKey={activeKey} onChange={(key) => setActiveKey(key.toString())}>
       {data
-        ? data.map(({ title, body: Body }, index) => (
-            <RcTabPane forceRender={true} key={index.toString()} tab={title} children={Body} />
+        ? data.map(({ body: Body }, index) => (
+            <RcTabPane forceRender={true} key={index} tab={`${titlePrefix} ${index + 1}`} children={Body} />
           ))
         : null}
     </RcTabs>
