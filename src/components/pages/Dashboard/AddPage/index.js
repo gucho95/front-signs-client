@@ -71,6 +71,7 @@ const AddPage = () => {
 
   return (
     <div className={classes.wrapper}>
+      <Spacing className='pt-12' />
       <form onSubmit={handleSubmit(onFormSuccess, onFormError)} className={classes.form} autoComplete='off' noValidate>
         <Input placeholder='Title' error={errors.title} {...register('title')} />
         <Input placeholder='Path' error={errors.path} {...register('path')} />

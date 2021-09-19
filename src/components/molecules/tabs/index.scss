@@ -1,6 +1,15 @@
 .rc-tabs {
     @apply border-none;
-
+    &-nav-measure-ping-right::after,
+    &-nav-wrap-ping-right::after {
+        @apply border-none border-transparent;
+    }
+    &-nav-operations {
+        @apply mx-2 px-2;
+        button {
+            @apply border-blue-light outline-none mx-2 px-2 bg-transparent border-dashed border-1px;
+        }
+    }
     &-nav-wrap {
         @apply py-2;
     }

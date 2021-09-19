@@ -1,7 +1,8 @@
 import { Button, BUTTON_TYPES, Heading, Link, Spacing, Block } from '@atoms';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectPage } from '@selectors/page';
 import { selectPageWidgets } from '@selectors/pageWidgets';
+import pageWidgetActions from '@actions/pageWidgets';
 import { useRouter } from '@hooks';
 import { Fragment } from 'react';
 
@@ -14,11 +15,13 @@ const classes = {
 
 const SinglePage = () => {
   const { match, pathname } = useRouter();
+  const dispatch = useDispatch();
   const { page } = match.params;
 
   // SELECTORS
   const pageData = useSelector((state) => selectPage(state, page));
   const pageWidgets = useSelector((state) => selectPageWidgets(state, page));
+  const onWidgetRemove = (index) => dispatch(pageWidgetActions.remove({ page, index }));
 
   return (
     <Fragment>
@@ -33,7 +36,9 @@ const SinglePage = () => {
       </div>
 
       <div className={classes.content}>
-        {pageWidgets?.length ? pageWidgets.map((widget, key) => <Block key={key} {...widget} />) : 'No widgets'}
+        {pageWidgets?.length
+          ? pageWidgets.map((widget, key) => <Block key={key} onRemove={() => onWidgetRemove(key)} {...widget} />)
+          : 'No widgets'}
       </div>
       <div className={classes.buttonWrapper}>
         <div className='w-full h-1px bg-grey-light' />

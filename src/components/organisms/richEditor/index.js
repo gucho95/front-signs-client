@@ -1,44 +1,40 @@
 import classNames from 'classnames';
-import Quill from 'quill';
-import { useRef, useEffect } from 'react';
+import { Editor as RichEditor } from '@tinymce/tinymce-react';
 import { useController } from 'react-hook-form';
-import 'quill/dist/quill.snow.css';
-// import './index.scss';
+import './index.scss';
+// TODO: move to env file
+const API_KEY = 'mtyjtpq9pjtk0qt01s6jkhvzivpqkc215377dqkhuevc297n';
+const PLUGINS = [];
+const TOOLBAR = 'undo redo | bold italic underline';
 
-const STATES = { ERROR: 'error', BASE: 'base' };
+// const STATES = { ERROR: 'error', BASE: 'base' };
 
-const DEFAULT_CLASSES = 'min-h-200px bg-white outline-none';
+// TODO: APPEND STYLING
 
-const STATE_CLASSES = {
-  [STATES.ERROR]: 'border-danger',
-  [STATES.BASE]: 'border-grey-dark focus:border-blue-light',
-};
+// const DEFAULT_CLASSES = 'min-h-200px bg-white outline-none';
+
+// const STATE_CLASSES = {
+//   [STATES.ERROR]: 'border-danger',
+//   [STATES.BASE]: 'border-grey-dark focus:border-blue-light',
+// };
 
 const Editor = (props) => {
-  const editorRef = useRef(null);
   const { error, className, showError = true, placeholder, name, ...editorProps } = props;
-  const { field } = useController({ control: props.control, name });
-  useEffect(() => {
-    const editor = new Quill(editorRef.current, {
-      placeholder,
-      theme: 'snow',
-      modules: { toolbar: false },
-    });
-
-    editor.on('text-change', () => field.onChange(editor.root.innerHTML));
-    editor.focus();
-  }, []);
-
-  const stateClasses = error ? STATE_CLASSES[STATES.ERROR] : STATE_CLASSES[STATES.BASE];
+  const {
+    field: { onChange, ...fieldProps },
+  } = useController({ control: props.control, name });
+  // const stateClasses = error ? STATE_CLASSES[STATES.ERROR] : STATE_CLASSES[STATES.BASE];
 
   return (
-    <div
-      ref={(e) => {
-        editorRef.current = e;
-        field.ref(e);
-      }}
-      className={classNames(DEFAULT_CLASSES, stateClasses, className)}
+    <RichEditor
+      className='abcas -----------------'
+      // className={classNames(DEFAULT_CLASSES, stateClasses, className)}
+      apiKey={API_KEY}
+      init={{ menubar: false, plugins: PLUGINS, toolbar: TOOLBAR }}
+      outputFormat='html'
+      onEditorChange={onChange}
       {...editorProps}
+      {...fieldProps}
     />
   );
 };

@@ -1,3 +1,4 @@
+import { useMount } from '@hooks';
 import React from 'react';
 import Slider from 'react-slick';
 import './index.scss';
@@ -11,8 +12,11 @@ const settings = {
   lazyLoad: true,
 };
 
-const Carousel = ({ params = {}, slides: Slides }) => {
-  const allSettings = { ...settings, ...params };
+const Carousel = ({ slides: Slides, onMount, ...carouselProps }) => {
+  const allSettings = { ...settings, ...carouselProps };
+
+  useMount(() => onMount && onMount());
+
   return <Slider {...allSettings} children={Slides} className='relative' />;
 };
 

@@ -1,5 +1,7 @@
-import { Spacing, Image, Button, BUTTON_TYPES, Video } from '@atoms';
+import { Spacing, Button, BUTTON_TYPES, Video } from '@atoms';
 import { Carousel } from '@molecules';
+import classNames from 'classnames';
+import { useEffect } from 'react';
 
 const classes = {
   root: 'w-full overflow-hidden',
@@ -14,26 +16,45 @@ const slideClasses = {
   button: 'bg-yellow px-24 py-5 text-p1 uppercase',
 };
 
-const Slide = ({ title, buttonText, video }) => (
-  <div className={slideClasses.root}>
-    <div className={slideClasses.layer2}>
-      <Video autoPlay={true} src={video} className={slideClasses.bgVideo} />
+const Slide = ({ title, buttonText, video, index }) => {
+  return (
+    <div className={slideClasses.root}>
+      <div className={slideClasses.layer2}>
+        <Video src={video} className={classNames(slideClasses.bgVideo, 'transition-all')} autoPlay={!index} />
+      </div>
+      <div className={slideClasses.layer1}>
+        <Spacing className='pt-16' />
+        <div className={slideClasses.title} dangerouslySetInnerHTML={{ __html: title }} />
+        <Spacing className='pt-12' />
+        <Button type={BUTTON_TYPES.CUSTOM} className={slideClasses.button} children={buttonText} />
+        <Spacing className='pt-20' />
+      </div>
     </div>
-    <div className={slideClasses.layer1}>
-      <Spacing className='pt-16' />
-      <div className={slideClasses.title} children={title} />
-      <Spacing className='pt-12' />
-      <Button type={BUTTON_TYPES.CUSTOM} className={slideClasses.button} children={buttonText} />
-      <Spacing className='pt-20' />
-    </div>
-  </div>
-);
+  );
+};
+
+const setAutoplayto = (state, index) => {
+  const slides = document.querySelectorAll('.slick-slide:not(.slick-cloned)');
+
+  const currentSlideNode = slides[index];
+  const currentVideoNode = currentSlideNode && currentSlideNode.getElementsByTagName('video')[0];
+
+  if (currentVideoNode) {
+    currentVideoNode.autoplay = state;
+    currentVideoNode.load();
+  }
+
+  console.log(`slides`, currentVideoNode);
+};
 
 const Type1 = ({ slides }) => {
-  const Slides = slides?.map((slide, key) => <Slide key={key} {...slide} />);
+  const Slides = slides?.map((slide, key) => <Slide key={key} index={key} {...slide} />);
+  const enableAutoplay = (index) => setAutoplayto(true, index);
+  const disableAutoplay = (index) => setAutoplayto(false, index);
+
   return (
     <div className={classes.root}>
-      <Carousel slides={Slides} />
+      <Carousel slides={Slides} afterChange={enableAutoplay} beforeChange={disableAutoplay} />
     </div>
   );
 };

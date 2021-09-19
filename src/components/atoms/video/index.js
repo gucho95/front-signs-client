@@ -1,9 +1,11 @@
-const Video = ({ src, ...videoProps }) => {
+import { forwardRef } from 'react';
+
+const Video = forwardRef(({ src, ...videoProps }, ref) => {
   return (
-    <video {...videoProps} muted={true} loop>
+    <video muted={true} loop={true} preload={true} {...videoProps} ref={ref}>
       <source src={src} />
     </video>
   );
-};
+});
 
 export default Video;

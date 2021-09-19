@@ -6,7 +6,7 @@ const classes = {
   actions: 'text-p5 invisible group-hover:visible',
 };
 
-const Block = ({ type, option }) => {
+const Block = ({ type, option, onRemove }) => {
   return (
     <div className={classes.root}>
       <Heading level={5} className={classes.heading}>
@@ -14,7 +14,7 @@ const Block = ({ type, option }) => {
         <Text children={` - type ${option}`} />
       </Heading>
       <div className={classes.actions}>
-        <Button type={BUTTON_TYPES.CUSTOM} className='text-danger' children='Remove' />
+        <Button type={BUTTON_TYPES.DANGER} onClick={onRemove} children='Remove' />
       </div>
     </div>
   );

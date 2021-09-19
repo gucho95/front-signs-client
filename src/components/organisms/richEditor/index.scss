@@ -1,16 +1,12 @@
-.ql {
-    &-container {
-        @apply box-border relative font-sans h-full w-full bg-white;
+.tox {
+    &-tinymce {
+        @apply border-1px min-h-200px border-grey-dark focus:border-blue-light bg-white outline-none rounded-20px overflow-hidden #{!important};
     }
 
-    &-editor {
-        @apply box-border h-full outline-none overflow-y-hidden text-left whitespace-pre-wrap break-all flex-shrink-0;
-        & > * {
-            @apply cursor-text;
-        }
+    &-editor-container {
+        @apply overflow-hidden #{!important};
     }
-
-    &-clipboard {
-        @apply overflow-hidden hidden;
+    &-statusbar {
+        @apply hidden #{!important};
     }
 }
