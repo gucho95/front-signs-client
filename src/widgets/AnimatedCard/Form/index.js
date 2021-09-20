@@ -4,7 +4,7 @@ import { TYPES } from '../types';
 import { TYPE_FIELDS } from './optionFields';
 import { Select, Spacing } from '@atoms';
 import { Tabs } from '@molecules';
-import { useMount } from '@hooks';
+import { useMount, useRouter } from '@hooks';
 
 const generateTabData = (data, register, errors, control) => {
   return data?.map((i, parentKey) => ({
@@ -23,6 +23,7 @@ const generateTabData = (data, register, errors, control) => {
 };
 
 const AnimatedCardForm = () => {
+  const { params } = useRouter();
   const [activeKey, setActiveKey] = useState(0);
   const { register, watch, control, setValue, formState, setFocus } = useFormContext();
   const { errors } = formState;
@@ -32,6 +33,7 @@ const AnimatedCardForm = () => {
     () => activeOption && generateTabData(optionFields, register, errors, control),
     [activeOption, optionFields, formState]
   );
+  const isCreateMode = !params?.widgetId;
 
   //FIND TAB WITH ERROR AND FOCUS ON ERRRO FIELD
   useEffect(() => {
@@ -48,8 +50,8 @@ const AnimatedCardForm = () => {
     setTimeout(() => setFocus(`items.${firstErrorTabKey}.${firstErrorFieldName}`), 0);
   }, [formState.submitCount]);
 
-  // SET DEFAULT OPTION VALUE FOR COMPONENT
-  useMount(() => setValue('option', TYPES[0].value.toString()));
+  // SET DEFAULT OPTION VALUE FOR COMPONENT ON CREATE MODE
+  useMount(() => isCreateMode && setValue('option', TYPES[0].value.toString()));
 
   // RESET TAB KEY ON ACTIVE OPTION CHANGE
   useEffect(() => {
@@ -59,7 +61,7 @@ const AnimatedCardForm = () => {
   return (
     <div>
       <div className='w-6/12'>
-        <Select options={TYPES} placeholder='Select text option' {...register('option')} />
+        <Select options={TYPES} placeholder='Select text option' {...register('option')} disabled={!isCreateMode} />
       </div>
       <Spacing className='pt-7' />
 

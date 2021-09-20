@@ -1,26 +1,23 @@
 import { PAGE_WIDGETS } from '@store/actionTypes';
-const { ADD, REMOVE } = PAGE_WIDGETS;
+const { ADD, REMOVE, UPDATE } = PAGE_WIDGETS;
 
 export const initialState = {};
 
 const pageWidgets = (state = initialState, action) => {
   const { type, payload } = action;
   const page = payload?.page;
-  const widgetIndex = payload?.index;
+  const widgetId = payload?.id;
   const widgetData = payload?.widgetData;
 
   switch (type) {
     case ADD:
-      return {
-        ...state,
-        [page]: state?.[page] ? [...state[page], widgetData] : [widgetData],
-      };
+      return { ...state, [page]: state?.[page] ? [...state[page], widgetData] : [widgetData] };
+
+    case UPDATE:
+      return { ...state, [page]: state[page].map((w) => (w.id === widgetId ? { ...w, ...widgetData } : w)) };
 
     case REMOVE:
-      return {
-        ...state,
-        [page]: state[page].filter((w, i) => i !== widgetIndex),
-      };
+      return { ...state, [page]: state[page].filter((w, i) => w.id !== widgetId) };
     default:
       return state;
   }

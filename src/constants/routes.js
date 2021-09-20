@@ -28,6 +28,7 @@ export const ROUTES = [
 export const DASHBOARD_ROUTES = [
   { label: 'Single page', path: PATHS.SINGLE_PAGE_MANAGE, component: ManageSinglePage, exact: true, isMenuItem: false },
   { label: 'Add widget', path: PATHS.ADD_WIDGET, component: AddWidget, isMenuItem: false },
+  { label: 'Update widget', path: PATHS.UPDATE_WIDGET, component: AddWidget, isMenuItem: false },
   { icon: 'icon', label: 'Add page', path: PATHS.ADD_PAGE, component: AddPage, isMenuItem: true },
   { icon: 'icon', label: 'Settings', path: PATHS.SETTINGS, component: Settings, isMenuItem: true },
 ];

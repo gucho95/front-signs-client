@@ -1,11 +1,18 @@
-import classNames from 'classnames';
 import { Editor as RichEditor } from '@tinymce/tinymce-react';
+import { forwardRef } from 'react';
 import { useController } from 'react-hook-form';
 import './index.scss';
+
+// TODO : add them colors to tinymce
+// import resolveConfig from 'tailwindcss/resolveConfig';
+// import tailwindConfig from '../../../../tailwind.config.js';
+// const theme = resolveConfig(tailwindConfig);
+
 // TODO: move to env file
 const API_KEY = 'mtyjtpq9pjtk0qt01s6jkhvzivpqkc215377dqkhuevc297n';
-const PLUGINS = [];
-const TOOLBAR = 'undo redo | bold italic underline';
+const PLUGINS = ['textcolor'];
+const TOOLBAR = 'undo redo | bold italic underline| forecolor ';
+const TEXT_COLOR_MAP = ['red', 'Red'];
 
 // const STATES = { ERROR: 'error', BASE: 'base' };
 
@@ -18,7 +25,7 @@ const TOOLBAR = 'undo redo | bold italic underline';
 //   [STATES.BASE]: 'border-grey-dark focus:border-blue-light',
 // };
 
-const Editor = (props) => {
+const Editor = forwardRef((props, ref) => {
   const { error, className, showError = true, placeholder, name, ...editorProps } = props;
   const {
     field: { onChange, ...fieldProps },
@@ -27,16 +34,16 @@ const Editor = (props) => {
 
   return (
     <RichEditor
-      className='abcas -----------------'
+      ref={ref}
       // className={classNames(DEFAULT_CLASSES, stateClasses, className)}
       apiKey={API_KEY}
-      init={{ menubar: false, plugins: PLUGINS, toolbar: TOOLBAR }}
+      init={{ menubar: false, placeholder, plugins: PLUGINS, toolbar: TOOLBAR, color_map: TEXT_COLOR_MAP }}
       outputFormat='html'
       onEditorChange={onChange}
       {...editorProps}
       {...fieldProps}
     />
   );
-};
+});
 
 export default Editor;

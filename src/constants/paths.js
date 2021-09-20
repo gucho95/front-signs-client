@@ -3,6 +3,7 @@ const DASHBOARD_BASE = '/dashboard';
 const DASHBOARD_PATHS = {
   SINGLE_PAGE_MANAGE: `${DASHBOARD_BASE}/pages/:page`,
   ADD_WIDGET: `${DASHBOARD_BASE}/pages/:page/add-widget`,
+  UPDATE_WIDGET: `${DASHBOARD_BASE}/pages/:page/update-widget/:widgetId`,
   ADD_PAGE: `${DASHBOARD_BASE}/add-page`,
   SETTINGS: `${DASHBOARD_BASE}/settings`,
 };

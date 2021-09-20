@@ -1,7 +1,7 @@
 import { Spacing, Button, BUTTON_TYPES, Video } from '@atoms';
 import { Carousel } from '@molecules';
 import classNames from 'classnames';
-import { useEffect } from 'react';
+import { useMemo } from 'react';
 
 const classes = {
   root: 'w-full overflow-hidden',
@@ -9,10 +9,10 @@ const classes = {
 
 const slideClasses = {
   root: ' relative h-795px',
-  layer2: 'absolute w-full h-full',
+  layer2: 'absolute w-full h-full ',
   bgVideo: 'w-full h-full object-cover object-center',
   layer1: 'absolute bottom-7 pr-7  pl-52 text-white bg-dark bg-opacity-50 max-w-60vw',
-  title: 'w-527px text-h1',
+  title: 'w-527px text-h1 font-black',
   button: 'bg-yellow px-24 py-5 text-p1 uppercase',
 };
 
@@ -43,12 +43,10 @@ const setAutoplayto = (state, index) => {
     currentVideoNode.autoplay = state;
     currentVideoNode.load();
   }
-
-  console.log(`slides`, currentVideoNode);
 };
 
 const Type1 = ({ slides }) => {
-  const Slides = slides?.map((slide, key) => <Slide key={key} index={key} {...slide} />);
+  const Slides = useMemo(() => slides?.map((slide, key) => <Slide key={key} index={key} {...slide} />), []);
   const enableAutoplay = (index) => setAutoplayto(true, index);
   const disableAutoplay = (index) => setAutoplayto(false, index);
 

@@ -3,25 +3,24 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 export const TYPES = { PRIMARY: 'primary', SECONDARY: 'secondary', LINK: 'link', DANGER: 'danger', CUSTOM: 'custom' };
-export const SIZES = { CUSTOM: 'custom', SMALL: 'small', MIDDLE: 'middle' };
+export const SIZES = { CUSTOM: 'custom', SMALL: 'small', MIDDLE: 'middle', DEFAULT: 'default' };
 export const HTML_TYPES = { RESET: 'reset', SUBMIT: 'submit', BUTTON: 'button' };
 
 const DEFAULT_CLASSES = 'flex-shrink-0 active:opacity-75 rounded-3px text-p4-24 transition-all';
 
 export const TYPE_CLASSES = {
-  [TYPES.PRIMARY]: 'bg-blue-light text-white hover:bg-yellow-hover disabled:bg-grey-light px-5 py-4',
+  [TYPES.PRIMARY]: 'bg-blue-light text-white hover:bg-yellow-hover disabled:bg-grey-light',
   [TYPES.SECONDARY]:
-    'bg-white text-blue-light border-1px border-blue-light hover:bg-blue-light hover:text-white  hover:border-0 disabled:bg-white disabled:border-grey-light disabled:text-grey-light px-5 py-4',
-  [TYPES.LINK]: 'bg-white text-blue-light hover:underline disabled:text-blue-dark disabled:no-underline px-5 py-4',
-  [TYPES.DANGER]: 'bg-danger text-white hover:bg-opacity-50 disabled:bg-grey-light px-5 py-4',
+    'bg-white text-blue-light border-1px border-blue-light hover:bg-blue-light hover:text-white  hover:border-0 disabled:bg-white disabled:border-grey-light disabled:text-grey-light',
+  [TYPES.LINK]: 'bg-white text-blue-light hover:underline disabled:text-blue-dark disabled:no-underline',
+  [TYPES.DANGER]: 'bg-danger text-white hover:bg-opacity-50 disabled:bg-grey-light',
   [TYPES.CUSTOM]: '',
 };
 
 export const SIZE_CLASSES = {
-  [SIZES.SMALL]: 'px-1 py-2',
-  [SIZES.MIDDLE]: 'py-2 px-3',
-  [SIZES.DEFAULT]: 'py-3 w-4',
-  [SIZES.BIG]: 'px-4 py-5',
+  [SIZES.SMALL]: 'px-3 py-2',
+  [SIZES.MIDDLE]: 'px-4 py-3',
+  [SIZES.DEFAULT]: 'px-5 py-4',
   [SIZES.CUSTOM]: '',
 };
 
@@ -47,7 +46,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  size: SIZES.CUSTOM,
+  size: SIZES.DEFAULT,
   type: TYPES.CUSTOM,
   htmlType: HTML_TYPES.BUTTON,
 };

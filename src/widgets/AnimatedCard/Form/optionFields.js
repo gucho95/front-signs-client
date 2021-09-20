@@ -1,11 +1,4 @@
-import {
-  BUTTON_TEXT_FIELD,
-  DESCRIPTION_FIELD,
-  IMAGE_FIELD,
-  RATE_FIELD,
-  TEXT_FIELD,
-  TITLE_FIELD,
-} from '@constants/fields';
+import { DESCRIPTION_FIELD, IMAGE_FIELD, TITLE_FIELD } from '@constants/fields';
 import { TYPES } from '../types';
 
 export const TYPE_FIELDS = {

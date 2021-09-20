@@ -1,10 +1,12 @@
 import { Input, Textarea } from '@atoms';
+import Search from '@atoms/input/Search';
 import { RichEditor } from '@organisms';
 
 const urlPattern =
   /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/g;
 
 export const TEXT_FIELD = { component: Input, name: 'text', rules: { required: true }, placeholder: 'Text' };
+export const generateTextField = (props) => ({ ...TEXT_FIELD, ...props });
 export const TITLE_FIELD = { component: Input, name: 'title', rules: { required: true }, placeholder: 'Title' };
 
 export const DESCRIPTION_FIELD = {
@@ -35,6 +37,8 @@ export const BUTTON_TEXT_FIELD = {
   placeholder: 'Button text',
 };
 
+export const generateButtonField = (props) => ({ ...BUTTON_TEXT_FIELD, ...props });
+
 export const IMAGE_FIELD = {
   component: Input,
   name: 'image',
@@ -58,4 +62,11 @@ export const RATE_FIELD = {
     max: 5,
   },
   placeholder: 'Rate value ( 0-5 )',
+};
+
+export const BREADCRUMB_FIELD = {
+  component: Input,
+  name: 'breadcrumb',
+  rules: { required: true },
+  placeholder: 'Breadcrumb',
 };

@@ -1,11 +1,13 @@
 import { useMemo } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Select, Button, BUTTON_TYPES, Spacing, BUTTON_HTML_TYPES } from '@atoms';
 import WIDGET_TYPES, { WIDGET_FORM_COMPONENTS } from '@constants/widgets';
 import { useRouter } from '@hooks';
 import pageWidgets from '@actions/pageWidgets';
 import { PATHS } from '@constants/paths';
+import { selectPageWidget } from '@selectors/pageWidgets';
+import { v4 as uuidv4 } from 'uuid';
 
 const classes = {
   divider: 'w-full h-1px bg-grey-light',
@@ -18,16 +20,26 @@ const OPTIONS = Object.values(WIDGET_TYPES).map((opt) => ({ value: opt, label: o
 const Body = () => {
   const dispatch = useDispatch();
   const { params, history } = useRouter();
-  const methods = useForm({ mode: 'onChange', shouldUnregister: true });
+  const { widgetId, page } = params;
+
+  const addWidget = (data) => dispatch(pageWidgets.add(data));
+  const updateWidget = (data) => dispatch(pageWidgets.update(data));
+
+  const isUpdateMode = !!widgetId;
+  const widgetData = useSelector((state) => selectPageWidget(state, page, widgetId));
+
+  const methods = useForm({ mode: 'onChange', shouldUnregister: true, defaultValues: isUpdateMode ? widgetData : {} });
   const { register, watch, handleSubmit } = methods;
   const activeType = watch('type');
 
-  const addWidget = (data) => dispatch(pageWidgets.add(data));
-
-  const onFormSuccess = (widgetData) => {
-    const data = { page: params.page, widgetData };
-    addWidget(data);
-    history.push(`${PATHS.DASHBOARD}/pages/${params.page}`);
+  const onFormSuccess = (widget) => {
+    const data = {
+      page,
+      id: isUpdateMode ? widgetId : uuidv4(),
+      widgetData: { ...widget, id: isUpdateMode ? widgetId : uuidv4() },
+    };
+    isUpdateMode ? updateWidget(data) : addWidget(data);
+    history.push(`${PATHS.DASHBOARD}/pages/${page}`);
   };
 
   const onFormError = (errors) => {
@@ -39,7 +51,13 @@ const Body = () => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onFormSuccess, onFormError)}>
-        <Select options={OPTIONS} placeholder='Select a widget' {...register('type')} className='w-6/12' />
+        <Select
+          options={OPTIONS}
+          placeholder='Select a widget'
+          {...register('type')}
+          className='w-6/12'
+          disabled={isUpdateMode}
+        />
         <Spacing className='pt-4' />
         <div className={classes.divider} />
         <Spacing className='pt-4' />

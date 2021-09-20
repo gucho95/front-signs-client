@@ -1,12 +1,12 @@
-const { Heading, Button, Text, BUTTON_TYPES, TEXT_TYPES } = require('@atoms');
+const { Heading, Button, Text, BUTTON_TYPES, TEXT_TYPES, BUTTON_SIZES } = require('@atoms');
 
 const classes = {
   root: 'flex items-center border-1px border-grey-dark border-dashed p-2 group transition-all hover:bg-grey-light',
   heading: 'flex-1',
-  actions: 'text-p5 invisible group-hover:visible',
+  actions: 'text-p5 invisible group-hover:visible flex space-x-2',
 };
 
-const Block = ({ type, option, onRemove }) => {
+const Block = ({ type, option, onRemove, onUpdate }) => {
   return (
     <div className={classes.root}>
       <Heading level={5} className={classes.heading}>
@@ -14,7 +14,8 @@ const Block = ({ type, option, onRemove }) => {
         <Text children={` - type ${option}`} />
       </Heading>
       <div className={classes.actions}>
-        <Button type={BUTTON_TYPES.DANGER} onClick={onRemove} children='Remove' />
+        <Button type={BUTTON_TYPES.SECONDARY} size={BUTTON_SIZES.SMALL} onClick={onUpdate} children='Update' />
+        <Button type={BUTTON_TYPES.DANGER} size={BUTTON_SIZES.SMALL} onClick={onRemove} children='Remove' />
       </div>
     </div>
   );

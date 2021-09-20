@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
+import { Redirect } from 'react-router';
 import { useSelector } from 'react-redux';
 import { selectPage } from '@selectors/page';
 import { selectPageWidgets } from '@selectors/pageWidgets';
 import { useRouter } from '@hooks';
 import { SinglePageTemplate } from '@templates';
+import { PATHS } from '@constants/paths';
 
 const SinglePage = () => {
   const { match } = useRouter();
@@ -16,7 +18,9 @@ const SinglePage = () => {
     document.title = title;
   }, [title]);
 
-  console.log(pageWidgets);
+  if (!pageData) {
+    return <Redirect to={PATHS.PAGE_404} />;
+  }
 
   return <SinglePageTemplate widgets={pageWidgets}>{JSON.stringify(pageWidgets)}</SinglePageTemplate>;
 };

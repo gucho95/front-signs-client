@@ -4,26 +4,35 @@ import { TYPES } from '../types';
 import { TYPE_FIELDS } from './optionFields';
 import { Button, BUTTON_TYPES, Select, Spacing } from '@atoms';
 import { Tabs } from '@molecules';
-import { useMount } from '@hooks';
+import { useMount, useRouter } from '@hooks';
 
 const SLIDE = 'slide';
 
-const CarouselForm = () => {
+const SliderForm = () => {
+  const { params } = useRouter();
   const [activeKey, setActiveKey] = useState('0');
   const [tabs, setTabs] = useState([]);
-  const { register, watch, control, setValue, formState, setFocus } = useFormContext();
+  const { register, watch, control, setValue, formState, getValues } = useFormContext();
   const { errors } = formState;
   const activeOption = watch('option');
   const slideFields = useMemo(() => (activeOption ? TYPE_FIELDS[activeOption] : null), [activeOption]);
+  const isCreateMode = !params?.widgetId;
+  const slides = watch('slides');
 
-  // SET DEFAULT OPTION VALUE FOR COMPONENT
-  useMount(() => setValue('option', TYPES[0].value.toString()));
+  // SET DEFAULT OPTION VALUE FOR COMPONENT WHEN CREATE MODE
+
+  useMount(() => isCreateMode && setValue('option', TYPES[0].value.toString()));
 
   // RESET CAROUSEL SLIDES DATA ON ACTIVE OPTION CHANGE
   useEffect(() => {
-    setTabs([SLIDE]);
+    if (!isCreateMode) {
+      setTabs(slides);
+    } else {
+      setTabs([SLIDE]);
+    }
+
     setActiveKey(0);
-  }, [activeOption]);
+  }, [activeOption, isCreateMode]);
 
   const addSlide = () => {
     const tabKey = tabs.length;
@@ -38,6 +47,8 @@ const CarouselForm = () => {
     setActiveKey('0');
   };
 
+  // TODO DISABLE SELECT IN EDIT MODE
+
   return (
     <div>
       <div className='w-6/12'>
@@ -46,7 +57,7 @@ const CarouselForm = () => {
       <Spacing className='pt-7' />
       <div className='flex space-x-2'>
         <Button type={BUTTON_TYPES.SECONDARY} children='Add slide' onClick={addSlide} />
-        {tabs.length > 1 && activeKey ? (
+        {tabs?.length > 1 ? (
           <Button type={BUTTON_TYPES.DANGER} children='Remove slide' onClick={removeSlide} className='bg-danger' />
         ) : null}
       </div>
@@ -59,11 +70,11 @@ const CarouselForm = () => {
         setActiveKey={setActiveKey}
       />
 
-      {tabs.map((item, parentKey) => {
+      {tabs?.map((item, parentKey) => {
         const isActiveSlide = parentKey.toString() === activeKey?.toString();
         return (
-          <div className={isActiveSlide ? 'grid gap-y-2' : 'hidden'}>
-            {slideFields.map(({ component: Component, name, rules, ...rest }) => {
+          <div className={isActiveSlide ? 'grid gap-y-2' : 'hidden'} key={parentKey}>
+            {slideFields?.map(({ component: Component, name, rules, ...rest }) => {
               const fieldName = `slides.${parentKey}.${name}`;
               const error = errors?.slides?.[parentKey]?.[name];
               const fieldProps = name ? register(fieldName, { ...rules }) : rules;
@@ -77,4 +88,4 @@ const CarouselForm = () => {
   );
 };
 
-export default CarouselForm;
+export default SliderForm;
