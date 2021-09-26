@@ -29,15 +29,16 @@ const Body = () => {
   const widgetData = useSelector((state) => selectPageWidget(state, page, widgetId));
 
   const methods = useForm({ mode: 'onChange', shouldUnregister: true, defaultValues: isUpdateMode ? widgetData : {} });
-  const { register, watch, handleSubmit } = methods;
+  const { register, watch, handleSubmit, getValues, setValue } = methods;
   const activeType = watch('type');
 
   const onFormSuccess = (widget) => {
     const data = {
       page,
       id: isUpdateMode ? widgetId : uuidv4(),
-      widgetData: { ...widget, id: isUpdateMode ? widgetId : uuidv4() },
+      widgetData: { ...widget },
     };
+
     isUpdateMode ? updateWidget(data) : addWidget(data);
     history.push(`${PATHS.DASHBOARD}/pages/${page}`);
   };
@@ -51,13 +52,7 @@ const Body = () => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onFormSuccess, onFormError)}>
-        <Select
-          options={OPTIONS}
-          placeholder='Select a widget'
-          {...register('type')}
-          className='w-6/12'
-          disabled={isUpdateMode}
-        />
+        <Select options={OPTIONS} placeholder='Select a widget' className='w-6/12' {...register('type')} />
         <Spacing className='pt-4' />
         <div className={classes.divider} />
         <Spacing className='pt-4' />

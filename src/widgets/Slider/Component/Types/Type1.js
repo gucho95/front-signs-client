@@ -4,14 +4,14 @@ import classNames from 'classnames';
 import { useMemo } from 'react';
 
 const classes = {
-  root: 'w-full overflow-hidden',
+  root: 'w-full overflow-hidden video-carousel',
 };
 
 const slideClasses = {
-  root: ' relative h-795px',
-  layer2: 'absolute w-full h-full ',
+  root: ' relative h-795px transition-all',
   bgVideo: 'w-full h-full object-cover object-center',
   layer1: 'absolute bottom-7 pr-7  pl-52 text-white bg-dark bg-opacity-50 max-w-60vw',
+  layer: 'absolute w-full h-full',
   title: 'w-527px text-h1 font-black',
   button: 'bg-yellow px-24 py-5 text-p1 uppercase',
 };
@@ -19,9 +19,10 @@ const slideClasses = {
 const Slide = ({ title, buttonText, video, index }) => {
   return (
     <div className={slideClasses.root}>
-      <div className={slideClasses.layer2}>
+      <div className={slideClasses.layer}>
         <Video src={video} className={classNames(slideClasses.bgVideo, 'transition-all')} autoPlay={!index} />
       </div>
+      <div className={slideClasses.layer} />
       <div className={slideClasses.layer1}>
         <Spacing className='pt-16' />
         <div className={slideClasses.title} dangerouslySetInnerHTML={{ __html: title }} />
@@ -34,14 +35,17 @@ const Slide = ({ title, buttonText, video, index }) => {
 };
 
 const setAutoplayto = (state, index) => {
-  const slides = document.querySelectorAll('.slick-slide:not(.slick-cloned)');
+  const slides = document.querySelectorAll('.video-carousel .slick-slide:not(.slick-cloned)');
 
   const currentSlideNode = slides[index];
   const currentVideoNode = currentSlideNode && currentSlideNode.getElementsByTagName('video')[0];
+  console.log(`currentVideoNode`, currentSlideNode);
 
   if (currentVideoNode) {
-    currentVideoNode.autoplay = state;
-    currentVideoNode.load();
+    window.setTimeout(() => {
+      currentVideoNode.autoplay = state;
+      currentVideoNode.load();
+    }, 0);
   }
 };
 

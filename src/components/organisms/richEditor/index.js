@@ -10,8 +10,8 @@ import './index.scss';
 
 // TODO: move to env file
 const API_KEY = 'mtyjtpq9pjtk0qt01s6jkhvzivpqkc215377dqkhuevc297n';
-const PLUGINS = ['textcolor'];
-const TOOLBAR = 'undo redo | bold italic underline| forecolor ';
+const PLUGINS = ['textcolor', 'paste'];
+const TOOLBAR = 'undo redo | bold italic underline|forecolor backcolor';
 const TEXT_COLOR_MAP = ['red', 'Red'];
 
 // const STATES = { ERROR: 'error', BASE: 'base' };
@@ -37,7 +37,17 @@ const Editor = forwardRef((props, ref) => {
       ref={ref}
       // className={classNames(DEFAULT_CLASSES, stateClasses, className)}
       apiKey={API_KEY}
-      init={{ menubar: false, placeholder, plugins: PLUGINS, toolbar: TOOLBAR, color_map: TEXT_COLOR_MAP }}
+      init={{
+        menubar: false,
+        placeholder,
+        plugins: PLUGINS,
+        toolbar: TOOLBAR,
+        // color_map: TEXT_COLOR_MAP,
+        paste_auto_cleanup_on_paste: true,
+        paste_remove_styles: true,
+        paste_remove_styles_if_webkit: true,
+        paste_strip_class_attributes: true,
+      }}
       outputFormat='html'
       onEditorChange={onChange}
       {...editorProps}

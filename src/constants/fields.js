@@ -4,10 +4,14 @@ import { RichEditor } from '@organisms';
 
 const urlPattern =
   /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/g;
+const imageUrlPattern = /\.(jpe?g|png|gif|bmp)$/i;
 
 export const TEXT_FIELD = { component: Input, name: 'text', rules: { required: true }, placeholder: 'Text' };
-export const generateTextField = (props) => ({ ...TEXT_FIELD, ...props });
+
 export const TITLE_FIELD = { component: Input, name: 'title', rules: { required: true }, placeholder: 'Title' };
+export const generateTextField = (props) => ({ ...TEXT_FIELD, ...props });
+export const generateButtonField = (props) => ({ ...BUTTON_TEXT_FIELD, ...props });
+export const generateRichField = (props) => ({ ...RICH_CONTENT_FIELD, ...props });
 
 export const DESCRIPTION_FIELD = {
   component: Textarea,
@@ -37,12 +41,10 @@ export const BUTTON_TEXT_FIELD = {
   placeholder: 'Button text',
 };
 
-export const generateButtonField = (props) => ({ ...BUTTON_TEXT_FIELD, ...props });
-
 export const IMAGE_FIELD = {
   component: Input,
   name: 'image',
-  rules: { required: true, pattern: urlPattern },
+  rules: { required: true, pattern: imageUrlPattern },
   placeholder: 'Image url',
 };
 

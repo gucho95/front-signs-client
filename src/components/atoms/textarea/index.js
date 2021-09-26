@@ -6,7 +6,7 @@ import Text from '../text';
 const STATES = { ERROR: 'error', BASE: 'base' };
 
 const DEFAULT_CLASSES =
-  'border-1px rounded-20px py-3 px-5 outline-none placeholder-grey-dark text-p5 text-blue-dark disabled:border-grey-dark disabled:bg-transparent disabled:opacity-30 min-h-200px';
+  'border-1px rounded-20px py-3 px-5 outline-none placeholder-grey-dark text-p5 text-blue-dark disabled:border-grey-dark disabled:bg-transparent disabled:opacity-30 min-h-200px overflow-hidden';
 
 const STATE_CLASSES = {
   [STATES.ERROR]: 'border-danger',

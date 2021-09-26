@@ -29,7 +29,7 @@ const Type4 = ({ title, description, image, searchPlaceholder }) => {
         <Paragraph children={description} className='text-p2-32 font-light' />
         <Spacing className='pt-8' />
         <div className='w-400px'>
-          <Search searchPlaceholder={searchPlaceholder} />
+          <Search placeholder={searchPlaceholder} />
         </div>
         <Spacing className='pt-20' />
       </div>

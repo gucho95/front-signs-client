@@ -11,10 +11,13 @@ const pageWidgets = (state = initialState, action) => {
 
   switch (type) {
     case ADD:
-      return { ...state, [page]: state?.[page] ? [...state[page], widgetData] : [widgetData] };
+      return { ...state, [page]: state?.[page] ? [...state[page], { ...widgetData, id: widgetId }] : [widgetData] };
 
     case UPDATE:
-      return { ...state, [page]: state[page].map((w) => (w.id === widgetId ? { ...w, ...widgetData } : w)) };
+      return {
+        ...state,
+        [page]: state[page].map((w) => (w.id === widgetId ? { ...w, ...widgetData } : w)),
+      };
 
     case REMOVE:
       return { ...state, [page]: state[page].filter((w, i) => w.id !== widgetId) };

@@ -61,7 +61,7 @@ const AnimatedCardForm = () => {
   return (
     <div>
       <div className='w-6/12'>
-        <Select options={TYPES} placeholder='Select text option' {...register('option')} disabled={!isCreateMode} />
+        <Select options={TYPES} placeholder='Select text option' {...register('option')} />
       </div>
       <Spacing className='pt-7' />
 

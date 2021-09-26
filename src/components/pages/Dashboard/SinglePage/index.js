@@ -8,6 +8,7 @@ import { useRouter } from '@hooks';
 import { Fragment } from 'react';
 import { useHistory } from 'react-router';
 import { PATHS } from '@constants/paths';
+import { v4 as uuidv4 } from 'uuid';
 
 const classes = {
   header: 'sticky top-0 bg-grey-body',
@@ -29,8 +30,13 @@ const SinglePage = () => {
   const pageWidgets = useSelector((state) => selectPageWidgets(state, page));
 
   // ACTIONS
-  const onWidgetRemoveClick = (id) => dispatch(pageWidgetActions.remove({ page, id }));
-  const onWidgetUpdateClick = (id) => history.push(`${pathname}/update-widget/${id}`);
+  const onWidgetDuplicate = (widget) => {
+    const { id, ...widgetData } = widget;
+    const data = { page, id: uuidv4(), widgetData };
+    dispatch(pageWidgetActions.add(data));
+  };
+  const onWidgetRemove = (id) => dispatch(pageWidgetActions.remove({ page, id }));
+  const onWidgetUpdate = (id) => history.push(`${pathname}/update-widget/${id}`);
 
   const onPageRemove = () => {
     dispatch(pageActions.remove(pageData?.id));
@@ -65,9 +71,10 @@ const SinglePage = () => {
           ? pageWidgets.map((widget, key) => (
               <Block
                 key={key}
-                onUpdate={() => onWidgetUpdateClick(widget.id)}
-                onRemove={() => onWidgetRemoveClick(widget.id)}
-                {...widget}
+                onUpdate={() => onWidgetUpdate(widget.id)}
+                onRemove={() => onWidgetRemove(widget.id)}
+                onDuplicate={onWidgetDuplicate}
+                data={widget}
               />
             ))
           : 'No widgets'}
