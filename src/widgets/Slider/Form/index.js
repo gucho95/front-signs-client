@@ -12,7 +12,7 @@ const SliderForm = () => {
   const { params } = useRouter();
   const [activeKey, setActiveKey] = useState('0');
   const [tabs, setTabs] = useState([]);
-  const { register, watch, control, setValue, formState, getValues } = useFormContext();
+  const { register, watch, control, setValue, formState, setFocus } = useFormContext();
   const { errors } = formState;
   const activeOption = watch('option');
   const slideFields = useMemo(() => (activeOption ? TYPE_FIELDS[activeOption] : null), [activeOption]);
@@ -33,6 +33,24 @@ const SliderForm = () => {
 
     setActiveKey(0);
   }, [activeOption, isCreateMode]);
+
+  //FIND TAB WITH ERROR AND FOCUS ON ERRRO FIELD
+  useEffect(() => {
+    const hasError = formState.errors?.slides;
+
+    console.log(`formState.errors`, formState.errors);
+
+    if (!formState.submitCount || !hasError) {
+      return;
+    }
+
+    const firstErrorTabKey = Object.keys(formState.errors?.slides)?.[0];
+
+    const firstErrorFields = formState.errors?.slides[firstErrorTabKey];
+    const firstErrorFieldName = Object.keys(firstErrorFields || {})[0];
+    setActiveKey(firstErrorTabKey);
+    setTimeout(() => setFocus(`slides.${firstErrorTabKey}.${firstErrorFieldName}`), 0);
+  }, [formState.submitCount]);
 
   const addSlide = () => {
     const tabKey = tabs.length;

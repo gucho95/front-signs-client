@@ -92,7 +92,6 @@ module.exports = {
       'text-11-overlay': "url('../assets/text_11_overlay.png')",
     },
     extend: {
-      minHeight: { '200px': '200px' },
       margin: { '-50%': '-50%' },
       inset: { '50%': '50%' },
       spacing: {
@@ -115,6 +114,7 @@ module.exports = {
         '1000px': '1000px',
         '1470px': '1470px',
       },
+      minHeight: { '200px': '200px' },
       maxHeight: { '80vh': '80vh', '294px': '294px' },
       maxWidth: { '10vw': '10vw', '20vw': '20vw', '30vw': '30vw', '40vw': '40vw', '50vw': '50vw', '60vw': '60vw' },
     },

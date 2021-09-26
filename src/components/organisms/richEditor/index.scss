@@ -1,6 +1,6 @@
 .tox {
     &-tinymce {
-        @apply border-1px min-h-200px border-grey-dark focus:border-blue-light bg-white outline-none rounded-20px overflow-hidden #{!important};
+        @apply border-1px h-80  border-transparent overflow-hidden #{!important};
     }
 
     &-editor-container {
