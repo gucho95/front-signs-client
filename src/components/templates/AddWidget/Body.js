@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Select, Button, BUTTON_TYPES, Spacing, BUTTON_HTML_TYPES } from '@atoms';
 import WIDGET_TYPES, { WIDGET_FORM_COMPONENTS } from '@constants/widgets';
 import { useRouter } from '@hooks';
-import pageWidgets from '@actions/pageWidgets';
+import columnWidgets from '@actions/columnWidgets';
 import { PATHS } from '@constants/paths';
-import { selectPageWidget } from '@selectors/pageWidgets';
+import { selectColumnWidget } from '@selectors/columnsWidgets';
 import { v4 as uuidv4 } from 'uuid';
 
 const classes = {
@@ -20,22 +20,22 @@ const OPTIONS = Object.values(WIDGET_TYPES).map((opt) => ({ value: opt, label: o
 const Body = () => {
   const dispatch = useDispatch();
   const { params, history } = useRouter();
-  const { widgetId, page } = params;
+  const { widgetId, page, column } = params;
+  const widget = useSelector((state) => selectColumnWidget(state, column));
+  const addWidget = (data) => dispatch(columnWidgets.add(data));
+  const updateWidget = (data) => dispatch(columnWidgets.update(data));
 
-  const addWidget = (data) => dispatch(pageWidgets.add(data));
-  const updateWidget = (data) => dispatch(pageWidgets.update(data));
-
-  const isUpdateMode = !!widgetId;
-  const widgetData = useSelector((state) => selectPageWidget(state, page, widgetId));
+  const isUpdateMode = !!widget;
+  const widgetData = widget?.widgetData;
 
   const methods = useForm({ mode: 'onChange', shouldUnregister: true, defaultValues: isUpdateMode ? widgetData : {} });
-  const { register, watch, handleSubmit, getValues, setValue } = methods;
+  const { register, watch, handleSubmit } = methods;
   const activeType = watch('type');
 
   const onFormSuccess = (widget) => {
     const data = {
-      page,
       id: isUpdateMode ? widgetId : uuidv4(),
+      parentId: column,
       widgetData: { ...widget },
     };
 

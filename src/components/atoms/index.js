@@ -23,3 +23,4 @@ export { default as Block } from './block';
 export { default as Textarea } from './textarea';
 export { default as Rate } from './rate';
 export { default as Video } from './video';
+export { default as Dropdown } from './dropdown';

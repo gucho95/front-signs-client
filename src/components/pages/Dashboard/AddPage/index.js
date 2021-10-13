@@ -10,6 +10,7 @@ import pageActions from '@actions/page';
 import { selectPages } from '@selectors/page';
 import { useRouter } from '@hooks';
 import { generateSinglePagePath } from '@constants/paths';
+import { PAGE } from '@constants/system';
 
 const checkDuplicate = (data, current) => {
   const isDuplicate = data.find(
@@ -45,9 +46,9 @@ const AddPage = () => {
       toast.error('Duplicate page!');
       return;
     }
-
-    const data = { ...values, data: '', id: uuidv4() };
-    const path = generateSinglePagePath(values.path);
+    const id = uuidv4();
+    const data = { ...values, type: PAGE, data: '', id };
+    const path = generateSinglePagePath(id);
     addPage(data);
     history.push(path);
   };

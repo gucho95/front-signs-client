@@ -6,7 +6,7 @@ const Header = () => {
   const { history, params } = useRouter();
   const onBack = () => history.push(`${PATHS.DASHBOARD}/pages/${params.page}`);
   return (
-    <Button type={BUTTON_TYPES.CUSTOM} onClick={onBack}>
+    <Button type={BUTTON_TYPES.LINK} onClick={onBack}>
       <Text className='text-p2 text-dark-beta'>&#60; Back</Text>
     </Button>
   );

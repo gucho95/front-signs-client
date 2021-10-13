@@ -38,8 +38,6 @@ const SliderForm = () => {
   useEffect(() => {
     const hasError = formState.errors?.slides;
 
-    console.log(`formState.errors`, formState.errors);
-
     if (!formState.submitCount || !hasError) {
       return;
     }

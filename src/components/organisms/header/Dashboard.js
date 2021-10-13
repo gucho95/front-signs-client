@@ -19,7 +19,6 @@ const Header = () => {
   const { handleSubmit, register } = useForm({ resolver: yupResolver(schema) });
 
   const onFormSuccess = (values) => {
-    console.log('e');
     alert(`search ${values.search}`);
   };
 

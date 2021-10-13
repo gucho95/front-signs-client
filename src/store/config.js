@@ -9,12 +9,17 @@ import storage from 'redux-persist/lib/storage'; // defaults to localStorage for
 import rootReducer from './reducers';
 import rootSaga from './sagas';
 
-const persistConfig = { key: 'data', keyPrefix: '', storage, whitelist: ['user', 'pages', 'pageWidgets'] };
+const persistConfig = {
+  key: 'data',
+  keyPrefix: '',
+  storage,
+  whitelist: ['user', 'pages', 'pageBlocks', 'blockColumns', 'columnWidgets'],
+};
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const configureStore = () => {
   const sagaMiddleware = createSagaMiddleware();
-  const store = createStore(persistedReducer, compose(applyMiddleware(sagaMiddleware)));
+  const store = createStore(persistedReducer, compose(applyMiddleware(sagaMiddleware), composeWithDevTools()));
   sagaMiddleware.run(rootSaga);
   return store;
 };

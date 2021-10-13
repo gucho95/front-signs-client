@@ -39,7 +39,6 @@ const setAutoplayto = (state, index) => {
 
   const currentSlideNode = slides[index];
   const currentVideoNode = currentSlideNode && currentSlideNode.getElementsByTagName('video')[0];
-  console.log(`currentVideoNode`, currentSlideNode);
 
   if (currentVideoNode) {
     window.setTimeout(() => {

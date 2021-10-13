@@ -1,4 +1,5 @@
 module.exports = {
+  mode: 'jit',
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -63,6 +64,7 @@ module.exports = {
       '28px': ['28px', '32px'],
     },
     borderRadius: {
+      '0px': '0px',
       '3px': '3px',
       '5px': '5px',
       '10px': '10px',
@@ -114,7 +116,7 @@ module.exports = {
         '1000px': '1000px',
         '1470px': '1470px',
       },
-      minHeight: { '200px': '200px' },
+      minHeight: { '30px': '30px', '104px': '104px', '200px': '200px' },
       maxHeight: { '80vh': '80vh', '294px': '294px' },
       maxWidth: { '10vw': '10vw', '20vw': '20vw', '30vw': '30vw', '40vw': '40vw', '50vw': '50vw', '60vw': '60vw' },
     },
@@ -130,6 +132,8 @@ module.exports = {
       opacity: ['active', 'disabled'],
       padding: ['group-hover'],
       scale: ['group-hover'],
+      width: ['hover'],
+      zIndex: ['group-hover', 'hover'],
     },
   },
   plugins: [require('@tailwindcss/line-clamp')],

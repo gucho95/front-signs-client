@@ -1,12 +1,12 @@
 import { Heading, Spacing } from '@atoms';
+import BlockRenderer from './BlockRenderer';
 import { Fragment } from 'react';
-import WidgetRenderer from './WidgetRenderer';
 
-const SinglePage = ({ widgets }) => {
-  const Content = widgets?.length ? (
-    widgets.map((widget, key) => (
+const SinglePage = ({ data }) => {
+  const Content = data?.length ? (
+    data.map((block, key) => (
       <Fragment key={key}>
-        <WidgetRenderer {...widget} />
+        <BlockRenderer data={block} />
         <Spacing className='pt-10' />
       </Fragment>
     ))

@@ -15,7 +15,7 @@ const Menu = (props) => {
 
   return (
     <RcMenu mode='vertical' activeKey={pathname} {...menuProps}>
-      {data.map(({ label, path }) => {
+      {data.map(({ label, path, id }) => {
         return (
           <RcMenuItem key={path} {...menuItemProps}>
             <Link to={path} className={classes.link}>

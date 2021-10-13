@@ -1,28 +1,26 @@
 import { useEffect } from 'react';
 import { Redirect } from 'react-router';
 import { useSelector } from 'react-redux';
-import { selectPage } from '@selectors/page';
-import { selectPageWidgets } from '@selectors/pageWidgets';
+import { selectPageByPath, selectPageData } from '@selectors/page';
 import { useRouter } from '@hooks';
 import { SinglePageTemplate } from '@templates';
 import { PATHS } from '@constants/paths';
 
 const SinglePage = () => {
   const { match } = useRouter();
-  const page = match.params.page;
-  const pageData = useSelector((state) => selectPage(state, page));
-  const pageWidgets = useSelector((state) => selectPageWidgets(state, page));
-  const title = pageData?.title;
-
+  const pageParam = match.params.page;
+  const page = useSelector((state) => selectPageByPath(state, pageParam));
+  const pageData = useSelector((state) => selectPageData(state, page?.id));
+  const title = page?.title;
   useEffect(() => {
     document.title = title;
   }, [title]);
 
-  if (!pageData) {
+  if (!page) {
     return <Redirect to={PATHS.PAGE_404} />;
   }
 
-  return <SinglePageTemplate widgets={pageWidgets}>{JSON.stringify(pageWidgets)}</SinglePageTemplate>;
+  return <SinglePageTemplate data={pageData} />;
 };
 
 export default SinglePage;

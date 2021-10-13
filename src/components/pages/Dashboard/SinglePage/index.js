@@ -1,23 +1,21 @@
-import { Button, BUTTON_TYPES, Heading, Link, Spacing, Block, BUTTON_SIZES } from '@atoms';
+import { Spacing } from '@atoms';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectPage } from '@selectors/page';
-import { selectPageWidgets } from '@selectors/pageWidgets';
-import pageWidgetActions from '@actions/pageWidgets';
+import { selectPageBlocks, selectPageLastBlock } from '@selectors/pageBlocks';
+import pageWidgetActions from '@actions/columnWidgets';
 import pageActions from '@actions/page';
+import blockActions from '@actions/pageBlocks';
 import { useRouter } from '@hooks';
 import { Fragment } from 'react';
 import { useHistory } from 'react-router';
 import { PATHS } from '@constants/paths';
 import { v4 as uuidv4 } from 'uuid';
 
-const classes = {
-  header: 'sticky top-0 bg-grey-body',
-  headerWrapper: 'flex justify-between items-center w-full',
-  buttonWrapper: 'sticky bottom-0 py-4 bg-grey-body',
-  actionWrapper: 'flex items-center space-x-4',
-  pageLink: 'underline',
-  content: 'grid pb-3 gap-y-1',
-};
+// subcomponents
+import BlockRenderer from './BlockRenderer';
+import BlockActions from './BlockActions';
+import PageActions from './PageActions';
+import { BLOCK } from '@constants/system';
 
 const SinglePage = () => {
   const { match, pathname } = useRouter();
@@ -27,9 +25,11 @@ const SinglePage = () => {
 
   // SELECTORS
   const pageData = useSelector((state) => selectPage(state, page));
-  const pageWidgets = useSelector((state) => selectPageWidgets(state, page));
+  const pageBlocks = useSelector((state) => selectPageBlocks(state, page));
+  const pageLastBlock = useSelector((state) => selectPageLastBlock(state, page));
 
-  // ACTIONS
+  // WIDGET ACTIONS
+
   const onWidgetDuplicate = (widget) => {
     const { id, ...widgetData } = widget;
     const data = { page, id: uuidv4(), widgetData };
@@ -39,53 +39,35 @@ const SinglePage = () => {
   const onWidgetUpdate = (id) => history.push(`${pathname}/update-widget/${id}`);
 
   const onPageRemove = () => {
-    dispatch(pageActions.remove(pageData?.id));
+    dispatch(pageActions.remove(page));
     history.push(PATHS.ADD_PAGE);
   };
+  // BLOCK ACTIONS
+
+  const onAddBlock = () => {
+    const data = {
+      parentId: page,
+      id: uuidv4(),
+      index: pageLastBlock ? pageLastBlock.index + 1 : 0,
+      type: BLOCK,
+    };
+    dispatch(blockActions.add(data));
+  };
+  const onRemoveBlock = (payload) => dispatch(blockActions.remove(payload));
 
   return (
     <Fragment>
       <Spacing className='py-2' />
-      <div className={classes.header}>
-        <div className={classes.headerWrapper}>
-          <Heading level={3} children={pageData?.title} />
-          <div className={classes.actionWrapper}>
-            <Button
-              type={BUTTON_TYPES.DANGER}
-              size={BUTTON_SIZES.SMALL}
-              children='Remove page'
-              onClick={onPageRemove}
-            />
-            <Link to={`/pages/${page}`} className={classes.pageLink}>
-              <Button type={BUTTON_TYPES.PRIMARY} size={BUTTON_SIZES.SMALL} children='See page' />
-            </Link>
-          </div>
-        </div>
-        <Spacing className='pt-2' />
-        <div className='w-full h-1px bg-grey-light' />
-        <Spacing className='pt-4' />
-      </div>
-
-      <div className={classes.content}>
-        {pageWidgets?.length
-          ? pageWidgets.map((widget, key) => (
-              <Block
-                key={key}
-                onUpdate={() => onWidgetUpdate(widget.id)}
-                onRemove={() => onWidgetRemove(widget.id)}
-                onDuplicate={onWidgetDuplicate}
-                data={widget}
-              />
-            ))
-          : 'No widgets'}
-      </div>
-      <div className={classes.buttonWrapper}>
-        <div className='w-full h-1px bg-grey-light' />
-        <Spacing className='pt-2' />
-        <Link to={`${pathname}/add-widget`}>
-          <Button type={BUTTON_TYPES.PRIMARY} children='Add widget' />
-        </Link>
-      </div>
+      <PageActions page={pageData.path} data={pageData} onRemove={onPageRemove} />
+      <Spacing className='py-2' />
+      <BlockRenderer
+        data={pageBlocks}
+        onRemoveBlock={onRemoveBlock}
+        // onUpdate={onWidgetUpdate}
+        // onRemove={onWidgetRemove}
+        // onDuplicate={onWidgetDuplicate}
+      />
+      <BlockActions onAdd={onAddBlock} />
     </Fragment>
   );
 };

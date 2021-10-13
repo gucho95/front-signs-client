@@ -1,4 +1,4 @@
-import { Spacing, Button, BUTTON_TYPES, Image, Paragraph, Text } from '@atoms';
+import { Spacing, Image, Paragraph } from '@atoms';
 import Search from '@atoms/input/Search';
 import { Carousel } from '@molecules';
 import classNames from 'classnames';
