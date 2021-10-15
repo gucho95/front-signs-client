@@ -3,21 +3,19 @@ import { useFormContext } from 'react-hook-form';
 import { TYPES } from '../types';
 import { TYPE_FIELDS } from './optionFields';
 import { Select, Spacing } from '@atoms';
-import { useMount, useRouter } from '@hooks';
+import { useMount } from '@hooks';
 
-const CardForm = () => {
-  const { params } = useRouter();
+const CardForm = ({ isUpdateMode }) => {
   const { register, watch, control, setValue, formState } = useFormContext();
   const { errors } = formState;
   const activeOption = watch('option');
   const optionFields = useMemo(() => (activeOption ? TYPE_FIELDS[activeOption] : null), [activeOption]);
-  const isCreateMode = !params?.widgetId;
 
   // RESET FORM DATA ON COMPONENT OPTION CHANGE //:TODO
   useEffect(() => {}, [activeOption]);
 
   // SET DEFAULT OPTION VALUE FOR COMPONENT
-  useMount(() => isCreateMode && setValue('option', TYPES[0].value.toString()));
+  useMount(() => !isUpdateMode && setValue('option', TYPES[0].value.toString()));
 
   return (
     <div>

@@ -9,13 +9,13 @@ const classes = {
   root: 'px-4 flex group hover:border-black border-1px border-grey-dark border-dashed hover:shadow-4',
 };
 
-const getMenuData = ({ onAppendWidget, onRemoveColumn }) => [
-  { key: '1', label: 'Append widget', fn: onAppendWidget },
+const getMenuData = ({ onAppendWidget, onRemoveColumn, hasWidget }) => [
+  { key: '1', label: hasWidget ? 'Update widget' : 'Append widget', fn: onAppendWidget },
   { key: '2', label: 'Remove column', fn: onRemoveColumn },
 ];
 
-const ColumnMenu = ({ onAppendWidget, onRemoveColumn, onClose, index }) => {
-  const menu = getMenuData({ onAppendWidget, onRemoveColumn });
+const ColumnMenu = ({ onAppendWidget, onRemoveColumn, onClose, hasWidget }) => {
+  const menu = getMenuData({ onAppendWidget, onRemoveColumn, hasWidget });
   const isLastItem = (index) => index === menu.length - 1;
   return (
     <Menu selectable={false} onSelect={onClose}>
@@ -34,6 +34,7 @@ const Column = ({ data, onAppendWidget, onRemoveColumn, index }) => {
   const [menuVisible, setMenuVisible] = useState(false);
   const columnWidget = useSelector((state) => selectColumnWidget(state, data.id));
   const widgetData = columnWidget?.widgetData;
+  const hasWidget = widgetData?.type;
 
   return (
     <div
@@ -45,14 +46,12 @@ const Column = ({ data, onAppendWidget, onRemoveColumn, index }) => {
       }}
     >
       <div className='flex flex-col flex-1 overflow-hidden justify-center'>
-        <Text className='truncate'>
-          {widgetData?.type ? `${widgetData?.type}/${widgetData?.option}` : 'No widget'}{' '}
-        </Text>
+        <Text className='truncate'>{hasWidget ? `${widgetData?.type}/${widgetData?.option}` : 'No widget'} </Text>
       </div>
       <div className={classNames('text-p5 flex justify-end items-center ', menuButtonVisible ? 'flex' : 'hidden')}>
         <Dropdown
           trigger={'hover'}
-          menu={ColumnMenu({ onAppendWidget, onRemoveColumn, index })}
+          menu={ColumnMenu({ onAppendWidget, onRemoveColumn, index, hasWidget })}
           keepVisibleIds={['1']}
           visible={menuVisible}
           setVisible={setMenuVisible}

@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Dropdown, Spacing, Button, BUTTON_TYPES, BUTTON_SIZES } from '@atoms';
+import { v4 as uuidv4 } from 'uuid';
+import classNames from 'classnames';
+import { Spacing } from '@atoms';
 import { useRouter } from '@hooks';
 import { selectBlockColumns, selectBlockLastColumn } from '@selectors/blockColumns';
 import blockColumnsAction from '@actions/blockColumns';
-import { v4 as uuidv4 } from 'uuid';
 import { COLUMN } from '@constants/system';
 import { GRID_CLASSES } from '@constants/classes';
-import classNames from 'classnames';
-import BlockMenu from './BlockMenu';
 import Column from './Column';
+import { BlockMenuButton } from './BlockMenu';
 
 const MAX_COLUMNS = 12;
 
@@ -49,10 +49,6 @@ const Block = ({ data, onRemoveBlock }) => {
   return (
     <div className={classes.wrapper}>
       <div className={classes.root}>
-        {/* <Heading level={5} className={classes.heading}>
-        <Text type={TEXT_TYPES.BOLD} children={type?.toUpperCase()} />
-        <Text children={` - type ${option}`} />
-      </Heading> */}
         <div className={classNames(classes.grid, gridClassName)}>
           {columns.length
             ? columns.map((col, index) => (
@@ -68,22 +64,12 @@ const Block = ({ data, onRemoveBlock }) => {
         </div>
       </div>
       <Spacing className='pl-2' />
-      <div className='flex items-center'>
-        <Dropdown
-          trigger={'hover'}
-          menu={BlockMenu({ onAddColumn, onRemoveBlock })}
-          keepVisibleIds={['1']}
-          visible={menuVisible}
-          setVisible={setMenuVisible}
-        >
-          <Button
-            type={BUTTON_TYPES.SECONDARY}
-            size={BUTTON_SIZES.CUSTOM}
-            className='px-2 py-[6px] font-bold'
-            children='...'
-          />
-        </Dropdown>
-      </div>
+      <BlockMenuButton
+        onAddColumn={onAddColumn}
+        onRemoveBlock={onRemoveBlock}
+        setMenuVisible={setMenuVisible}
+        menuVisible={menuVisible}
+      />
     </div>
   );
 };

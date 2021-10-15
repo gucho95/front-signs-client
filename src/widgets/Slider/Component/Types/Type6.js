@@ -32,7 +32,7 @@ const Type3 = ({ breadcrumbPrimary, breadcrumbSecondary, title, description, ima
         <Spacing className='pt-60' />
         <div className={slideClasses.title} dangerouslySetInnerHTML={{ __html: title }} />
         <Spacing className='pt-5' />
-        <Paragraph children={description} className='text-p2-32 font-light whitespace-pre-line' />
+        <Paragraph children={description} className='text-p2-32 font-light whitespace-pre-line line-clamp-6 ' />
         <Spacing className='pt-8' />
 
         <Spacing className='pt-4' />

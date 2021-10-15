@@ -22,15 +22,20 @@ const Body = () => {
   const { params, history } = useRouter();
   const { widgetId, page, column } = params;
   const widget = useSelector((state) => selectColumnWidget(state, column));
+  const isUpdateMode = !!widget?.widgetData;
+  const widgetData = widget?.widgetData;
+  const methods = useForm({
+    mode: 'onChange',
+    shouldUnregister: true,
+    defaultValues: isUpdateMode ? widgetData : { type: WIDGET_TYPES.TEXT },
+  });
+  const { register, watch, handleSubmit, getValues } = methods;
+  const activeType = watch('type');
+
   const addWidget = (data) => dispatch(columnWidgets.add(data));
   const updateWidget = (data) => dispatch(columnWidgets.update(data));
-
-  const isUpdateMode = !!widget;
-  const widgetData = widget?.widgetData;
-
-  const methods = useForm({ mode: 'onChange', shouldUnregister: true, defaultValues: isUpdateMode ? widgetData : {} });
-  const { register, watch, handleSubmit } = methods;
-  const activeType = watch('type');
+  console.group();
+  console.groupEnd();
 
   const onFormSuccess = (widget) => {
     const data = {
@@ -57,7 +62,7 @@ const Body = () => {
         <div className={classes.divider} />
         <Spacing className='pt-4' />
         <div className={classes.widgetFormWrapper}>
-          {activeType ? <WidgetForm /> : null}
+          {activeType ? <WidgetForm isUpdateMode={isUpdateMode} /> : null}
           <Spacing className='pt-4' />
 
           {activeType ? (

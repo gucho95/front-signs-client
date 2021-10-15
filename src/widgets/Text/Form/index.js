@@ -5,16 +5,15 @@ import { TYPE_FIELDS } from './optionFields';
 import { Select, Spacing } from '@atoms';
 import { useMount, useRouter } from '@hooks';
 
-const TextForm = () => {
+const TextForm = ({ isUpdateMode }) => {
   const { register, watch, control, setValue, formState } = useFormContext();
   const { errors } = formState;
   const activeOption = watch('option');
   const optionFields = useMemo(() => (activeOption ? TYPE_FIELDS[activeOption] : null), [activeOption]);
   const { params } = useRouter();
-  const isCreateMode = !params?.widgetId;
 
   // SET DEFAULT OPTION VALUE FOR COMPONENT WHEN CREATE MODE
-  useMount(() => isCreateMode && setValue('option', TYPES[0].value.toString()));
+  useMount(() => !isUpdateMode && setValue('option', TYPES[0].value.toString()));
 
   return (
     <div>

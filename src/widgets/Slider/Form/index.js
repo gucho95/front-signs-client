@@ -8,7 +8,7 @@ import { useMount, useRouter } from '@hooks';
 
 const SLIDE = 'slide';
 
-const SliderForm = () => {
+const SliderForm = ({ isUpdateMode }) => {
   const { params } = useRouter();
   const [activeKey, setActiveKey] = useState('0');
   const [tabs, setTabs] = useState([]);
@@ -16,23 +16,23 @@ const SliderForm = () => {
   const { errors } = formState;
   const activeOption = watch('option');
   const slideFields = useMemo(() => (activeOption ? TYPE_FIELDS[activeOption] : null), [activeOption]);
-  const isCreateMode = !params?.widgetId;
+
   const slides = watch('slides');
 
   // SET DEFAULT OPTION VALUE FOR COMPONENT WHEN CREATE MODE
 
-  useMount(() => isCreateMode && setValue('option', TYPES[0].value.toString()));
+  useMount(() => !isUpdateMode && setValue('option', TYPES[0].value.toString()));
 
   // RESET CAROUSEL SLIDES DATA ON ACTIVE OPTION CHANGE
   useEffect(() => {
-    if (!isCreateMode) {
+    if (isUpdateMode) {
       setTabs(slides);
     } else {
       setTabs([SLIDE]);
     }
 
     setActiveKey(0);
-  }, [activeOption, isCreateMode]);
+  }, [activeOption, isUpdateMode]);
 
   //FIND TAB WITH ERROR AND FOCUS ON ERRRO FIELD
   useEffect(() => {
