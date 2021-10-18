@@ -4,7 +4,8 @@ import { Block } from '@atoms';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 
-const generateLayout = (blocks) => blocks.map((block) => ({ i: block.id, x: 0, y: block.index, w: 1, h: 1, maxw: 1 }));
+const generateLayout = (blocks) =>
+  blocks.map((block) => ({ i: block.id, x: 0, y: block.index, w: 1, h: 1, maxw: 1, isResizable: false }));
 
 const PageGrid = ({ width = window.innerWidth, data, onLayoutChange, onRemoveBlock }) => {
   const layout = useMemo(() => generateLayout(data), [data?.length]);
