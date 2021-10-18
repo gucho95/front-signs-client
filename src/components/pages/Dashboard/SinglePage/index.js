@@ -1,24 +1,23 @@
-import { Spacing } from '@atoms';
+import { Fragment } from 'react';
+import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
+import { Spacing } from '@atoms';
 import { selectPage } from '@selectors/page';
-import { selectPageBlocks, selectPageLastBlock } from '@selectors/pageBlocks';
-import pageWidgetActions from '@actions/columnWidgets';
+import { selectBlocksMaxIndex, selectPageBlocks } from '@selectors/pageBlocks';
 import pageActions from '@actions/page';
 import blockActions from '@actions/pageBlocks';
 import { useRouter } from '@hooks';
-import { Fragment } from 'react';
-import { useHistory } from 'react-router';
 import { PATHS } from '@constants/paths';
-import { v4 as uuidv4 } from 'uuid';
+import { BLOCK } from '@constants/system';
 
-// subcomponents
+// SUBCOMPONENTS
 import BlockRenderer from './BlockRenderer';
 import BlockActions from './BlockActions';
 import PageActions from './PageActions';
-import { BLOCK } from '@constants/system';
 
 const SinglePage = () => {
-  const { match, pathname } = useRouter();
+  const { match } = useRouter();
   const dispatch = useDispatch();
   const { page } = match.params;
   const history = useHistory();
@@ -26,47 +25,33 @@ const SinglePage = () => {
   // SELECTORS
   const pageData = useSelector((state) => selectPage(state, page));
   const pageBlocks = useSelector((state) => selectPageBlocks(state, page));
-  const pageLastBlock = useSelector((state) => selectPageLastBlock(state, page));
+  const blocksMaxIndex = useSelector((state) => selectBlocksMaxIndex(state, page));
 
-  // WIDGET ACTIONS
-
-  const onWidgetDuplicate = (widget) => {
-    const { id, ...widgetData } = widget;
-    const data = { page, id: uuidv4(), widgetData };
-    dispatch(pageWidgetActions.add(data));
-  };
-  const onWidgetRemove = (id) => dispatch(pageWidgetActions.remove({ page, id }));
-  const onWidgetUpdate = (id) => history.push(`${pathname}/update-widget/${id}`);
-
+  // PAGE ACTIONS
   const onPageRemove = () => {
     dispatch(pageActions.remove(page));
     history.push(PATHS.ADD_PAGE);
   };
-  // BLOCK ACTIONS
 
+  // BLOCK ACTIONS
   const onAddBlock = () => {
     const data = {
       parentId: page,
       id: uuidv4(),
-      index: pageLastBlock ? pageLastBlock.index + 1 : 0,
+      index: blocksMaxIndex + 1,
       type: BLOCK,
     };
     dispatch(blockActions.add(data));
   };
   const onRemoveBlock = (payload) => dispatch(blockActions.remove(payload));
+  const onLayoutChange = (payload) => dispatch(blockActions.updateIndex(payload));
 
   return (
     <Fragment>
       <Spacing className='py-2' />
       <PageActions page={pageData.path} data={pageData} onRemove={onPageRemove} />
       <Spacing className='py-2' />
-      <BlockRenderer
-        data={pageBlocks}
-        onRemoveBlock={onRemoveBlock}
-        // onUpdate={onWidgetUpdate}
-        // onRemove={onWidgetRemove}
-        // onDuplicate={onWidgetDuplicate}
-      />
+      <BlockRenderer data={pageBlocks} onRemoveBlock={onRemoveBlock} onLayoutChange={onLayoutChange} />
       <BlockActions onAdd={onAddBlock} />
     </Fragment>
   );

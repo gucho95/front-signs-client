@@ -1,11 +1,23 @@
+import { useRef, useMemo } from 'react';
 import { Block } from '@atoms';
+import { useWindowSize } from '@hooks';
 
-const classes = { content: 'grid gap-y-4 gap-y-3' };
+import PageGrid from './PageGrid';
 
-const BlockRenderer = ({ data, onRemoveBlock, onUpdate, onRemove, onDuplicate }) => {
+const classes = { content: 'grid gap-y-8' };
+
+const BlockRenderer = ({ data, onRemoveBlock, onLayoutChange }) => {
+  const parentRef = useRef(null);
+  const { windowWidth } = useWindowSize();
+  const parentWidth = useMemo(() => {
+    const parentBoundingClientRect = parentRef.current?.getBoundingClientRect();
+    return parentBoundingClientRect?.width;
+  }, [windowWidth, parentRef.current]);
+
   return (
-    <div className={classes.content}>
-      {data?.length
+    <div className={classes.content} ref={parentRef}>
+      <PageGrid data={data} width={parentWidth} onRemoveBlock={onRemoveBlock} onLayoutChange={onLayoutChange} />
+      {/* {data?.length
         ? data.map((item, key) => (
             <Block
               key={key}
@@ -15,7 +27,7 @@ const BlockRenderer = ({ data, onRemoveBlock, onUpdate, onRemove, onDuplicate })
               data={item}
             />
           ))
-        : 'No Blocks'}
+        : 'No Blocks'} */}
     </div>
   );
 };

@@ -1,34 +1,36 @@
-import { useState } from 'react';
+import { useRef, useState, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import classNames from 'classnames';
 import { Spacing } from '@atoms';
-import { useRouter } from '@hooks';
-import { selectBlockColumns, selectBlockLastColumn } from '@selectors/blockColumns';
+import { useRouter, useWindowSize } from '@hooks';
+import { selectBlockColumns, selectColumnsMaxIndex } from '@selectors/blockColumns';
 import blockColumnsAction from '@actions/blockColumns';
 import { COLUMN } from '@constants/system';
-import { GRID_CLASSES } from '@constants/classes';
-import Column from './Column';
-import { BlockMenuButton } from './BlockMenu';
+import BlockMenuButton from './BlockMenu';
+import BlockGrid from './BlockGrid';
 
 const MAX_COLUMNS = 12;
 
 const classes = {
-  wrapper: 'flex w-full flex-1',
-  heading: 'flex-1',
-  root: 'min-h-104px flex w-full border-1px border-grey-dark border-dashed  transition-all hover:border-black relative',
-  grid: 'grid gap-2 w-full p-3',
-  actions: ' overflow-hidden text-p5 group-hover:flex flex flex-col space-x-2 transition-all',
+  wrapper: 'flex w-full flex-1 drag h-full',
+  root: 'w-full border-1px border-grey-dark border-dashed hover:border-black cursor-move h-full',
 };
 
-const Block = ({ data, onRemoveBlock }) => {
-  const [menuVisible, setMenuVisible] = useState(false);
+const Block = ({ data, onRemoveBlock, index }) => {
   const dispatch = useDispatch();
+  const blockRef = useRef(null);
+  const { windowWidth } = useWindowSize();
   const { history, pathname } = useRouter();
+  const [menuVisible, setMenuVisible] = useState(false);
+
   const columns = useSelector((state) => selectBlockColumns(state, data.id));
-  const lastColumn = useSelector((state) => selectBlockLastColumn(state, data.id));
-  const gridClassName = GRID_CLASSES[columns?.length];
+  const columnsMaxIndex = useSelector((state) => selectColumnsMaxIndex(state, data.id));
   const allowAdd = columns.length < MAX_COLUMNS;
+
+  const blockWidth = useMemo(() => {
+    const blockBoundingClientRect = blockRef.current?.getBoundingClientRect();
+    return blockBoundingClientRect?.width;
+  }, [windowWidth, blockRef.current]);
 
   // COLUMN ACTIONS
   const onAddColumn = () => {
@@ -38,30 +40,25 @@ const Block = ({ data, onRemoveBlock }) => {
     const columnData = {
       parentId: data.id,
       id: uuidv4(),
-      index: lastColumn ? lastColumn.index + 1 : 0,
+      index: columnsMaxIndex + 1,
       type: COLUMN,
     };
     dispatch(blockColumnsAction.add(columnData));
   };
 
   const onRemoveColumn = (payload) => dispatch(blockColumnsAction.remove(payload));
+  const onLayoutChange = (payload) => dispatch(blockColumnsAction.updateIndex(payload));
 
   return (
     <div className={classes.wrapper}>
-      <div className={classes.root}>
-        <div className={classNames(classes.grid, gridClassName)}>
-          {columns.length
-            ? columns.map((col, index) => (
-                <Column
-                  key={col.id}
-                  data={col}
-                  index={index + 1}
-                  onAppendWidget={() => history.push(`${pathname}/columns/${col.id}`)}
-                  onRemoveColumn={() => onRemoveColumn(col.id)}
-                />
-              ))
-            : 'No Columns'}
-        </div>
+      <div className={classes.root} ref={blockRef}>
+        <BlockGrid
+          onLayoutChange={onLayoutChange}
+          width={blockWidth}
+          columns={columns}
+          onAppendWidget={(id) => history.push(`${pathname}/columns/${id}`)}
+          onRemoveColumn={(id) => onRemoveColumn(id)}
+        />
       </div>
       <Spacing className='pl-2' />
       <BlockMenuButton

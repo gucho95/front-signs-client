@@ -2,9 +2,20 @@ const key = 'blockColumns';
 const ref = (state) => state[key];
 
 export const selectBlockColumns = (state, parentId) =>
-  ref(state)?.data.filter((column) => column.parentId === parentId);
+  ref(state)
+    ?.data.filter((column) => column.parentId === parentId)
+    .sort((a, b) => a.index - b.index);
 
-export const selectBlockLastColumn = (state, parentId) => {
-  const blocks = ref(state)?.data.filter((column) => column.parentId === parentId);
-  return blocks[blocks.length - 1];
+export const selectColumnsMaxIndex = (state, parentId) => {
+  const blockColumns = selectBlockColumns(state, parentId);
+
+  if (!blockColumns.length) {
+    return 0;
+  }
+
+  const maxIndex = Math.max.apply(
+    Math,
+    blockColumns.map((i) => i.index)
+  );
+  return maxIndex;
 };

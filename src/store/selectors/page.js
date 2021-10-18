@@ -25,12 +25,14 @@ export const selectPageByPath = (state, path) => {
 };
 
 export const selectPageData = (state, pageId) => {
-  let pageBlocks = selectPageBlocks(state, pageId);
+  let pageBlocks = selectPageBlocks(state, pageId).sort((a, b) => a.index - b.index);
   // JOIN BLOCK COLUMNS
   pageBlocks = pageBlocks.map((block) => {
     let columns = selectBlockColumns(state, block.id);
     // JOIN COLUMNS WIDGETS
-    columns = columns.map((column) => ({ ...column, widget: selectColumnWidget(state, column.id) }));
+    columns = columns
+      .map((column) => ({ ...column, widget: selectColumnWidget(state, column.id) }))
+      .sort((a, b) => a.index - b.index);
     return { ...block, columns };
   });
   // JOIN WIDGETS COLUMNS

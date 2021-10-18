@@ -1,6 +1,5 @@
 module.exports = {
-  mode: 'jit',
-  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  purge: ['./src/**/*.{js}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {
@@ -95,10 +94,11 @@ module.exports = {
     },
     extend: {
       margin: { '-50%': '-50%' },
-      inset: { '50%': '50%' },
+      inset: { '50%': '50%', '68px': '68px' },
       spacing: {
         '1px': '1px',
         '122px': '122px',
+        '130px': '130px',
         '215px': '215px',
         '233px': '233px',
         '294px': '294px',
@@ -114,10 +114,12 @@ module.exports = {
         '945px': '945px',
         '970px': '970px',
         '1000px': '1000px',
+        '1340px': '1340px',
         '1470px': '1470px',
       },
       minHeight: { '30px': '30px', '104px': '104px', '200px': '200px' },
       maxHeight: { '80vh': '80vh', '294px': '294px' },
+      minWidth: { '1340px': '1340px' },
       maxWidth: { '10vw': '10vw', '20vw': '20vw', '30vw': '30vw', '40vw': '40vw', '50vw': '50vw', '60vw': '60vw' },
     },
   },

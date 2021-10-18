@@ -3,11 +3,7 @@ import WidgetRenderer from './WidgetRenderer';
 const ColumnRenderer = ({ data }) => {
   const widget = data?.widget;
 
-  return widget ? (
-    <div>
-      <WidgetRenderer {...widget.widgetData} />
-    </div>
-  ) : null;
+  return widget ? <WidgetRenderer {...widget.widgetData} /> : null;
 };
 
 export default ColumnRenderer;

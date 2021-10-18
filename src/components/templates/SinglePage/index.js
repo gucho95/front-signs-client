@@ -14,7 +14,7 @@ const SinglePage = ({ data }) => {
     <Heading level={2} children='No Data' className='text-center' />
   );
 
-  return <div className='grid grid-cols-1 gap-y-4 template' children={Content} />;
+  return <div className='grid grid-cols-1' children={Content} />;
 };
 
 export default SinglePage;

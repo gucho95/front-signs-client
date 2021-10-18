@@ -6,16 +6,22 @@ import React, { Fragment, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 const classes = {
-  root: 'px-4 flex group hover:border-black border-1px border-grey-dark border-dashed hover:shadow-4',
+  root: 'h-full flex group hover:border-black border-1px border-grey-dark border-dashed hover:shadow-4',
+  layerAlpha: 'inset-0 w-full h-full absolute z-10 perfect-center bg-yellow',
+  text: 'truncate text-h5',
+  layerBeta: 'inset-0 w-full h-full absolute flex drag cursor-move justify-end items-center px-2',
+  overlayVisible: 'z-20 bg-yellow bg-opacity-75',
+  overlayHidden: 'z-0 invisible',
+  optionsButton: 'px-2 py-6px font-bold',
 };
 
-const getMenuData = ({ onAppendWidget, onRemoveColumn, hasWidget }) => [
-  { key: '1', label: hasWidget ? 'Update widget' : 'Append widget', fn: onAppendWidget },
-  { key: '2', label: 'Remove column', fn: onRemoveColumn },
+const getMenuData = ({ onAppend, onRemove, hasWidget }) => [
+  { key: '1', label: hasWidget ? 'Update widget' : 'Append widget', fn: onAppend },
+  { key: '2', label: 'Remove column', fn: onRemove },
 ];
 
-const ColumnMenu = ({ onAppendWidget, onRemoveColumn, onClose, hasWidget }) => {
-  const menu = getMenuData({ onAppendWidget, onRemoveColumn, hasWidget });
+const ColumnMenu = ({ onAppend, onRemove, onClose, hasWidget }) => {
+  const menu = getMenuData({ onAppend, onRemove, hasWidget });
   const isLastItem = (index) => index === menu.length - 1;
   return (
     <Menu selectable={false} onSelect={onClose}>
@@ -30,28 +36,32 @@ const ColumnMenu = ({ onAppendWidget, onRemoveColumn, onClose, hasWidget }) => {
 };
 
 const Column = ({ data, onAppendWidget, onRemoveColumn, index }) => {
-  const [menuButtonVisible, setMenuButtonVisible] = useState(false);
+  const [overlayVisible, setOverlayVisible] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
   const columnWidget = useSelector((state) => selectColumnWidget(state, data.id));
   const widgetData = columnWidget?.widgetData;
   const hasWidget = widgetData?.type;
 
+  const onAppend = () => onAppendWidget(data.id);
+  const onRemove = () => onRemoveColumn(data.id);
+  const onMouseEnter = () => setOverlayVisible(true);
+  const onMouseLeave = () => {
+    setOverlayVisible(false);
+    setMenuVisible(false);
+  };
+
   return (
-    <div
-      className={classes.root}
-      onMouseEnter={() => setMenuButtonVisible(true)}
-      onMouseLeave={() => {
-        setMenuButtonVisible(false);
-        setMenuVisible(false);
-      }}
-    >
-      <div className='flex flex-col flex-1 overflow-hidden justify-center'>
-        <Text className='truncate'>{hasWidget ? `${widgetData?.type}/${widgetData?.option}` : 'No widget'} </Text>
+    <div className={classes.root} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+      <div className={classNames(classes.layerAlpha, hasWidget ? 'bg-opacity-40' : 'bg-opacity-10')}>
+        <Text className={classNames(classes.text, hasWidget ? 'text-black' : 'text-grey-dark')}>
+          {hasWidget ? `${widgetData?.type}/${widgetData?.option}` : 'No widget'}
+        </Text>
       </div>
-      <div className={classNames('text-p5 flex justify-end items-center ', menuButtonVisible ? 'flex' : 'hidden')}>
+
+      <div className={classNames(classes.layerBeta, overlayVisible ? classes.overlayVisible : classes.overlayHidden)}>
         <Dropdown
           trigger={'hover'}
-          menu={ColumnMenu({ onAppendWidget, onRemoveColumn, index, hasWidget })}
+          menu={ColumnMenu({ onAppend, onRemove, index, hasWidget })}
           keepVisibleIds={['1']}
           visible={menuVisible}
           setVisible={setMenuVisible}
@@ -59,7 +69,7 @@ const Column = ({ data, onAppendWidget, onRemoveColumn, index }) => {
           <Button
             type={BUTTON_TYPES.SECONDARY}
             size={BUTTON_SIZES.CUSTOM}
-            className='px-2 py-[6px] font-bold'
+            className={classes.optionsButton}
             children='...'
           />
         </Dropdown>

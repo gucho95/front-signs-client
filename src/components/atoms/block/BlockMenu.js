@@ -7,7 +7,7 @@ const getMenuData = ({ onAddColumn, onRemoveBlock }) => [
   { key: '2', label: '  Remove block', fn: onRemoveBlock },
 ];
 
-export const BlockMenuButton = ({ onAddColumn, onRemoveBlock, menuVisible, setMenuVisible }) => (
+const BlockMenuButton = ({ onAddColumn, onRemoveBlock, menuVisible, setMenuVisible }) => (
   <div className='flex items-center'>
     <Dropdown
       trigger={'hover'}
@@ -32,7 +32,7 @@ const BlockMenu = ({ onAddColumn, onRemoveBlock, onClose }) => {
   return (
     <Menu selectable={false} onSelect={onClose}>
       {menu.map(({ key, label, fn }, index) => (
-        <Fragment>
+        <Fragment key={index}>
           <MenuItem key={key} onMouseDown={fn} children={label} />
           {isLastItem(index) ? null : <Divider />}
         </Fragment>
@@ -40,3 +40,5 @@ const BlockMenu = ({ onAddColumn, onRemoveBlock, onClose }) => {
     </Menu>
   );
 };
+
+export default BlockMenuButton;
