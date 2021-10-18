@@ -2,17 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import RootRouter from 'components/routers/Root';
-import '@styles/index.scss';
+import ModalRenderer from '@organisms/modal/ModalRenderer';
 import StoreProvider from '@store/config';
 import { ToastContainer } from 'react-toastify';
-import ModalRenderer from '@organisms/modal/ModalRenderer';
-import GridLayout from 'react-grid-layout';
-const layouta = [
-  { i: 'a', x: 0, y: 0, w: 1, h: 2, static: true },
-  { i: 'b', x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4 },
-  { i: 'c', x: 4, y: 0, w: 1, h: 2 },
-  { i: 'd', x: 4, y: 0, w: 1, h: 2 },
-];
+import '@styles/index.scss';
 
 ReactDOM.render(
   <React.StrictMode>
