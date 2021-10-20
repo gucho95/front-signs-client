@@ -6,10 +6,10 @@ import React, { Fragment, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 const classes = {
-  root: 'h-full flex group hover:border-black border-1px border-grey-dark border-dashed hover:shadow-4',
-  layerAlpha: 'inset-0 w-full h-full absolute z-10 perfect-center bg-yellow',
+  root: 'h-full w-full flex group hover:border-black border-1px border-grey-dark border-dashed hover:shadow-4 drag cursor-move',
+  layerAlpha: 'perfect-center bg-yellow w-full',
   text: 'truncate text-h5',
-  layerBeta: 'inset-0 w-full h-full absolute flex drag cursor-move justify-end items-center px-2',
+  layerBeta: 'flex justify-end items-center px-2 w-full bg-yellow bg-opacity-60',
   overlayVisible: 'z-20 bg-yellow bg-opacity-75',
   overlayHidden: 'z-0 invisible',
   optionsButton: 'px-2 py-6px font-bold',
@@ -52,28 +52,31 @@ const Column = ({ data, onAppendWidget, onRemoveColumn, index }) => {
 
   return (
     <div className={classes.root} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-      <div className={classNames(classes.layerAlpha, hasWidget ? 'bg-opacity-40' : 'bg-opacity-10')}>
-        <Text className={classNames(classes.text, hasWidget ? 'text-black' : 'text-grey-dark')}>
-          {hasWidget ? `${widgetData?.type}/${widgetData?.option}` : 'No widget'}
-        </Text>
-      </div>
-
-      <div className={classNames(classes.layerBeta, overlayVisible ? classes.overlayVisible : classes.overlayHidden)}>
-        <Dropdown
-          trigger={'hover'}
-          menu={ColumnMenu({ onAppend, onRemove, index, hasWidget })}
-          keepVisibleIds={['1']}
-          visible={menuVisible}
-          setVisible={setMenuVisible}
-        >
-          <Button
-            type={BUTTON_TYPES.SECONDARY}
-            size={BUTTON_SIZES.CUSTOM}
-            className={classes.optionsButton}
-            children='...'
-          />
-        </Dropdown>
-      </div>
+      <div className='h-auto absolute px-1 py-1 z-0'>Width : {data.layout.w}</div>
+      {overlayVisible ? (
+        <div className={classNames(classes.layerBeta)}>
+          <Dropdown
+            trigger={'hover'}
+            menu={ColumnMenu({ onAppend, onRemove, index, hasWidget })}
+            keepVisibleIds={['1']}
+            visible={menuVisible}
+            setVisible={setMenuVisible}
+          >
+            <Button
+              type={BUTTON_TYPES.SECONDARY}
+              size={BUTTON_SIZES.CUSTOM}
+              className={classes.optionsButton}
+              children='...'
+            />
+          </Dropdown>
+        </div>
+      ) : (
+        <div className={classNames(classes.layerAlpha, hasWidget ? 'bg-opacity-40' : 'bg-opacity-10')}>
+          <Text className={classNames(classes.text, hasWidget ? 'text-black' : 'text-grey-dark')}>
+            {hasWidget ? `${widgetData?.type}/${widgetData?.option}` : 'No widget'}
+          </Text>
+        </div>
+      )}
     </div>
   );
 };

@@ -2,16 +2,16 @@ import Menu, { MenuItem, Divider } from 'rc-menu';
 import React, { Fragment } from 'react';
 import { Dropdown, Button, BUTTON_TYPES, BUTTON_SIZES } from '@atoms';
 
-const getMenuData = ({ onAddColumn, onRemoveBlock }) => [
-  { key: '1', label: '  Add column', fn: onAddColumn },
+const getMenuData = ({ onAddColumn, onRemoveBlock, allowAdd }) => [
+  { key: '1', label: '  Add column', fn: onAddColumn, disabled: !allowAdd },
   { key: '2', label: '  Remove block', fn: onRemoveBlock },
 ];
 
-const BlockMenuButton = ({ onAddColumn, onRemoveBlock, menuVisible, setMenuVisible }) => (
+const BlockMenuButton = ({ onAddColumn, onRemoveBlock, menuVisible, setMenuVisible, allowAdd }) => (
   <div className='flex items-center'>
     <Dropdown
       trigger={'hover'}
-      menu={BlockMenu({ onAddColumn, onRemoveBlock })}
+      menu={BlockMenu({ onAddColumn, onRemoveBlock, allowAdd })}
       keepVisibleIds={['1']}
       visible={menuVisible}
       setVisible={setMenuVisible}
@@ -26,14 +26,15 @@ const BlockMenuButton = ({ onAddColumn, onRemoveBlock, menuVisible, setMenuVisib
   </div>
 );
 
-const BlockMenu = ({ onAddColumn, onRemoveBlock, onClose }) => {
-  const menu = getMenuData({ onAddColumn, onRemoveBlock });
+const BlockMenu = ({ onAddColumn, onRemoveBlock, onClose, allowAdd }) => {
+  const menu = getMenuData({ onAddColumn, onRemoveBlock, allowAdd });
   const isLastItem = (index) => index === menu.length - 1;
+
   return (
     <Menu selectable={false} onSelect={onClose}>
-      {menu.map(({ key, label, fn }, index) => (
+      {menu.map(({ key, label, fn, disabled }, index) => (
         <Fragment key={index}>
-          <MenuItem key={key} onMouseDown={fn} children={label} />
+          <MenuItem key={key} onMouseDown={fn} children={label} disabled={disabled} />
           {isLastItem(index) ? null : <Divider />}
         </Fragment>
       ))}

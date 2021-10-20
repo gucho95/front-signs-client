@@ -32,7 +32,7 @@ export const selectPageData = (state, pageId) => {
     // JOIN COLUMNS WIDGETS
     columns = columns
       .map((column) => ({ ...column, widget: selectColumnWidget(state, column.id) }))
-      .sort((a, b) => a.index - b.index);
+      .sort((a, b) => a.layout.x - b.layout.x);
     return { ...block, columns };
   });
   // JOIN WIDGETS COLUMNS

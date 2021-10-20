@@ -8,7 +8,7 @@ const BlockRenderer = ({ data }) => {
   const gridClassName = GRID_CLASSES?.[columnsLength];
 
   return columnsLength ? (
-    <div className={classNames(gridClassName ? `grid ${gridClassName}` : '')}>
+    <div className={'flex min-h-104px'}>
       {columns.map((column) => (
         <ColumnRenderer key={column.id} data={column} />
       ))}
