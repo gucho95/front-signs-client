@@ -34,10 +34,9 @@ const Body = () => {
 
   const addWidget = (data) => dispatch(columnWidgets.add(data));
   const updateWidget = (data) => dispatch(columnWidgets.update(data));
-  console.group();
-  console.groupEnd();
 
   const onFormSuccess = (widget) => {
+    console.log(`widget`, widget);
     const data = {
       id: isUpdateMode ? widgetId : uuidv4(),
       parentId: column,

@@ -4,7 +4,7 @@ import { RichEditor } from '@organisms';
 
 const urlPattern =
   /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/g;
-const imageUrlPattern = /\.(jpe?g|png|gif|bmp)$/i;
+const imageUrlPattern = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/i;
 
 export const TEXT_FIELD = { component: Input, name: 'text', rules: { required: true }, placeholder: 'Text' };
 

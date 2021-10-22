@@ -6,15 +6,6 @@ import 'react-resizable/css/styles.css';
 
 const BlockGrid = ({ width = window.innerWidth, columns, onLayoutChange, onAppendWidget, onRemoveColumn }) => {
   const layout = columns.map((c) => c.layout);
-  useEffect(() => {
-    console.log(
-      'layout',
-      layout.map((l) => ({
-        w: l.w,
-        maxW: l.maxw,
-      }))
-    );
-  }, [columns]);
 
   return (
     <GridLayout

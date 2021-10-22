@@ -1,14 +1,13 @@
-import { GRID_CLASSES } from '@constants/classes';
-import classNames from 'classnames';
 import ColumnRenderer from './ColumnRenderer';
+
+const classes = { columnWrapper: 'min-h-30px flex overflow-hidden' };
 
 const BlockRenderer = ({ data }) => {
   const columns = data?.columns;
   const columnsLength = columns?.length;
-  const gridClassName = GRID_CLASSES?.[columnsLength];
 
   return columnsLength ? (
-    <div className={'flex min-h-104px'}>
+    <div className={classes.columnWrapper}>
       {columns.map((column) => (
         <ColumnRenderer key={column.id} data={column} />
       ))}

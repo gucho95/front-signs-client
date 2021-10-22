@@ -4,6 +4,8 @@ import { AnimatedCardWidget, AnimatedCardForm } from '@widgets/AnimatedCard';
 import { SliderWidget, SliderForm } from '@widgets/Slider';
 import { MaterialsWidget, MaterialsForm } from '@widgets/Materials';
 import { AnimatedIconsWidget, AnimatedIconsForm } from '@widgets/AnimatedIcons';
+import { ChangableImagesWidget, ChangableImagesForm } from '@widgets/ChangableImages';
+import { ServicesWidget, ServicesForm } from '@widgets/Services';
 
 const WIDGET_TYPES = {
   TEXT: 'text',
@@ -12,6 +14,8 @@ const WIDGET_TYPES = {
   SLIDER: 'slider',
   MATERIALS: 'materials',
   ANIMATED_ICONS: 'animated-icons',
+  CHANGABLE_IMAGES: 'changable-images',
+  SERVICES: 'services',
 };
 
 export const WIDGET_COMPONENTS = {
@@ -21,6 +25,8 @@ export const WIDGET_COMPONENTS = {
   [WIDGET_TYPES.SLIDER]: SliderWidget,
   [WIDGET_TYPES.MATERIALS]: MaterialsWidget,
   [WIDGET_TYPES.ANIMATED_ICONS]: AnimatedIconsWidget,
+  [WIDGET_TYPES.CHANGABLE_IMAGES]: ChangableImagesWidget,
+  [WIDGET_TYPES.SERVICES]: ServicesWidget,
 };
 
 export const WIDGET_FORM_COMPONENTS = {
@@ -30,6 +36,8 @@ export const WIDGET_FORM_COMPONENTS = {
   [WIDGET_TYPES.SLIDER]: SliderForm,
   [WIDGET_TYPES.MATERIALS]: MaterialsForm,
   [WIDGET_TYPES.ANIMATED_ICONS]: AnimatedIconsForm,
+  [WIDGET_TYPES.CHANGABLE_IMAGES]: ChangableImagesForm,
+  [WIDGET_TYPES.SERVICES]: ServicesForm,
 };
 
 export default WIDGET_TYPES;

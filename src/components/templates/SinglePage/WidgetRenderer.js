@@ -1,7 +1,11 @@
+import { useMemo } from 'react';
 import { WIDGET_COMPONENTS } from '@constants/widgets';
 
+const getWidgetByType = (type) => WIDGET_COMPONENTS[type];
+
 const WidgetRenderer = (props) => {
-  const Widget = WIDGET_COMPONENTS[props.type];
+  const widgetType = props?.type;
+  const Widget = useMemo(() => getWidgetByType(widgetType), [widgetType]);
   return <Widget {...props} />;
 };
 

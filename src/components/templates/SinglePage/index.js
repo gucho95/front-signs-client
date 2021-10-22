@@ -1,20 +1,12 @@
-import { Heading, Spacing } from '@atoms';
+import { Heading } from '@atoms';
 import BlockRenderer from './BlockRenderer';
-import { Fragment } from 'react';
+
+const EmptyScreen = () => <Heading level={2} children='No Data' className='text-center' />;
+const Block = ({ block }) => <BlockRenderer data={block} key={block.id} />;
 
 const SinglePage = ({ data }) => {
-  const Content = data?.length ? (
-    data.map((block, key) => (
-      <Fragment key={key}>
-        <BlockRenderer data={block} />
-        <Spacing className='pt-10' />
-      </Fragment>
-    ))
-  ) : (
-    <Heading level={2} children='No Data' className='text-center' />
-  );
-
-  return <div className='grid grid-cols-1' children={Content} />;
+  const Content = data?.length ? data.map((block) => <Block block={block} />) : EmptyScreen;
+  return Content;
 };
 
 export default SinglePage;

@@ -96,6 +96,7 @@ module.exports = {
       inset: { '50%': '50%', '68px': '68px' },
       spacing: {
         '1px': '1px',
+        '107px': '107px',
         '122px': '122px',
         '130px': '130px',
         '215px': '215px',
@@ -135,6 +136,8 @@ module.exports = {
       scale: ['group-hover'],
       width: ['hover'],
       zIndex: ['group-hover', 'hover'],
+      transform: ['group-hover'],
+      rotate: ['group-hover'],
     },
   },
   plugins: [require('@tailwindcss/line-clamp')],
