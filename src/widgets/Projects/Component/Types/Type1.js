@@ -1,8 +1,8 @@
-import CardWidget from '@widgets/Card/Component/Types/Type3';
+import CardWidget from '@widgets/Card/Component/Types/Type5';
 import { Button, BUTTON_TYPES, Heading, HEADING_LEVELS, Spacing } from '@atoms';
 import { Fragment } from 'react';
 
-const classes = { container: 'grid grid-cols-4 gap-7' };
+const classes = { container: 'grid grid-cols-2 gap-7' };
 
 const Type1 = (props) => {
   const items = props.items;
@@ -18,8 +18,8 @@ const Type1 = (props) => {
       </div>
       <Spacing className='pt-14' />
       <div className='text-center'>
-        <Button type={BUTTON_TYPES.SECONDARY} className='uppercase'>
-          See all reviews &nbsp;&nbsp;&#8594;
+        <Button type={BUTTON_TYPES.PRIMARY} className='uppercase'>
+          See all Projects &nbsp;&nbsp;&#8594;
         </Button>
       </div>
     </Fragment>

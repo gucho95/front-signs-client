@@ -1,6 +1,12 @@
 * {
     @apply outline-none font-sans;
 }
+html,
+body {
+    max-width: 2560px;
+    min-width: 1024px;
+    margin: auto;
+}
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 @import "tailwindcss/base";
 @import "tailwindcss/components";

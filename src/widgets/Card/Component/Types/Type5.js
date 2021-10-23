@@ -1,7 +1,7 @@
 import { Button, BUTTON_TYPES, Heading, Text, Image, Paragraph, Spacing } from '@atoms';
 
 const classes = {
-  root: 'w-718px h-360px shadow-1 rounded-10px mx-auto flex overflow-hidden group hover:shadow-5 transition-all',
+  root: 'max-w-full h-360px shadow-1 rounded-10px mx-auto flex overflow-hidden group hover:shadow-5 transition-all',
   imageSection: 'w-6/12 overflow-hidden',
   image: 'w-full h-full object-cover object-center transform group-hover:scale-105 transition-all',
   textSection: 'p-8 w-6/12 flex flex-col',

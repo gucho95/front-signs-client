@@ -35,7 +35,7 @@ const Fields = ({ fields, activeKey, errors, control, register }) => {
   });
 };
 
-const ReviewsForm = ({ isUpdateMode }) => {
+const ProjectsForm = ({ isUpdateMode }) => {
   const [activeKey, setActiveKey] = useState('0');
   const { register, watch, control, setValue, formState, setFocus } = useFormContext();
   const { errors, submitCount } = formState;
@@ -84,4 +84,4 @@ const ReviewsForm = ({ isUpdateMode }) => {
   );
 };
 
-export default ReviewsForm;
+export default ProjectsForm;

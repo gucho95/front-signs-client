@@ -10,7 +10,7 @@ const ColumnRenderer = ({ data }) => {
   const widthClassName = WIDTH_CLASSES[colWidth];
   const Widget = getWidget(widget);
 
-  return <div children={Widget} className={classNames(widthClassName, 'flex-shrink-0 brd p-4')} />;
+  return <div children={Widget} className={classNames(widthClassName, 'flex-shrink-0 p-4')} />;
 };
 
 export default ColumnRenderer;
