@@ -1,4 +1,4 @@
-import { generateTextField, IMAGE_FIELD, TEXT_FIELD } from '@constants/fields';
+import { IMAGE_FIELD } from '@constants/fields';
 import { TYPES } from '../types';
 
 export const TYPE_FIELDS = {

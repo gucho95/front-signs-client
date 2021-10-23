@@ -1,10 +1,8 @@
-import { Spacing, Image, Paragraph } from '@atoms';
+import { Spacing } from '@atoms';
 import { Fragment } from 'react';
 import Icon from '../Icon';
 
-const contentClasses = {
-  container: 'w-718px flex items-start justify-between flex-wrap space-y-5 mx-auto',
-};
+const contentClasses = { container: 'w-718px flex items-start justify-between flex-wrap space-y-5 mx-auto' };
 
 const Content = ({ data = ['mock 1', 'mock 2', 'mock 3', 'mock 4'] }) => (
   <Fragment>

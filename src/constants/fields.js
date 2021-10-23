@@ -1,5 +1,4 @@
 import { Input, Textarea } from '@atoms';
-import Search from '@atoms/input/Search';
 import { RichEditor } from '@organisms';
 
 const urlPattern =

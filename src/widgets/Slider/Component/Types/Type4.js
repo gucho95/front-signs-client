@@ -4,9 +4,7 @@ import { Carousel } from '@molecules';
 import classNames from 'classnames';
 import { useMemo } from 'react';
 
-const classes = {
-  root: 'w-full overflow-hidden',
-};
+const classes = { root: 'w-full overflow-hidden' };
 
 const slideClasses = {
   root: ' relative h-795px',

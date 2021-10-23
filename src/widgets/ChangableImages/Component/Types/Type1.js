@@ -10,10 +10,10 @@ const classes = {
 };
 
 const Type1 = ({ items, ...rest }) => {
-  const row1Items = items[0];
-  const row2Items = items[1];
-  const row3Items = items[2];
-  const row4Items = items[3];
+  const row1Items = items[0]?.items;
+  const row2Items = items[1]?.items;
+  const row3Items = items[2]?.items;
+  const row4Items = items[3]?.items;
   return (
     <div className={classes.root}>
       <div className={classNames(classes.grid4, 'pl-10')}>

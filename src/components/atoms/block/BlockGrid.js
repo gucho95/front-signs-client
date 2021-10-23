@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import GridLayout from 'react-grid-layout';
 import Column from './Column';
 import 'react-grid-layout/css/styles.css';

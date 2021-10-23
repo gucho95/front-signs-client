@@ -26,23 +26,21 @@ const Body = () => {
   const widgetData = widget?.widgetData;
   const methods = useForm({
     mode: 'onChange',
+    reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: isUpdateMode ? widgetData : { type: WIDGET_TYPES.TEXT },
   });
-  const { register, watch, handleSubmit, getValues } = methods;
+  const { register, watch, handleSubmit } = methods;
   const activeType = watch('type');
-
   const addWidget = (data) => dispatch(columnWidgets.add(data));
   const updateWidget = (data) => dispatch(columnWidgets.update(data));
 
   const onFormSuccess = (widget) => {
-    console.log(`widget`, widget);
     const data = {
       id: isUpdateMode ? widgetId : uuidv4(),
       parentId: column,
       widgetData: { ...widget },
     };
-
     isUpdateMode ? updateWidget(data) : addWidget(data);
     history.push(`${PATHS.DASHBOARD}/pages/${page}`);
   };

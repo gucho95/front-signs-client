@@ -1,6 +1,5 @@
 import { Editor as RichEditor } from '@tinymce/tinymce-react';
 import classNames from 'classnames';
-import { forwardRef } from 'react';
 import { useController } from 'react-hook-form';
 import './index.scss';
 

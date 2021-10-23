@@ -4,23 +4,20 @@ import { TYPES } from '../types';
 import { TYPE_FIELDS } from './optionFields';
 import { Button, BUTTON_TYPES, Select, Spacing } from '@atoms';
 import { Tabs } from '@molecules';
-import { useMount, useRouter } from '@hooks';
+import { useMount } from '@hooks';
 
 const SLIDE = 'slide';
 
 const SliderForm = ({ isUpdateMode }) => {
-  const { params } = useRouter();
   const [activeKey, setActiveKey] = useState('0');
   const [tabs, setTabs] = useState([]);
   const { register, watch, control, setValue, formState, setFocus } = useFormContext();
   const { errors } = formState;
   const activeOption = watch('option');
   const slideFields = useMemo(() => (activeOption ? TYPE_FIELDS[activeOption] : null), [activeOption]);
-
   const slides = watch('slides');
 
   // SET DEFAULT OPTION VALUE FOR COMPONENT WHEN CREATE MODE
-
   useMount(() => !isUpdateMode && setValue('option', TYPES[0].value.toString()));
 
   // RESET CAROUSEL SLIDES DATA ON ACTIVE OPTION CHANGE
@@ -41,9 +38,7 @@ const SliderForm = ({ isUpdateMode }) => {
     if (!formState.submitCount || !hasError) {
       return;
     }
-
     const firstErrorTabKey = Object.keys(formState.errors?.slides)?.[0];
-
     const firstErrorFields = formState.errors?.slides[firstErrorTabKey];
     const firstErrorFieldName = Object.keys(firstErrorFields || {})[0];
     setActiveKey(firstErrorTabKey);
@@ -62,8 +57,6 @@ const SliderForm = ({ isUpdateMode }) => {
     setTabs(newState);
     setActiveKey('0');
   };
-
-  // TODO DISABLE SELECT IN EDIT MODE
 
   return (
     <div>

@@ -1,5 +1,4 @@
-<div className='12'></div>;
-export const GRID_CLASSES = {
+export const WIDTH_CLASSES = {
   1: 'w-1/12',
   2: 'w-2/12',
   3: 'w-3/12',

@@ -8,10 +8,10 @@ import { useMount } from '@hooks';
 
 const TabFields = ({ isActiveSlide, item, parentKey, errors, register, control }) => (
   <div className={isActiveSlide ? 'grid gap-y-2' : 'hidden'}>
-    {item?.map(({ component: Component, name, rules, ...rest }, childKey) => {
-      const fieldName = `items.${parentKey}.items.${childKey}.${name}`;
-      const fieldProps = register(fieldName, rules);
-      const error = errors?.items?.[parentKey]?.items?.[childKey]?.[name];
+    {item?.map(({ component: Component, name, rules, ...rest }) => {
+      const fieldName = `items.${parentKey}.${name}`;
+      const error = errors?.items?.[parentKey]?.[name];
+      const fieldProps = name ? register(fieldName, { ...rules }) : rules;
       return <Component key={fieldName} error={error} control={control} {...fieldProps} {...rest} />;
     })}
   </div>
@@ -23,11 +23,11 @@ const Fields = ({ fields, activeKey, errors, control, register }) => {
 
     return (
       <TabFields
-        key={parentKey}
-        parentKey={parentKey}
         errors={errors}
         register={register}
         control={control}
+        key={parentKey}
+        parentKey={parentKey}
         item={item}
         isActiveSlide={isActiveSlide}
       />
@@ -35,7 +35,7 @@ const Fields = ({ fields, activeKey, errors, control, register }) => {
   });
 };
 
-const ChangableImagesForm = ({ isUpdateMode }) => {
+const ReviewsForm = ({ isUpdateMode }) => {
   const [activeKey, setActiveKey] = useState('0');
   const { register, watch, control, setValue, formState, setFocus } = useFormContext();
   const { errors, submitCount } = formState;
@@ -57,9 +57,11 @@ const ChangableImagesForm = ({ isUpdateMode }) => {
     if (!submitCount || !hasError) {
       return;
     }
+
     const firstErrorTabKey = Object.keys(formState.errors?.items)[0];
-    const firstErrorFieldKey = Object.keys(formState.errors?.items?.[firstErrorTabKey]?.items)?.[0];
-    const errorFieldName = `items.${firstErrorTabKey}.items.${firstErrorFieldKey}.image`;
+    const firstErrorFieldKey = Object.keys(formState.errors?.items?.[firstErrorTabKey])?.[0];
+
+    const errorFieldName = `items.${firstErrorTabKey}.${firstErrorFieldKey}`;
     setActiveKey(firstErrorTabKey);
     setTimeout(() => setFocus(errorFieldName), 0);
   }, [submitCount]);
@@ -69,7 +71,7 @@ const ChangableImagesForm = ({ isUpdateMode }) => {
       <div className='w-6/12'>
         <Select options={TYPES} placeholder='Select text option' {...register('option')} />
       </div>
-      <Spacing className='pt-4' />
+      <Spacing className='pt-7' />
       <Tabs
         key={activeOption}
         titlePrefix='Row'
@@ -82,4 +84,4 @@ const ChangableImagesForm = ({ isUpdateMode }) => {
   );
 };
 
-export default ChangableImagesForm;
+export default ReviewsForm;

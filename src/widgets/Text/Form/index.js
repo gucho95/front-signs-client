@@ -1,9 +1,9 @@
-import { useMemo, useEffect } from 'react';
+import { useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { TYPES } from '../types';
 import { TYPE_FIELDS } from './optionFields';
 import { Select, Spacing } from '@atoms';
-import { useMount, useRouter } from '@hooks';
+import { useMount } from '@hooks';
 
 const TextForm = ({ isUpdateMode }) => {
   const { register, watch, control, setValue, formState } = useFormContext();

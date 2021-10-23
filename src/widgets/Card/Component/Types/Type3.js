@@ -1,7 +1,7 @@
 import { Text, Paragraph, Rate, Spacing } from '@atoms';
 
 const classes = {
-  root: 'w-345px p-7 shadow-1 h-294px overflow-hidden mx-auto rounded-10px group hover:shadow-5 transition-all',
+  root: 'w-345px max-w-full p-7 shadow-1 h-294px overflow-hidden mx-auto rounded-10px group hover:shadow-5 transition-all',
   title: 'text-p2-32 text-dark truncate',
   description: 'text-grey-dark font-light text-p4-24 line-clamp-5 overflow-hidden',
 };

@@ -14,7 +14,7 @@ const MATERIAL = 0;
 const MaterialsForm = ({ isUpdateMode }) => {
   const [activeKey, setActiveKey] = useState('0');
   const [tabs, setTabs] = useState([]);
-  const { register, watch, control, setValue, formState, setFocus, unregister, getValues } = useFormContext();
+  const { register, watch, control, setValue, formState, setFocus, unregister } = useFormContext();
   const { errors } = formState;
   const activeOption = watch('option');
   const slideFields = useMemo(() => (activeOption ? TYPE_FIELDS[activeOption] : null), [activeOption]);
@@ -98,7 +98,7 @@ const MaterialsForm = ({ isUpdateMode }) => {
             {slideFields?.map(({ component: Component, name, rules, ...rest }) => {
               const fieldName = `materials.${parentKey}.${name}`;
               const error = errors?.materials?.[parentKey]?.[name];
-              const fieldProps = name ? register(fieldName, { ...rules }) : rules;
+              const fieldProps = name ? register(fieldName, rules) : rules;
 
               return <Component key={name} error={error} control={control} {...fieldProps} {...rest} />;
             })}

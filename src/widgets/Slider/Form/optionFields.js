@@ -2,7 +2,6 @@ import {
   BUTTON_TEXT_FIELD,
   DESCRIPTION_FIELD,
   generateButtonField,
-  generateRichField,
   generateTextField,
   IMAGE_FIELD,
   RICH_TITLE_FIELD,

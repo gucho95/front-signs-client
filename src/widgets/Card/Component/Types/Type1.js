@@ -3,9 +3,9 @@ import classNames from 'classnames';
 
 const classes = {
   root: 'w-1470px mx-auto flex max-h-345px rounded-10px overflow-hidden shadow-1 max-w-full group hover:shadow-4 transition-all',
-  imageSection: 'w-1000px',
+  imageSection: 'flex-1',
   image: 'w-full h-full object-cover object-center',
-  textSection: 'flex-1 px-7 pt-16 flex flex-col',
+  textSection: 'px-7 pt-16 flex flex-col w-470px',
   title: 'text-blue-light font-medium group-hover:underline',
   description: 'text-p5 font-light line-clamp-6',
 };
