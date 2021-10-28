@@ -6,6 +6,7 @@ import ModalRenderer from '@organisms/modal/ModalRenderer';
 import StoreProvider from '@store/config';
 import { ToastContainer } from 'react-toastify';
 import '@styles/index.scss';
+import Type1 from '@widgets/Products/Component/Types/Type1/index';
 
 ReactDOM.render(
   <React.StrictMode>

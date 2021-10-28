@@ -8,6 +8,7 @@ import { ChangableImagesWidget, ChangableImagesForm } from '@widgets/ChangableIm
 import { ServicesWidget, ServicesForm } from '@widgets/Services';
 import { ReviewsForm, ReviewsWidget } from '@widgets/Reviews';
 import { ProjectsWidget, ProjectsForm } from '@widgets/Projects';
+import { ProductsWidget, ProductsForm } from '@widgets/Products';
 
 const WIDGET_TYPES = {
   TEXT: 'text',
@@ -20,6 +21,7 @@ const WIDGET_TYPES = {
   SERVICES: 'services',
   REVIEWS: 'reviews',
   PROJECTS: 'projects',
+  PRODUCTS: 'products',
 };
 
 export const WIDGET_COMPONENTS = {
@@ -33,6 +35,7 @@ export const WIDGET_COMPONENTS = {
   [WIDGET_TYPES.SERVICES]: ServicesWidget,
   [WIDGET_TYPES.REVIEWS]: ReviewsWidget,
   [WIDGET_TYPES.PROJECTS]: ProjectsWidget,
+  [WIDGET_TYPES.PRODUCTS]: ProductsWidget,
 };
 
 export const WIDGET_FORM_COMPONENTS = {
@@ -46,6 +49,7 @@ export const WIDGET_FORM_COMPONENTS = {
   [WIDGET_TYPES.SERVICES]: ServicesForm,
   [WIDGET_TYPES.REVIEWS]: ReviewsForm,
   [WIDGET_TYPES.PROJECTS]: ProjectsForm,
+  [WIDGET_TYPES.PRODUCTS]: ProductsForm,
 };
 
 export default WIDGET_TYPES;

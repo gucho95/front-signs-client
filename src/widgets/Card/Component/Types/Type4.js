@@ -1,7 +1,7 @@
 import { Heading, Image, Paragraph, Spacing } from '@atoms';
 
 const classes = {
-  root: 'w-345px shadow-1 rounded-5px mx-auto overflow-hidden group hover:shadow-4 transition-all',
+  root: 'max-w-full shadow-1 rounded-5px overflow-hidden group hover:shadow-4 transition-all',
   imageSection: 'w-full h-215px',
   image: 'w-full h-full object-cover object-center',
   textSection: 'px-5',
