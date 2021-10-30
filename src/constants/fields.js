@@ -1,4 +1,5 @@
 import { Input, Textarea } from '@atoms';
+import { CreatableSelect } from '@molecules';
 import { RichEditor } from '@organisms';
 
 const urlPattern =
@@ -70,4 +71,11 @@ export const BREADCRUMB_FIELD = {
   name: 'breadcrumb',
   rules: { required: true },
   placeholder: 'Breadcrumb',
+};
+
+export const CATEGORY_FIELD = {
+  component: CreatableSelect,
+  name: 'category',
+  rules: { required: true },
+  placeholder: 'Select category',
 };

@@ -3,12 +3,6 @@ import classNames from 'classnames';
 import { useController } from 'react-hook-form';
 import './index.scss';
 
-// TODO : add them colors to tinymce
-// import resolveConfig from 'tailwindcss/resolveConfig';
-// import tailwindConfig from '../../../../tailwind.config.js';
-// const theme = resolveConfig(tailwindConfig);
-
-// TODO: move to env file
 const API_KEY = 'mtyjtpq9pjtk0qt01s6jkhvzivpqkc215377dqkhuevc297n';
 const PLUGINS = ['textcolor', 'paste'];
 const TOOLBAR = 'undo redo | bold italic underline|forecolor backcolor';
@@ -17,7 +11,7 @@ const TEXT_COLOR_MAP = ['red', 'Red'];
 const STATES = { ERROR: 'error', BASE: 'base' };
 
 const DEFAULT_CLASSES =
-  'min-h-294px max-h-294px bg-blue-light outline-none border-1 border-1px min-h-200px border-grey-dark focus:border-blue-light bg-white outline-none rounded-20px overflow-hidden p-1';
+  'min-h-294px max-h-294px bg-blue-light outline-none border-1 border-1px min-h-200px border-grey-dark focus:border-blue-light bg-white outline-none overflow-hidden p-1';
 
 const STATE_CLASSES = {
   [STATES.ERROR]: 'border-danger',
