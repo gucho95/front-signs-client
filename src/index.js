@@ -6,14 +6,14 @@ import ModalRenderer from '@organisms/modal/ModalRenderer';
 import StoreProvider from '@store/config';
 import { ToastContainer } from 'react-toastify';
 import Comp from '@widgets/GetQuote/Component/Types/Type1';
-import Comp1 from '@widgets/Products/Component/Types/Type1';
+// import Comp1 from '@widgets/Products/Component/Types/Type1';
 import '@styles/index.scss';
 
 ReactDOM.render(
   <React.StrictMode>
     <StoreProvider>
-      {/* <Comp1 />
-      <Comp /> */}
+      {/* <Comp1 /> */}
+      {/* <Comp /> */}
       <RootRouter />
       <ToastContainer
         autoClose={3000}

@@ -44,6 +44,8 @@ export const COLUMN_WIDGETS = {
   DUPLICATE: 'DUPLICATE_COLUMN_WIDGET',
 };
 
+export const MEDIA = generateCrud({ actionName: 'MEDIA' });
+
 // UI ACTIONS
 export const MODALS = {
   OPEN: 'OPEN_MODAL',

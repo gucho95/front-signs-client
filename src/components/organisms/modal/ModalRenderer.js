@@ -1,13 +1,13 @@
 import Dialog from 'rc-dialog';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectModalData } from '@selectors/ui';
-import { EXAMPLE } from '@constants/modals';
+import { EXAMPLE, FILE_MANAGER } from '@constants/modals';
 import ui from '@actions/ui';
-import { data } from 'autoprefixer';
 import Example from './types/Example';
+import FileManager from './types/FileManager';
 import './index.scss';
 
-const BodyRenderer = { [EXAMPLE]: Example };
+const BodyRenderer = { [EXAMPLE]: Example, [FILE_MANAGER]: FileManager };
 
 const ModalRenderer = () => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const ModalRenderer = () => {
     <Dialog
       visible={true}
       onClose={closeModal}
-      children={<Body data={data} closeModal={closeModal} />}
+      children={<Body params={params} closeModal={closeModal} />}
       {...params?.modal}
     />
   ) : null;

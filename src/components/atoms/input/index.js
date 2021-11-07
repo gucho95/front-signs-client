@@ -14,12 +14,14 @@ const STATE_CLASSES = {
 };
 
 const Input = forwardRef((props, ref) => {
-  const { error, className, showError = true, ...inputProps } = props;
+  const { error, className, showError = true, labelText, ...inputProps } = props;
   const stateClasses = error ? STATE_CLASSES[STATES.ERROR] : STATE_CLASSES[STATES.BASE];
+  const inputId = `${inputProps?.name}-field`;
 
   return (
     <div className='flex flex-col'>
-      <input className={classNames(DEFAULT_CLASSES, stateClasses, className)} {...inputProps} ref={ref} />
+      {labelText ? <label htmlFor={inputId} children={labelText} /> : null}
+      <input id={inputId} className={classNames(DEFAULT_CLASSES, stateClasses, className)} {...inputProps} ref={ref} />
       {error && showError ? <Text children={error?.message} className='text-danger text-9px px-5' /> : null}
     </div>
   );

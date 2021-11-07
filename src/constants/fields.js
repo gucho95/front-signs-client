@@ -1,4 +1,4 @@
-import { Input, Textarea } from '@atoms';
+import { Input, MediaField, Textarea } from '@atoms';
 import { CreatableSelect } from '@molecules';
 import { RichEditor } from '@organisms';
 
@@ -42,16 +42,14 @@ export const BUTTON_TEXT_FIELD = {
 };
 
 export const IMAGE_FIELD = {
-  component: Input,
+  component: MediaField,
   name: 'image',
-  rules: { required: true, pattern: imageUrlPattern },
   placeholder: 'Image url',
 };
 
 export const VIDEO_FIELD = {
-  component: Input,
+  component: MediaField,
   name: 'video',
-  rules: { required: true, pattern: urlPattern },
   placeholder: 'Video url',
 };
 

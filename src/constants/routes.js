@@ -15,6 +15,7 @@ const ManageSinglePage = withLazyLoad(() => import('@pages/Dashboard/SinglePage'
 const AddPage = withLazyLoad(() => import('@pages/Dashboard/AddPage'));
 const Settings = withLazyLoad(() => import('@pages/Dashboard/Settings'));
 const AddWidget = withLazyLoad(() => import('@pages/Dashboard/AddWidget'));
+const Media = withLazyLoad(() => import('@pages/Dashboard/Media'));
 
 export const ROUTES = [
   { id: 1, key: 'Homepage', path: PATHS.HOMEPAGE, component: Components, exact: true, isMenuItem: true },
@@ -30,5 +31,6 @@ export const DASHBOARD_ROUTES = [
   { label: 'Add widget', path: PATHS.ADD_WIDGET, component: AddWidget, isMenuItem: false },
   { label: 'Update widget', path: PATHS.UPDATE_WIDGET, component: AddWidget, isMenuItem: false },
   { icon: 'icon', label: 'Add page', path: PATHS.ADD_PAGE, component: AddPage, isMenuItem: true },
-  { icon: 'icon', label: 'Settings', path: PATHS.SETTINGS, component: Settings, isMenuItem: true },
+  // { icon: 'icon', label: 'Settings', path: PATHS.SETTINGS, component: Settings, isMenuItem: true },
+  { icon: 'icon', label: 'Media', path: PATHS.MEDIA, component: Media, isMenuItem: true },
 ];

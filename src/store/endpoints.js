@@ -9,6 +9,10 @@ const resetPassword = `/auth/reset-password`;
 const emailVerify = '/email-verifier/verify';
 const emailFind = '/email-finder/find';
 
+const media = `/media`;
+const mediaAll = `/media/all`;
+const mediaUpload = `/media/upload`;
+
 const endpoints = {
   signIn,
   signUp,
@@ -17,6 +21,9 @@ const endpoints = {
   resetPassword,
   emailVerify,
   emailFind,
+  media,
+  mediaAll,
+  mediaUpload,
 };
 
 export default endpoints;

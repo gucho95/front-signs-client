@@ -16,7 +16,7 @@ const bottomMenuData = [...DASHBOARD_ROUTES.filter((i) => i.isMenuItem), signOut
 
 const Content = () => (
   <div className='min-h-full bg-grey-body'>
-    <div className='px-12'>
+    <div className='pl-12 pr-4'>
       <Switch>
         {DASHBOARD_ROUTES.map(({ path, exact, component: Component }) => (
           <Route key={path} exact={exact} path={path} component={Component} />
