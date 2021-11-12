@@ -10,8 +10,14 @@ const generateWorker = ({ payload, actionType, service }) =>
   (function* () {
     const { LOAD, SUCCESS, FAIL } = actionType;
     try {
+      // LOAD
       yield put({ type: LOAD });
       const response = service ? yield call(service, payload) : payload;
+      // ERROR CASE
+      // if (response?.error) {
+      //   throw new Error(response.message);
+      // }
+      // SUCCESS CASE
       yield put({ type: SUCCESS, response });
       if (payload?.afterSuccess) {
         yield call(payload.afterSuccess, { response });

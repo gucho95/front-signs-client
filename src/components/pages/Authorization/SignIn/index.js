@@ -17,9 +17,14 @@ const SignIn = () => {
   const signIn = (payload) => dispatch(authActions.signIn(payload));
 
   const onFormSuccess = (values) => {
-    const afterFail = () => toast.error('Invalid credentials !');
+    const afterFail = (error) => {
+      const errorMessage = error?.error?.response.data.message;
+
+      toast.error(errorMessage);
+    };
     signIn({ ...values, afterFail });
   };
+
   const onFormError = () => {};
 
   return (
@@ -28,7 +33,13 @@ const SignIn = () => {
       <form onSubmit={handleSubmit(onFormSuccess, onFormError)} className={classes.form}>
         <Heading level={3} children='Sign in' />
         <Input placeholder='Email' error={errors.email} showError={false} {...register('email')} />
-        <Input placeholder='Password' error={errors.password} showError={false} {...register('password')} />
+        <Input
+          placeholder='Password'
+          error={errors.password}
+          showError={false}
+          type='password'
+          {...register('password')}
+        />
         <div>
           <Button
             type={BUTTON_TYPES.PRIMARY}

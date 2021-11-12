@@ -1,21 +1,24 @@
 import axios from 'axios';
 import { store } from '@store/config';
-import { selectUser } from '@selectors/user';
+import { selectUserToken } from '@selectors/user';
 const { REACT_APP_ROOT_API } = process.env;
 
 const client = () => {
   const state = store.getState();
-  const { token } = selectUser(state);
-  const mockToken = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imd1Y2hvOTVAZ21haWwuY29tIiwiaWQiOjEsImlhdCI6MTYzNjMxMjkwOSwiZXhwIjoxNjM2Mzk5MzA5fQ.A8ILBDMY5MnVAlheIjYrSzn6Il7BBt-K1titdRBbzYM`;
+  const userToken = selectUserToken(state);
 
   const service = axios.create({
     baseURL: REACT_APP_ROOT_API,
-    headers: { Authorization: mockToken },
+    headers: { Authorization: userToken ? `Bearer ${userToken}` : null },
   });
 
   service.interceptors.response.use(
-    (data) => data,
-    (error) => {}
+    // SUCCESS CASE
+    ({ data, config }) => ({ data, params: config }),
+    // FAIL CASE
+    (error) => {
+      return Promise.reject(error);
+    }
   );
   return service;
 };
