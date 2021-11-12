@@ -13,6 +13,8 @@ const SinglePage = () => {
   const pageData = useSelector((state) => selectPageData(state, page?.id));
   const title = page?.title;
 
+  console.log(pageData);
+
   useEffect(() => {
     document.title = title;
   }, [title]);
