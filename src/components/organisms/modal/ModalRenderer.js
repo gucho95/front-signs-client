@@ -1,13 +1,14 @@
 import Dialog from 'rc-dialog';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectModalData } from '@selectors/ui';
-import { EXAMPLE, FILE_MANAGER } from '@constants/modals';
+import { CREATE_REDIRECT, EXAMPLE, FILE_MANAGER } from '@constants/modals';
 import ui from '@actions/ui';
 import Example from './types/Example';
 import FileManager from './types/FileManager';
+import CreateRedirect from './types/CreateRedirect';
 import './index.scss';
 
-const BodyRenderer = { [EXAMPLE]: Example, [FILE_MANAGER]: FileManager };
+const BodyRenderer = { [EXAMPLE]: Example, [FILE_MANAGER]: FileManager, [CREATE_REDIRECT]: CreateRedirect };
 
 const ModalRenderer = () => {
   const dispatch = useDispatch();

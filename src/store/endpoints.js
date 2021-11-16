@@ -3,6 +3,7 @@ const signUp = `/auth/register`;
 const media = `/media`;
 const mediaAll = `/media/all`;
 const mediaUpload = `/media/upload`;
+const redirects = `/redirect`;
 
 const endpoints = {
   media,
@@ -10,6 +11,7 @@ const endpoints = {
   mediaUpload,
   signIn,
   signUp,
+  redirects,
 };
 
 export default endpoints;

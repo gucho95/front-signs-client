@@ -1,5 +1,5 @@
 .rc-dialog {
-    @apply absolute w-5/12 max-h-80vh overflow-hidden overflow-y-auto  transform top-50% left-50% -translate-x-2/4 -translate-y-2/4 -mr-50% px-8 py-6 bg-white;
+    @apply absolute max-w-7xl max-h-80vh overflow-hidden overflow-y-auto  transform top-50% left-50% -translate-x-2/4 -translate-y-2/4 -mr-50% px-8 py-6 bg-white;
 
     &-wrap {
         @apply fixed overflow-auto top-0 right-0 bottom-0 left-0 z-40;

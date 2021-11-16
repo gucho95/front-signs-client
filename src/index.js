@@ -2,18 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import RootRouter from 'components/routers/Root';
-import ModalRenderer from '@organisms/modal/ModalRenderer';
 import StoreProvider from '@store/config';
 import { ToastContainer } from 'react-toastify';
-import Comp from '@widgets/GetQuote/Component/Types/Type1';
-// import Comp1 from '@widgets/Products/Component/Types/Type1';
 import '@styles/index.scss';
 
 ReactDOM.render(
   <React.StrictMode>
     <StoreProvider>
-      {/* <Comp1 /> */}
-      {/* <Comp /> */}
       <RootRouter />
       <ToastContainer
         autoClose={3000}
@@ -22,7 +17,6 @@ ReactDOM.render(
         hideProgressBar={true}
         theme='colored'
       />
-      <ModalRenderer />
     </StoreProvider>
   </React.StrictMode>,
   document.getElementById('root')

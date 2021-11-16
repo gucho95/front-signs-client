@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import mediaActions from '@actions/media';
 import { selectMediaFiles, selectMedias } from '@selectors/media';
 import { Spacing, MediaUploader, Pagination } from '@atoms';
+import Media from '@pages/Dashboard/Media';
 import MediaItem from '@pages/Dashboard/Media/MediaItem';
 
-const LIMIT = 20;
+const LIMIT = 15;
 
 const FileManager = ({ params, closeModal }) => {
   const dispatch = useDispatch();
@@ -13,13 +14,12 @@ const FileManager = ({ params, closeModal }) => {
   const findAll = (payload) => dispatch(mediaActions.find(payload));
   const upload = (payload) => dispatch(mediaActions.create(payload));
   const { data } = useSelector(selectMedias);
-
   const medias = useSelector(selectMediaFiles);
   const total = data?.count;
 
   const findAllMedias = () => {
     const offset = Number(page - 1) ? LIMIT * Number(page - 1) : 0;
-    findAll({ offset });
+    findAll({ offset, limit: LIMIT });
   };
 
   const onPageChange = (value) => {
@@ -37,32 +37,15 @@ const FileManager = ({ params, closeModal }) => {
     onPageChange(1);
   }
 
+  const onMediaSelect = (media) => {
+    params?.onSelect(media.relativePath);
+    closeModal();
+  };
+
   return (
-    <Fragment>
-      <Spacing className='pt-16' />
-
-      <div className='flex items-start'>
-        <div className='flex flex-col justify-start flex-1 transition-all duration-300'>
-          <MediaUploader upload={upload} find={findAllMedias} />
-
-          <div className='grid flex-1 grid-cols-4 gap-2 transition-all'>
-            {medias?.map((media) => (
-              <MediaItem
-                key={media.id}
-                onSelect={() => {
-                  params?.onSelect(media.relativePath);
-                  closeModal();
-                }}
-                {...media}
-              />
-            ))}
-          </div>
-          <Spacing className='pt-4' />
-          {total ? <Pagination current={page} pageSize={LIMIT} total={total} onChange={onPageChange} /> : null}
-        </div>
-        <Spacing className='pl-4' />
-      </div>
-    </Fragment>
+    <div className='max-w-screen-2xl flex justify-center w-full'>
+      <Media selectable={true} onMediaSelect={onMediaSelect} />
+    </div>
   );
 };
 

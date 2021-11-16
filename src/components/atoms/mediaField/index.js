@@ -1,11 +1,9 @@
-import { BUTTON_SIZES, BUTTON_TYPES, Input, Spacing } from '@atoms';
+import { BUTTON_TYPES, Input, Spacing } from '@atoms';
 import { useDispatch } from 'react-redux';
 import Button from '../button';
 import uiActions from '@actions/ui';
 import { FILE_MANAGER } from '@constants/modals';
 import { useController, useFormContext } from 'react-hook-form';
-import MediaItem from '@pages/Dashboard/Media/MediaItem';
-
 const { REACT_APP_ROOT } = process.env;
 
 const MediaField = ({ name, ...rest }) => {

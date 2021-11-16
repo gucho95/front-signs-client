@@ -9,8 +9,8 @@ const Pagination = (props) => {
       <RcPagination
         {...props}
         showPrevNextJumpers={true}
-        prevIcon={<LeftArrow className='w-6 h-6 text-blue-dark fill-current' />}
-        nextIcon={<RightArrow className='w-6 h-6 text-blue-dark fill-current' />}
+        prevIcon={<LeftArrow className='w-6 h-6 text-dark-beta fill-current' />}
+        nextIcon={<RightArrow className='w-6 h-6 text-dark-beta fill-current' />}
       />
     </div>
   );

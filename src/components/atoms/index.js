@@ -29,3 +29,4 @@ export { default as Uploader } from './uploader';
 export { default as MediaUploader } from './uploader/media';
 export { default as Pagination } from './pagination';
 export { default as MediaField } from './mediaField';
+export { default as Table } from './table';

@@ -1,7 +1,7 @@
 import { components } from 'react-select';
 
 const ControlComponent = (props) => (
-  <div className='brd'>
+  <div>
     <components.Control {...props} />
   </div>
 );

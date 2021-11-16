@@ -1,19 +1,17 @@
 import { Fragment, useEffect, useState, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import mediaActions from '@actions/media';
-import uiActions from '@actions/ui';
 import { selectMediaFiles, selectMedias } from '@selectors/media';
 import { Spacing, MediaUploader, Pagination } from '@atoms';
-import { useHistory, useLocation } from 'react-router';
+import { useHistory, useLocation } from 'react-router-dom';
 import { getSearchParam, setSearchParams } from '@utils';
 import MediaItem from './MediaItem';
 import MediaMeta from './MediaMeta';
-import { FILE_MANAGER } from '@constants/modals';
 
-const LIMIT = 20;
+const LIMIT = 10;
 
-const Media = () => {
-  const { search } = useLocation();
+const Media = ({ selectable, onMediaSelect }) => {
+  const { search, pathname } = useLocation();
   const history = useHistory();
   const [selectedMediaId, setSelectedMediaId] = useState(null);
   const dispatch = useDispatch();
@@ -28,7 +26,7 @@ const Media = () => {
 
   const findAllMedias = () => {
     const offset = Number(currentPage - 1) ? LIMIT * Number(currentPage - 1) : 0;
-    findAll({ offset });
+    findAll({ offset, limit: LIMIT });
   };
 
   const selectedMedia = useMemo(
@@ -38,7 +36,7 @@ const Media = () => {
 
   const onPageChange = (value) => {
     const searchParams = setSearchParams({ search, params: [{ key: 'page', value }] });
-    history.replace({ search: searchParams });
+    history.replace({ search: searchParams, pathname });
   };
 
   useEffect(() => {
@@ -55,11 +53,9 @@ const Media = () => {
   return (
     <Fragment>
       <Spacing className='pt-16' />
-
       <div className='flex items-start'>
         <div className='flex flex-col justify-start flex-1 transition-all duration-300'>
           <MediaUploader upload={upload} find={findAllMedias} />
-
           <div className='grid flex-1 grid-cols-4 gap-2 transition-all'>
             {medias?.map((media) => (
               <MediaItem
@@ -72,16 +68,25 @@ const Media = () => {
           </div>
           <Spacing className='pt-4' />
           {total ? (
-            <Pagination current={Number(currentPage)} pageSize={LIMIT} total={total} onChange={onPageChange} />
+            <Pagination
+              current={Number(currentPage)}
+              pageSize={LIMIT}
+              total={total}
+              onChange={(params) => {
+                onPageChange(params);
+                setSelectedMediaId(null);
+              }}
+            />
           ) : null}
         </div>
         <Spacing className='pl-4' />
-
         {selectedMediaId ? (
           <div className='transition-all duration-300'>
             <Spacing className='pl-4' />
             <div className='w-80'>
               <MediaMeta
+                selectable={selectable}
+                onMediaSelect={onMediaSelect}
                 key={selectedMediaId}
                 find={findAllMedias}
                 selectedMedia={selectedMedia}

@@ -45,6 +45,7 @@ export const COLUMN_WIDGETS = {
 };
 
 export const MEDIA = generateCrud({ actionName: 'MEDIA' });
+export const REDIRECTS = generateCrud({ actionName: 'REDIRECTS' });
 
 // UI ACTIONS
 export const MODALS = {
